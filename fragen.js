@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 18, stand: "2026-11-15", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 19, stand: "2026-11-15", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -82,7 +82,7 @@ window.WISSEN = {
 };
 window.THEMEN = [
   {
-    id: "brennschneiden", titel: "Brennschneiden", icon: "🔥", kat: "fertigung", datum: "2026-11-12", video: "", ap: [1], bild: "img/brennschneiden.jpg", bereich: "E", berufe: ["KM", "MB", "IM"],
+    id: "brennschneiden", titel: "Brennschneiden", icon: "🔥", kat: "fertigung", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707613515149839648", ap: [1], bild: "img/brennschneiden.jpg", bereich: "E", berufe: ["KM", "MB", "IM"],
     fragen: [
       { q: "Was passiert beim Brennschneiden mit dem Stahl?", a: ["Er wird geschmolzen", "Er verbrennt im Sauerstoffstrahl", "Er verdampft"], r: 1,
         e: "Der Stahl wird auf Zündtemperatur vorgewärmt und verbrennt dann im reinen Sauerstoffstrahl. Die Schlacke wird ausgeblasen." },
@@ -97,7 +97,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "drehzahl", titel: "Fräser-Drehzahl", icon: "🌀", kat: "fertigung", datum: "2026-11-12", video: "", ap: [1], bild: "img/drehzahl.jpg", bereich: "C", berufe: ["ZM", "IM"],
+    id: "drehzahl", titel: "Fräser-Drehzahl", icon: "🌀", kat: "fertigung", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707198839941336352", ap: [1], bild: "img/drehzahl.jpg", bereich: "C", berufe: ["ZM", "IM"],
     fragen: [
       { q: "Wie berechnest du die Drehzahl eines Fräsers?", a: ["n = vc · π · d", "n = vc · 1000 / (π · d)", "n = d / vc"], r: 1,
         e: "n = vc · 1000 / (π · d), mit vc in m/min und d in mm. Ergebnis in 1/min." },
@@ -129,7 +129,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "schraube", titel: "Schraube 8.8", icon: "🔩", kat: "elemente", datum: "2026-11-12", video: "", ap: [1, 2], bild: "img/schraube.jpg", bereich: "F", berufe: ["IM", "KM", "MB", "MT"],
+    id: "schraube", titel: "Schraube 8.8", icon: "🔩", kat: "elemente", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707545432066379040", ap: [1, 2], bild: "img/schraube.jpg", bereich: "F", berufe: ["IM", "KM", "MB", "MT"],
     fragen: [
       { q: "Welche Zugfestigkeit hat eine Schraube der Festigkeitsklasse 8.8?", a: ["88 N/mm²", "800 N/mm²", "880 N/mm²"], r: 1,
         e: "Erste Zahl × 100: 8 × 100 = 800 N/mm² Mindest-Zugfestigkeit." },
@@ -144,7 +144,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "kerbwirkung", titel: "Kerbwirkung", icon: "⚠️", kat: "festigkeit", datum: "2026-11-12", video: "", ap: [2], bild: "img/kerbwirkung.jpg", bereich: "H", berufe: ["IM", "ZM"],
+    id: "kerbwirkung", titel: "Kerbwirkung", icon: "⚠️", kat: "festigkeit", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707579489089342752", ap: [2], bild: "img/kerbwirkung.jpg", bereich: "H", berufe: ["IM", "ZM"],
     fragen: [
       { q: "Was passiert an einer scharfen Kerbe im Bauteil?", a: ["Die Spannung sinkt", "Es entsteht eine Spannungsspitze", "Nichts – nur Optik"], r: 1,
         e: "Der Kraftfluss drängt sich an der Kerbe zusammen. Die Spannung kann dort schnell 2- bis 3-mal so hoch sein." },
@@ -159,7 +159,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "uebersetzung", titel: "Zahnrad-Übersetzung", icon: "⚙️", kat: "elemente", datum: "2026-11-12", video: "", ap: [1, 2], bild: "img/uebersetzung.jpg", bereich: "G", berufe: ["IM", "MT"],
+    id: "uebersetzung", titel: "Zahnrad-Übersetzung", icon: "⚙️", kat: "elemente", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707270666684288289", ap: [1, 2], bild: "img/uebersetzung.jpg", bereich: "G", berufe: ["IM", "MT"],
     fragen: [
       { q: "z₁ = 12 Zähne treibt z₂ = 36 Zähne an. Übersetzung i?", a: ["i = 0,33", "i = 3", "i = 48"], r: 1,
         e: "i = z₂ / z₁ = 36 / 12 = 3. Das große Rad dreht 3-mal langsamer." },
@@ -174,7 +174,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "flansch", titel: "Flansch anziehen", icon: "🔧", kat: "elemente", datum: "2026-11-12", video: "", ap: [1, 2], bild: "img/flansch.jpg", bereich: "O", berufe: ["IM", "KM"],
+    id: "flansch", titel: "Flansch anziehen", icon: "🔧", kat: "elemente", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707332228811967776", ap: [1, 2], bild: "img/flansch.jpg", bereich: "O", berufe: ["IM", "KM"],
     fragen: [
       { q: "Wie ziehst du die Schrauben eines Flansches richtig an?", a: ["Reihum im Kreis, sofort voll", "Über Kreuz und in Stufen", "Egal, Hauptsache fest"], r: 1,
         e: "Über Kreuz in mehreren Stufen (z. B. 30 % → 60 % → 100 %), damit die Dichtung gleichmäßig gepresst wird." },
@@ -189,7 +189,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "flex", titel: "Flex sicher benutzen", icon: "🛡️", kat: "sicherheit", datum: "2026-11-12", video: "", ap: [1], bild: "img/flex.jpg", bereich: "M", berufe: ["IM", "ZM", "MT", "KM", "MB"],
+    id: "flex", titel: "Flex sicher benutzen", icon: "🛡️", kat: "sicherheit", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707384501004995873", ap: [1], bild: "img/flex.jpg", bereich: "M", berufe: ["IM", "ZM", "MT", "KM", "MB"],
     fragen: [
       { q: "125-mm-Scheibe bei 11.000 1/min – wie schnell ist der Rand?", a: ["≈ 26 km/h", "≈ 260 km/h", "≈ 2.600 km/h"], r: 1,
         e: "v = π · 0,125 m · 11.000/min ≈ 72 m/s ≈ 260 km/h." },
@@ -206,7 +206,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "schweissen", titel: "Schweißen: Lichtbogen", icon: "⚡", kat: "fuegen", datum: "2026-11-13", video: "", ap: [1], bild: "img/schweissen.jpg", bereich: "F", berufe: ["KM", "MB", "IM"],
+    id: "schweissen", titel: "Schweißen: Lichtbogen", icon: "⚡", kat: "fuegen", datum: "2026-11-13", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707682530173996321", ap: [1], bild: "img/schweissen.jpg", bereich: "F", berufe: ["KM", "MB", "IM"],
     fragen: [
       { q: "Wie lang sollte der Lichtbogen beim E-Hand-Schweißen sein?", a: ["So lang wie möglich", "Etwa so lang wie der Elektrodendurchmesser", "Die Elektrode muss das Blech berühren"], r: 1,
         e: "Faustregel: Bogenlänge ≈ Elektrodendurchmesser." },
@@ -221,7 +221,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "elektroden", titel: "Schweißelektroden", icon: "🧪", kat: "fuegen", datum: "2026-11-13", video: "", ap: [1], bild: "img/elektroden.jpg", bereich: "F", berufe: ["KM", "MB"],
+    id: "elektroden", titel: "Schweißelektroden", icon: "🧪", kat: "fuegen", datum: "2026-11-13", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707748732804074784", ap: [1], bild: "img/elektroden.jpg", bereich: "F", berufe: ["KM", "MB"],
     fragen: [
       { q: "Welche Schweißelektrode für tragende Bauteile und dicke Bleche?", a: ["Rutil", "Basisch", "Zellulose"], r: 1,
         e: "Basische Schweißelektroden geben zähe, rissfeste Nähte." },
@@ -238,7 +238,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "haerten", titel: "Härten & Anlassen", icon: "🔨", kat: "werkstoffe", datum: "2026-11-13", video: "", ap: [1, 2], bild: "img/haerten.jpg", bereich: "B", berufe: ["IM", "ZM"],
+    id: "haerten", titel: "Härten & Anlassen", icon: "🔨", kat: "werkstoffe", datum: "2026-11-13", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707963272720321825", ap: [1, 2], bild: "img/haerten.jpg", bereich: "B", berufe: ["IM", "ZM"],
     fragen: [
       { q: "Auf welche Temperatur wird unlegierter Stahl zum Härten etwa erwärmt?", a: ["≈ 250 °C", "≈ 850 °C", "≈ 1.500 °C"], r: 1,
         e: "Rund 850 °C – der Stahl glüht kirschrot. Danach sofort in Wasser abschrecken." },
@@ -255,7 +255,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "zerspaner", titel: "Beruf Zerspanungsmechaniker", icon: "🛠️", kat: "beruf", datum: "2026-11-13", video: "", ap: [], bild: "img/zerspaner.jpg", bereich: "P", berufe: ["ZM"],
+    id: "zerspaner", titel: "Beruf Zerspanungsmechaniker", icon: "🛠️", kat: "beruf", datum: "2026-11-13", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708382254174670113", ap: [], bild: "img/zerspaner.jpg", bereich: "P", berufe: ["ZM"],
     fragen: [
       { q: "Wie genau arbeitet ein Zerspanungsmechaniker oft?", a: ["Auf 1 mm", "Auf 0,01 mm", "Auf 1 cm"], r: 1,
         e: "Ein Hundertstel Millimeter – ein Menschenhaar ist rund siebenmal dicker." },
@@ -272,7 +272,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "industriemechaniker", titel: "Beruf Industriemechaniker", icon: "👷", kat: "beruf", datum: "2026-11-12", video: "", ap: [], bild: "img/industriemechaniker.jpg", bereich: "P", berufe: ["IM"],
+    id: "industriemechaniker", titel: "Beruf Industriemechaniker", icon: "👷", kat: "beruf", datum: "2026-11-12", video: "https://www.tiktok.com/@dietechnikerwelt/video/7707209154464664865", ap: [], bild: "img/industriemechaniker.jpg", bereich: "P", berufe: ["IM"],
     fragen: [
       { q: "Warum ist der Industriemechaniker gefragt, wenn eine Anlage steht?", a: ["Weil jede Minute Stillstand Geld kostet", "Weil er die Anlage verkauft", "Weil er Software schreibt"], r: 0,
         e: "Stillstand kostet Produktion und Geld – Instandhaltung und schnelle Fehlersuche sind sein Kerngeschäft." },
@@ -287,7 +287,7 @@ window.THEMEN = [
     ],
   },
 {
-    id: "schraube-loesen", titel: "Warum Schrauben sich lösen", icon: "🔩", kat: "elemente", datum: "2026-11-14", video: "", ap: [2], bild: "img/schraube-loesen.jpg", bereich: "F", berufe: ["IM", "MT", "KM"],
+    id: "schraube-loesen", titel: "Warum Schrauben sich lösen", icon: "🔩", kat: "elemente", datum: "2026-11-14", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708019572804275489", ap: [2], bild: "img/schraube-loesen.jpg", bereich: "F", berufe: ["IM", "MT", "KM"],
     fragen: [
       { q: "Was ist die Hauptursache, dass sich eine fest angezogene Schraube von allein losdreht?", a: ["Vibration quer zur Schraube", "Zu viel Fett im Gewinde", "Längsbelastung in Schraubenrichtung"], r: 0,
         e: "Querschwingungen lassen die Bauteile rutschen. Das Gewinde gleitet mit und dreht sich dabei jedes Mal ein Stück zurück." },
@@ -302,7 +302,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "biegung", titel: "Prüfungsfrage Biegung", icon: "📏", kat: "festigkeit", datum: "2026-11-14", video: "", ap: [2], bild: "img/biegung.jpg", bereich: "H", berufe: ["IM", "KM"],
+    id: "biegung", titel: "Prüfungsfrage Biegung", icon: "📏", kat: "festigkeit", datum: "2026-11-14", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708158594797063456", ap: [2], bild: "img/biegung.jpg", bereich: "H", berufe: ["IM", "KM"],
     fragen: [
       { q: "Wo im Querschnitt ist die Biegespannung am größten?", a: ["In der Mitte", "An der Randfaser", "Überall gleich"], r: 1,
         e: "Die Spannung steigt von der neutralen Faser nach außen gleichmäßig an – ganz am Rand ist sie am größten." },
@@ -319,7 +319,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "mechatroniker", titel: "Beruf Mechatroniker", icon: "🤖", kat: "beruf", datum: "2026-11-14", video: "", ap: [], bild: "img/mechatroniker.jpg", bereich: "P", berufe: ["MT"],
+    id: "mechatroniker", titel: "Beruf Mechatroniker", icon: "🤖", kat: "beruf", datum: "2026-11-14", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708067792372747552", ap: [], bild: "img/mechatroniker.jpg", bereich: "P", berufe: ["MT"],
     fragen: [
       { q: "Was vereint der Mechatroniker?", a: ["Mechanik und Elektrik (plus Steuerung)", "Nur Holz- und Metallbau", "Nur Programmieren"], r: 0,
         e: "Halb Mechaniker, halb Elektriker: Er baut Anlagen auf, verdrahtet Sensoren und programmiert die Steuerung." },
@@ -336,7 +336,7 @@ window.THEMEN = [
     ],
   },
 {
-    id: "schweiss-verzug", titel: "Schweißverzug", icon: "🔥", kat: "fuegen", datum: "2026-11-14", video: "", ap: [1], bild: "img/schweiss-verzug.jpg", bereich: "F", berufe: ["KM", "MB"],
+    id: "schweiss-verzug", titel: "Schweißverzug", icon: "🔥", kat: "fuegen", datum: "2026-11-14", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708101126444387616", ap: [1], bild: "img/schweiss-verzug.jpg", bereich: "F", berufe: ["KM", "MB"],
     fragen: [
       { q: "Warum verzieht sich ein Blech beim Schweißen?", a: ["Die Naht dehnt sich beim Abkühlen aus", "Die heiße Naht schrumpft beim Abkühlen und zieht das Blech mit", "Der Lichtbogen drückt das Blech weg"], r: 1,
         e: "Die Naht ist beim Schweißen weit über 1.000 °C heiß. Beim Abkühlen schrumpft sie – und zieht das Blech in ihre Richtung." },
@@ -366,7 +366,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "druck", titel: "Druck & Kolbenkraft", icon: "💨", kat: "pneumatik", datum: "2026-11-14", video: "", ap: [1, 2], bild: "img/druck.jpg", bereich: "I", berufe: ["IM", "MT"],
+    id: "druck", titel: "Druck & Kolbenkraft", icon: "💨", kat: "pneumatik", datum: "2026-11-14", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708338358812036385", ap: [1, 2], bild: "img/druck.jpg", bereich: "I", berufe: ["IM", "MT"],
     fragen: [
       { q: "Wie viel sind 6 bar in N/mm²?", a: ["6 N/mm²", "0,6 N/mm²", "60 N/mm²"], r: 1,
         e: "1 bar = 0,1 N/mm². Also 6 bar = 0,6 N/mm². Immer zuerst umrechnen!" },
@@ -400,7 +400,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "sensoren", titel: "Sensoren: induktiv, kapazitiv, optisch", icon: "📡", kat: "elektro", datum: "2026-11-15", video: "", ap: [2], bild: "img/sensoren.jpg", bereich: "J", berufe: ["MT", "IM"],
+    id: "sensoren", titel: "Sensoren: induktiv, kapazitiv, optisch", icon: "📡", kat: "elektro", datum: "2026-11-15", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708430100282215712", ap: [2], bild: "img/sensoren.jpg", bereich: "J", berufe: ["MT", "IM"],
     fragen: [
       { q: "Auf dem Band laufen Stahl- und Kunststoffteile. Der Sensor erkennt nur die Stahlteile. Welcher Sensor ist verbaut?", a: ["Induktiv", "Kapazitiv", "Einweg-Lichtschranke"], r: 0,
         e: "Der induktive Sensor reagiert nur auf Metall: Sein Wechselfeld erzeugt im Metall Wirbelströme. Kunststoff lässt das Feld kalt." },
@@ -457,7 +457,7 @@ window.THEMEN = [
     ],
   },
   {
-    id: "sps-logik", titel: "UND, ODER, NICHT in der SPS", icon: "🖥️", kat: "steuerung", datum: "2026-11-15", video: "", ap: [2], bild: "img/sps-logik.jpg", bereich: "K", berufe: ["MT", "IM"],
+    id: "sps-logik", titel: "UND, ODER, NICHT in der SPS", icon: "🖥️", kat: "steuerung", datum: "2026-11-15", video: "https://www.tiktok.com/@dietechnikerwelt/video/7708495813374184737", ap: [2], bild: "img/sps-logik.jpg", bereich: "K", berufe: ["MT", "IM"],
     fragen: [
       { q: "Eine Presse darf nur fahren, wenn beide Taster gedrückt sind. Welche Verknüpfung?", a: ["UND", "ODER", "NICHT"], r: 0,
         e: "UND: Der Ausgang ist nur 1, wenn alle Eingänge 1 sind – beide Hände sind am Taster." },
