@@ -1,0 +1,8 @@
+Schriftart: Inter (Inter-400.woff2, Inter-700.woff2)
+Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
+
+Diese Schriftart steht unter der SIL Open Font License, Version 1.1.
+Lizenztext: https://openfontlicense.org
+
+Die Schrift darf frei verwendet, mit Software gebündelt und weitergegeben werden,
+solange sie nicht einzeln verkauft wird und dieser Lizenzhinweis erhalten bleibt.

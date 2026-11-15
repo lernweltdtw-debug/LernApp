@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07090c" />
+  <meta name="description" content="Technik lernen in Minuten: Quiz zu jedem Video von DieTechnikerWelt – Maschinenbau, Schweißen, Werkstoffe, Arbeitssicherheit." />
+  <title>DTW Lernapp – Technik lernen</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="logo"><img src="dtw-logo.jpg" alt="DTW" /></div>
+      <div class="brand"><h1 id="hello">DTW Lernapp</h1><p id="helloSub">Technik lernen in Minuten</p></div>
+      <div class="streak" title="Tage am Stück"><span>🔥</span><b id="sStreak">0</b></div>
+    </header>
+
+    <!-- ========== START ========== -->
+    <section id="home" class="view">
+      <div class="profile">
+        <div class="pTop">
+          <div class="lvRing"><svg viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="28"/><circle class="fg" id="lvRing" cx="32" cy="32" r="28"/></svg><span id="lvIc">🔧</span></div>
+          <div class="pTx"><small>DEIN LEVEL</small><b id="lvName">Azubi</b><span class="xpLine"><b id="lvXp">0</b> XP · <span id="lvNext"></span></span></div>
+        </div>
+        <div class="pStats">
+          <div><b id="totTxt">0/0</b><small>gelernt</small></div>
+          <div><b id="sAcc">–</b><small>Treffer</small></div>
+          <div><b id="sDueN">0</b><small>heute fällig</small></div>
+        </div>
+        <div class="bar pBar"><i id="totBar"></i></div>
+        <div class="daily" id="daily">
+          <span class="dIc">📅</span>
+          <span class="dTx"><b>Tagesaufgabe</b><small id="dTxt"></small><span class="dBar"><i id="dBar"></i></span></span>
+          <span class="dPr" id="dPr"></span>
+        </div>
+      </div>
+
+      <button class="hero" id="heroBtn"><span class="em" id="heroEm">🎯</span><span class="hTx"><b id="heroT">Los geht's</b><small id="heroS"></small></span><span class="go">▶</span></button>
+
+      <div class="quick">
+        <button class="qa" id="dueBtn"><span class="em">📆</span><span><b>Wiederholen</b><small id="dueS">nichts fällig</small></span></button>
+        <button class="qa" id="wrongBtn"><span class="em">🔁</span><span><b>Fehler üben</b><small id="wrongS">nichts offen</small></span></button>
+        <button class="qa" id="mixBtn"><span class="em">🎲</span><span><b>Gemischt</b><small>10 zufällige Fragen</small></span></button>
+        <button class="qa" id="examBtn"><span class="em">⏱️</span><span><b>Prüfung</b><small>15 Fragen · 10 min</small></span></button>
+      </div>
+
+      <button class="newBar" id="newBtn"><span class="nb">NEU</span><span class="nTx" id="newS">neueste Themen</span><span class="go">›</span></button>
+
+      <div class="secHd"><h2>🎮 Spiele</h2></div>
+      <div class="games">
+        <button class="game blitz" id="blitzBtn"><span class="em">⚡</span><b>60-Sekunden-Blitz</b><small>So viele richtige wie möglich</small><span class="best" id="blitzBest">Rekord: –</span></button>
+        <button class="game swipe" id="swipeBtn"><span class="em">👆</span><b>Richtig oder falsch?</b><small>Wischen · 3 Leben</small><span class="best" id="swipeBest">Rekord: –</span></button>
+      </div>
+
+      <div class="secHd"><h2>🎓 Prüfungsvorbereitung</h2></div>
+      <div class="apGrid">
+        <button class="apCard" id="ap1Btn"><small>ABSCHLUSSPRÜFUNG</small><b>Teil 1</b><span class="apP" id="ap1P">0 %</span><div class="bar"><i id="ap1Bar"></i></div><small id="ap1N"></small><span class="apGo">Prüfung starten →</span></button>
+        <button class="apCard" id="ap2Btn"><small>ABSCHLUSSPRÜFUNG</small><b>Teil 2</b><span class="apP" id="ap2P">0 %</span><div class="bar"><i id="ap2Bar"></i></div><small id="ap2N"></small><span class="apGo">Prüfung starten →</span></button>
+      </div>
+      <p class="apNote">% = wie sicher du die Fragen zu diesem Prüfungsteil beherrschst. Zuordnung zur Orientierung – kein offizieller Prüfungskatalog.</p>
+
+      <div class="secHd"><h2>📚 Zuletzt neu</h2><button class="secLink" id="allTopicsBtn">Alle Themen ›</button></div>
+      <div class="carousel" id="newCarousel"></div>
+    </section>
+
+    <!-- ========== THEMEN ========== -->
+    <section id="topics" class="view hidden">
+      <h2 class="pageT">Themen</h2>
+      <div class="search"><span>🔎</span><input id="tSearch" type="search" placeholder="Thema suchen, z. B. Schweißen" autocomplete="off" /></div>
+      <div class="chips" id="katChips"></div>
+      <div id="cats"></div>
+      <p class="empty hidden" id="tEmpty">Nichts gefunden – probier ein anderes Wort.</p>
+    </section>
+
+    <!-- ========== WISSEN ========== -->
+    <section id="wissen" class="view hidden">
+      <h2 class="pageT">Wissen</h2>
+      <div class="seg wide" id="wSeg"><button data-v="f" class="on">📐 Formeln</button><button data-v="b">📖 Begriffe</button></div>
+      <div class="search"><span>🔎</span><input id="wSearch" type="search" placeholder="Suchen, z. B. Drehzahl" autocomplete="off" /></div>
+      <div id="wList"></div>
+    </section>
+
+    <!-- ========== PROFIL ========== -->    <section id="me" class="view hidden">
+      <h2 class="pageT">Profil</h2>
+      <div class="mStats" id="mStats"></div>
+
+      <div class="secHd"><h2>📊 Diese Woche</h2><span class="secR" id="weekSum"></span></div>
+      <div class="week" id="week"></div>
+
+      <div class="secHd"><h2>🎯 Daran solltest du arbeiten</h2></div>
+      <div id="weak"></div>
+
+      <div class="secHd"><h2>🏅 Abzeichen</h2><span class="secR" id="bdgCount"></span></div>
+      <div class="badges" id="badges"></div>
+
+      <div class="secHd"><h2>⚙️ Einstellungen</h2></div>
+      <div class="settings">
+        <label class="set"><span><b>Dein Name</b><small>Nur auf diesem Gerät gespeichert</small></span><input id="setName" type="text" maxlength="20" placeholder="optional" autocomplete="off" /></label>
+        <div class="set"><span><b>Tagesziel</b><small>Richtige Antworten pro Tag</small></span><div class="seg" id="setGoal"><button data-v="5">5</button><button data-v="10">10</button><button data-v="20">20</button></div></div>
+        <div class="set"><span><b>Töne</b><small>Kurzer Klang bei richtig/falsch</small></span><button class="tog" id="setSound" role="switch"></button></div>
+        <div class="set"><span><b>Helles Design</b><small>Für draußen und helle Umgebung</small></span><button class="tog" id="setLight" role="switch"></button></div>
+        <div class="set"><span><b>Große Schrift</b><small>Fragen und Antworten größer</small></span><button class="tog" id="setBig" role="switch"></button></div>
+      </div>
+
+      <div class="secHd"><h2>💾 Fortschritt</h2></div>
+      <div class="backup">
+        <button class="btn ghost" id="exportBtn">Fortschritt sichern</button>
+        <button class="btn ghost" id="importBtn">Sicherung laden</button>
+        <input type="file" id="importFile" accept="application/json,.json" class="hidden" />
+        <p class="apNote">Dein Fortschritt liegt nur auf diesem Gerät. Mit „Sichern“ bekommst du eine Datei, die du bei einem Handywechsel wieder laden kannst.</p>
+        <button class="reset" id="resetBtn">Fortschritt zurücksetzen</button>
+      </div>
+
+      <footer>
+        Zu jedem Thema gibt's ein Video auf TikTok:<br /><a href="https://www.tiktok.com/@dietechnikerwelt" target="_blank" rel="noopener">@dietechnikerwelt</a><br />
+        <span id="stand"></span><br />
+        <span id="legal"></span>
+        <div><button class="install hidden" id="installBtn">📲 Als App installieren</button></div>
+      </footer>
+    </section>
+
+    <!-- ========== QUIZ ========== -->
+    <section id="quiz" class="view hidden">
+      <div class="qtop"><button class="x" id="quitBtn" aria-label="Beenden">✕</button><div class="bar"><i id="qBar"></i></div><span class="timer hidden" id="timer"></span></div>
+      <span class="tag" id="qTag"></span>
+      <img class="qimg hidden" id="qImg" alt="" />
+      <div class="question" id="qText"></div>
+      <div class="answers" id="answers"></div>
+      <div class="explain hidden" id="explain"><b id="exTitle"></b><p id="exText"></p></div>
+      <div class="btns hidden" id="qBtns">
+        <a class="btn video" id="vidBtn" target="_blank" rel="noopener"></a>
+        <button class="btn main" id="nextBtn">Weiter</button>
+      </div>
+    </section>
+
+    <!-- Spiel: 60-Sekunden-Blitz -->
+    <section id="blitz" class="view hidden">
+      <div class="gtop"><button class="x" id="bQuit" aria-label="Beenden">✕</button>
+        <div class="clock"><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="19"/><circle class="fg" id="bRing" cx="22" cy="22" r="19"/></svg><b id="bTime">60</b></div>
+        <div class="gscore"><b id="bScore">0</b><small>Punkte</small></div>
+        <div class="combo" id="bCombo"></div>
+      </div>
+      <span class="tag" id="bTag"></span>
+      <div class="question" id="bText"></div>
+      <div class="answers" id="bAnswers"></div>
+    </section>
+
+    <!-- Spiel: Richtig oder falsch -->
+    <section id="swipe" class="view hidden">
+      <div class="gtop"><button class="x" id="sQuit" aria-label="Beenden">✕</button>
+        <div class="lives" id="sLives">❤️❤️❤️</div>
+        <div class="gscore"><b id="sScore">0</b><small>richtig</small></div>
+      </div>
+      <div class="deck">
+        <div class="card" id="sCard">
+          <span class="tag" id="sTag"></span>
+          <div class="sq" id="sQ"></div>
+          <div class="sa"><small>Antwort</small><b id="sA"></b></div>
+          <div class="stamp yes">RICHTIG</div><div class="stamp no">FALSCH</div>
+        </div>
+      </div>
+      <div class="sInfo hidden" id="sInfo"></div>
+      <div class="sBtns"><button class="sb no" id="sNo">✕ Falsch</button><button class="sb yes" id="sYes">✓ Richtig</button></div>
+      <p class="hint">Wischen: nach rechts = stimmt · nach links = stimmt nicht</p>
+    </section>
+
+    <!-- Ergebnis -->
+    <section id="result" class="view hidden">
+      <div class="result">
+        <div class="scoreRing"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="rRing" cx="60" cy="60" r="52"/></svg><div class="big" id="rScore"></div></div>
+        <h3 id="rTitle"></h3><p id="rText"></p><div class="xpGain hidden" id="rXp"></div>
+      </div>
+      <div class="btns">
+        <button class="btn main" id="againBtn">Nochmal</button>
+        <button class="btn share" id="shareBtn">📤 Ergebnis teilen</button>
+      </div>
+      <div class="review" id="review"></div>
+      <div class="btns">
+        <a class="btn video" id="rVid" target="_blank" rel="noopener"></a>
+        <button class="btn ghost" id="homeBtn">Zur Übersicht</button>
+      </div>
+      <footer>Mehr Technik in 60 Sekunden: <a href="https://www.tiktok.com/@dietechnikerwelt" target="_blank" rel="noopener">@dietechnikerwelt folgen</a></footer>
+    </section>
+  </main>
+
+  <!-- Navigation unten -->
+  <nav class="tabbar" id="tabbar">
+    <button data-v="home" class="on"><span>🏠</span><small>Start</small></button>
+    <button data-v="topics"><span>📚</span><small>Themen</small></button>
+    <button data-v="wissen"><span>📐</span><small>Wissen</small></button>
+    <button data-v="me"><span>👤</span><small>Profil</small></button>
+  </nav>
+
+  <!-- Erster Start -->
+  <div class="onb hidden" id="onb">
+    <div class="onbCard">
+      <div class="onbLogo"><img src="dtw-logo.jpg" alt="DTW" /></div>
+      <h2>Willkommen!</h2>
+      <p>Lerne Technik in Minuten – mit Fragen zu jedem Video von <b>DieTechnikerWelt</b>.</p>
+      <label class="onbL">Wie heißt du? <small>(optional)</small><input id="onbName" type="text" maxlength="20" placeholder="Vorname" autocomplete="off" /></label>
+      <div class="onbL">Dein Tagesziel</div>
+      <div class="seg big" id="onbGoal"><button data-v="5"><b>5</b><small>locker</small></button><button data-v="10" class="on"><b>10</b><small>normal</small></button><button data-v="20"><b>20</b><small>Prüfungsmodus</small></button></div>
+      <button class="btn main" id="onbGo">Los geht's</button>
+    </div>
+  </div>
+
+  <!-- Neu nach einem Update -->
+  <div class="onb hidden" id="newMod">
+    <div class="onbCard">
+      <div class="nmIc">🎬</div>
+      <h2>Neu in der App!</h2>
+      <p id="nmTxt"></p>
+      <div id="nmCards" class="nmCards"></div>
+      <button class="btn main" id="nmGo">Jetzt lernen</button>
+      <button class="btn ghost" id="nmLater">Später</button>
+    </div>
+  </div>
+  <canvas id="confetti" class="confetti"></canvas>
+  <div class="toast hidden" id="toast"></div>
+  <div class="flash" id="gFlash"></div>
+
+  <script src="fragen.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
