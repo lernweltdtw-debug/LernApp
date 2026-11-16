@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 19, stand: "2026-11-15", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 20, stand: "2026-11-16", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Kernloch (metrisches Regelgewinde)", f: "d_Kern ≈ D − P", n: "D Nenndurchmesser · P Steigung – M10: 10 − 1,5 = 8,5 mm · M8: 8 − 1,25 = 6,8 mm", thema: "gewindebohren" },
     { t: "Drehzahl beim Fräsen/Drehen", f: "n = vc · 1000 / (π · d)", n: "n in 1/min · vc Schnittgeschwindigkeit in m/min · d Durchmesser in mm", thema: "drehzahl" },
     { t: "Umfangsgeschwindigkeit (z. B. Flex-Scheibe)", f: "v = π · d · n / 60.000", n: "v in m/s · d in mm · n in 1/min – 125 mm bei 11.000 1/min ≈ 72 m/s", thema: "flex" },
     { t: "Übersetzung", f: "i = z₂ / z₁ = n₁ / n₂", n: "z Zähnezahl · n Drehzahl · Drehmoment am Abtrieb ≈ M₁ · i (ohne Verluste)", thema: "uebersetzung" },
@@ -39,6 +40,10 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Körnerpunkt", e: "Kleine Mulde im Kreuzungspunkt der Risslinien. Führt die Bohrerspitze, damit der Bohrer nicht verläuft.", thema: "anreissen" },
+    { w: "Anreißfarbe", e: "Farbschicht auf blankem Metall – die Reißnadel ritzt sie weg, die Linie wird gut sichtbar.", thema: "anreissen" },
+    { w: "Gewindelehrdorn", e: "Prüfdorn für Innengewinde: Gutseite muss hineingehen, Ausschussseite (rot markiert) nicht.", thema: "gewindebohren" },
+    { w: "Satzgewindebohrer", e: "Drei Handgewindebohrer: Vor-, Mittel-, Fertigschneider – nacheinander benutzen.", thema: "gewindebohren" },
     { w: "Stoffschlüssig", e: "Verbindung durch Verschmelzen des Werkstoffs (Schweißen, Löten) – keine Trennfuge, nicht lösbar.", thema: "schweissverfahren" },
     { w: "Schutzgas", e: "Hält Sauerstoff und Stickstoff der Luft vom Schmelzbad fern. MAG: aktiv (Ar + CO₂), MIG/WIG: inert (Argon).", thema: "schweissverfahren" },
     { w: "Schlacke", e: "Glasige Schicht aus der Elektrodenumhüllung (E-Hand). Schützt die Naht beim Abkühlen, wird danach abgeklopft.", thema: "schweissverfahren" },
@@ -502,6 +507,42 @@ window.THEMEN = [
         e: "PA Wanne, PB horizontal (Kehlnaht), PF senkrecht steigend, PG senkrecht fallend, PE überkopf (am schwierigsten)." },
       { q: "Warum muss die Fuge vor dem Schweißen blank sein?", a: ["Damit sie schöner aussieht", "Rost, Öl und Farbe verursachen sonst Poren", "Damit weniger Strom nötig ist"], r: 1,
         e: "Verunreinigungen verdampfen im Lichtbogen – das Gas bleibt als Poren in der Naht. Also schleifen oder bürsten." },
+    ],
+  },
+  {
+    id: "anreissen", titel: "Anreißen & Körnen", icon: "📍", kat: "fertigung", datum: "2026-11-16", video: "", ap: [1], bild: "img/anreissen.jpg", bereich: "D", berufe: ["IM", "KM", "MB"],
+    fragen: [
+      { q: "Wozu trägt man vor dem Anreißen Anreißfarbe auf?", a: ["Gegen Rost", "Damit die Risslinien gut sichtbar sind", "Damit der Bohrer besser schneidet"], r: 1,
+        e: "Die Reißnadel kratzt die Farbe weg – die blanke Linie hebt sich deutlich vom farbigen Untergrund ab." },
+      { q: "Womit zieht man die Risslinien auf Stahl?", a: ["Mit dem Bleistift", "Mit der Reißnadel", "Mit dem Körner"], r: 1,
+        e: "Die gehärtete Spitze der Reißnadel ritzt eine feine, dauerhafte Linie in die Oberfläche." },
+      { q: "Wo setzt man den Körner für eine Bohrung an?", a: ["Irgendwo auf der Linie", "Genau im Kreuzungspunkt der Risslinien", "Am Werkstückrand"], r: 1,
+        e: "Der Mittelpunkt der Bohrung liegt dort, wo sich die beiden Risslinien kreuzen." },
+      { q: "Warum körnt man vor dem Bohren an?", a: ["Damit der Bohrer nicht verläuft", "Damit die Bohrung tiefer wird", "Damit weniger Späne entstehen"], r: 0,
+        e: "Die Körnermulde führt die Bohrerspitze. Ohne Körnerpunkt wandert der Bohrer weg – die Bohrung sitzt falsch." },
+      { q: "Ein Bohrer ist beim Anbohren seitlich weggewandert. Was ist die wahrscheinlichste Ursache?", a: ["Kein oder zu flacher Körnerpunkt", "Zu viel Kühlschmierstoff", "Zu kleiner Bohrer"], r: 0,
+        e: "Ohne ausreichende Körnermulde findet die Querschneide keinen Halt – der Bohrer verläuft." },
+    ],
+  },
+  {
+    id: "gewindebohren", titel: "Kernloch & Gewinde schneiden", icon: "🔩", kat: "fertigung", datum: "2026-11-16", video: "", ap: [1], bild: "img/gewindebohren.jpg", bereich: "C", berufe: ["IM", "ZM", "MT", "KM"],
+    fragen: [
+      { q: "Mit welchem Durchmesser bohrst du das Kernloch für ein M10-Gewinde (Steigung 1,5 mm)?", a: ["10 mm", "8,5 mm", "7,5 mm"], r: 1,
+        e: "Kernloch ≈ Nenndurchmesser − Steigung = 10 − 1,5 = 8,5 mm." },
+      { q: "Welche Faustformel gilt für den Kernlochdurchmesser bei metrischem Regelgewinde?", a: ["D + P", "D − P", "D · P"], r: 1,
+        e: "Kernloch = D − P (Nenndurchmesser minus Steigung). M8: 8 − 1,25 = 6,8 mm." },
+      { q: "Wie hoch ist die Drehzahl für einen 8,5-mm-HSS-Bohrer bei vc = 25 m/min (gerundet)?", a: ["≈ 290 1/min", "≈ 940 1/min", "≈ 2.900 1/min"], r: 1,
+        e: "n = vc · 1000 / (π · d) = 25 · 1000 / (π · 8,5) ≈ 936 1/min." },
+      { q: "Warum senkt man das Kernloch vor dem Gewindeschneiden 90° an?", a: ["Damit der Gewindebohrer sauber anschneidet und kein Grat aufgeworfen wird", "Damit das Gewinde tiefer wird", "Damit die Schraube fester sitzt"], r: 0,
+        e: "Die Senkung führt den Gewindebohrer und verhindert, dass der erste Gang ausbricht und einen Grat aufwirft." },
+      { q: "In welcher Reihenfolge benutzt man einen dreiteiligen Handgewindebohrer-Satz?", a: ["Fertig-, Mittel-, Vorschneider", "Vor-, Mittel-, Fertigschneider", "Egal – alle schneiden gleich"], r: 1,
+        e: "Vorschneider (1 Ring) → Mittelschneider (2 Ringe) → Fertigschneider (ohne Ring). Jeder nimmt einen Teil des Profils." },
+      { q: "Warum dreht man den Gewindebohrer beim Schneiden immer wieder ein Stück zurück?", a: ["Damit der Span bricht und der Bohrer nicht klemmt", "Damit das Gewinde feiner wird", "Um Schneidöl zu sparen"], r: 0,
+        e: "Durch das Zurückdrehen bricht der Span. Sonst verstopfen die Spannuten und der Gewindebohrer kann abbrechen." },
+      { q: "Prüfung mit dem Gewindelehrdorn: Wann ist das Innengewinde in Ordnung?", a: ["Gut- und Ausschussseite gehen hinein", "Gutseite geht hinein, Ausschussseite nicht", "Keine Seite geht hinein"], r: 1,
+        e: "Gutseite muss sich ganz einschrauben lassen, die Ausschussseite (rot) darf höchstens anschnäbeln." },
+      { q: "Ein Azubi bohrt für M10 ein 10-mm-Loch. Was passiert?", a: ["Das Gewinde wird besonders stabil", "Es entsteht praktisch kein Gewinde – die Schraube hält nicht", "Nichts, 10 mm ist richtig"], r: 1,
+        e: "Bei 10 mm fehlt das Material für die Gewindegänge. Das Kernloch muss 8,5 mm haben." },
     ],
   },
 ];
