@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 20, stand: "2026-11-16", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 21, stand: "2026-11-16", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Schutzgasmenge MAG (Faustregel)", f: "Gas (l/min) ≈ 10 × d_Draht (mm)", n: "1,0-mm-Draht → ≈ 10 l/min · 1,2 mm → ≈ 12 l/min", thema: "mag" },
     { t: "Kernloch (metrisches Regelgewinde)", f: "d_Kern ≈ D − P", n: "D Nenndurchmesser · P Steigung – M10: 10 − 1,5 = 8,5 mm · M8: 8 − 1,25 = 6,8 mm", thema: "gewindebohren" },
     { t: "Drehzahl beim Fräsen/Drehen", f: "n = vc · 1000 / (π · d)", n: "n in 1/min · vc Schnittgeschwindigkeit in m/min · d Durchmesser in mm", thema: "drehzahl" },
     { t: "Umfangsgeschwindigkeit (z. B. Flex-Scheibe)", f: "v = π · d · n / 60.000", n: "v in m/s · d in mm · n in 1/min – 125 mm bei 11.000 1/min ≈ 72 m/s", thema: "flex" },
@@ -40,6 +41,8 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Wurzel / Füllage / Decklage", e: "Lagen einer Mehrlagennaht: Wurzel unten im Spalt, Füllagen in der Mitte, Decklage als sichtbarer Abschluss.", thema: "mag" },
+    { w: "Heftstelle", e: "Kurze Schweißpunkte, die die Bleche vor dem Schweißen in Lage und Spalt fixieren.", thema: "mag" },
     { w: "Körnerpunkt", e: "Kleine Mulde im Kreuzungspunkt der Risslinien. Führt die Bohrerspitze, damit der Bohrer nicht verläuft.", thema: "anreissen" },
     { w: "Anreißfarbe", e: "Farbschicht auf blankem Metall – die Reißnadel ritzt sie weg, die Linie wird gut sichtbar.", thema: "anreissen" },
     { w: "Gewindelehrdorn", e: "Prüfdorn für Innengewinde: Gutseite muss hineingehen, Ausschussseite (rot markiert) nicht.", thema: "gewindebohren" },
@@ -543,6 +546,25 @@ window.THEMEN = [
         e: "Gutseite muss sich ganz einschrauben lassen, die Ausschussseite (rot) darf höchstens anschnäbeln." },
       { q: "Ein Azubi bohrt für M10 ein 10-mm-Loch. Was passiert?", a: ["Das Gewinde wird besonders stabil", "Es entsteht praktisch kein Gewinde – die Schraube hält nicht", "Nichts, 10 mm ist richtig"], r: 1,
         e: "Bei 10 mm fehlt das Material für die Gewindegänge. Das Kernloch muss 8,5 mm haben." },
+    ],
+  },
+  {
+    id: "mag", titel: "MAG: V-Naht in 6 Schritten", icon: "🔥", kat: "fuegen", datum: "2026-11-16", video: "", ap: [1, 2], bild: "img/mag.jpg", bereich: "F", berufe: ["KM", "MB", "IM"],
+    fragen: [
+      { q: "Welcher Öffnungswinkel ist für eine V-Naht an 10-mm-Blech üblich?", a: ["30°", "60°", "90°"], r: 1,
+        e: "Jede Kante wird mit 30° angefast – zusammen ergibt das eine V-Fuge mit rund 60° Öffnung." },
+      { q: "Warum werden die Fugenflanken vor dem MAG-Schweißen blank geschliffen?", a: ["Damit die Naht glänzt", "Rost und Öl verdampfen sonst im Lichtbogen und erzeugen Poren", "Damit weniger Draht verbraucht wird"], r: 1,
+        e: "Verunreinigungen verdampfen im Lichtbogen. Das Gas bleibt als Poren in der Naht eingeschlossen." },
+      { q: "Wozu heftet man die Bleche an den Enden und in der Mitte?", a: ["Damit sich der Spalt beim Schweißen nicht zuzieht", "Damit man weniger Lagen braucht", "Damit das Schutzgas besser fließt"], r: 0,
+        e: "Die Wärme zieht die Bleche zusammen. Heftstellen halten Spalt und Lage der Bleche fest." },
+      { q: "Faustregel: Wie viel Schutzgas stellst du bei 1,2-mm-Draht ein?", a: ["≈ 6 l/min", "≈ 12 l/min", "≈ 30 l/min"], r: 1,
+        e: "Gasmenge (l/min) ≈ 10 × Drahtdurchmesser (mm) = 10 × 1,2 = 12 l/min." },
+      { q: "Was passiert, wenn du das Schutzgas viel zu hoch aufdrehst?", a: ["Die Naht wird besonders sauber", "Das Gas verwirbelt, saugt Luft an – es entstehen Poren", "Der Draht schmilzt nicht mehr"], r: 1,
+        e: "Zu viel Gas strömt turbulent und reißt Luft mit ins Schmelzbad – ebenfalls Poren." },
+      { q: "In welcher Reihenfolge wird eine dicke V-Naht in Lagen geschweißt?", a: ["Decklage, Füllage, Wurzel", "Wurzel, Füllage, Decklage", "Füllage, Wurzel, Decklage"], r: 1,
+        e: "Zuerst die Wurzel unten im Spalt, dann die Füllage(n), zum Schluss die Decklage." },
+      { q: "Ein Ventilator kühlt den Arbeitsplatz beim MAG-Schweißen. Was ist die Folge?", a: ["Weniger Verzug", "Poren – der Luftzug bläst das Schutzgas weg", "Höhere Festigkeit der Naht"], r: 1,
+        e: "Zugluft verdrängt die Schutzgasglocke. Sauerstoff und Stickstoff gelangen ins Schmelzbad → Poren. Windschutz nutzen!" },
     ],
   },
 ];
