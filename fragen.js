@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 24, stand: "2026-11-17", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 25, stand: "2026-11-18", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
