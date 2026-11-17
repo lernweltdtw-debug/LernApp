@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 22, stand: "2026-11-17", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 23, stand: "2026-11-17", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,8 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Wärmedehnung", f: "Δl = α · l · ΔT", n: "Stahl α ≈ 12·10⁻⁶ 1/K · 500 mm, 50 K → 0,3 mm", thema: "waelzlager" },
+    { t: "Zylinderkraft aus/ein", f: "F_aus = p · A · F_ein = p · (A − A_Stange)", n: "Beim Einfahren wirkt nur die Ringfläche", thema: "pneumatikzylinder" },
     { t: "Messschieber ablesen (Nonius 1/20)", f: "Maß = mm am Nullstrich + Strich × 0,05 mm", n: "Beispiel: 23 mm + 7 × 0,05 mm = 23,35 mm", thema: "messschieber" },
     { t: "Schutzgasmenge MAG (Faustregel)", f: "Gas (l/min) ≈ 10 × d_Draht (mm)", n: "1,0-mm-Draht → ≈ 10 l/min · 1,2 mm → ≈ 12 l/min", thema: "mag" },
     { t: "Kernloch (metrisches Regelgewinde)", f: "d_Kern ≈ D − P", n: "D Nenndurchmesser · P Steigung – M10: 10 − 1,5 = 8,5 mm · M8: 8 − 1,25 = 6,8 mm", thema: "gewindebohren" },
@@ -42,6 +44,10 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Kontaktkorrosion", e: "Zwei verschiedene Metalle + Feuchtigkeit: das unedlere löst sich auf.", thema: "korrosion" },
+    { w: "Loslager", e: "Lager, das axiale Verschiebung zulässt und so die Wärmedehnung der Welle ausgleicht.", thema: "waelzlager" },
+    { w: "Zahnteilung", e: "Abstand von Zahn zu Zahn am Sägeblatt; angegeben in Zähnen pro Zoll (25,4 mm).", thema: "saegen" },
+    { w: "Freischalten", e: "Allseitiges Trennen einer Anlage von allen spannungsführenden Leitern (Regel 1).", thema: "fuenfregeln" },
     { w: "Nonius", e: "Hilfsskala am Messschieber für Bruchteile eines Millimeters (1/20 = 0,05 mm).", thema: "messschieber" },
     { w: "Neutrale Faser", e: "Schicht im Biegeteil, die beim Biegen ihre Länge behält – Grundlage für die gestreckte Länge.", thema: "biegen" },
     { w: "Rückfederung", e: "Elastischer Anteil der Biegung, der nach dem Entlasten zurückgeht – Ausgleich durch Überbiegen.", thema: "biegen" },
@@ -617,6 +623,81 @@ window.THEMEN = [
         e: "Höchstens etwa 120 °C – sonst verliert der Stahl Härte und Maßhaltigkeit." },
       { q: "Womit wird ein großes Lager zum Aufziehen richtig erwärmt?", a: ["Mit dem Schweißbrenner", "Mit einem Induktionsanwärmgerät", "Mit der Flex"], r: 1,
         e: "Induktionsanwärmgerät (oder Wärmeplatte/Ölbad) – nie mit offener Flamme." },
+    ],
+  },
+  {
+    id: "korrosion", titel: "Kontaktkorrosion", icon: "🧪", kat: "werkstoffe", datum: "2026-11-17", video: "", ap: [1,2], bild: "img/korrosion.jpg", bereich: "B", berufe: ["KM","MB","IM"],
+    fragen: [
+      { q: "Edelstahlschraube in Alublech, Feuchtigkeit kommt dazu. Welches Metall korrodiert?", a: ["Die Edelstahlschraube","Das Aluminium","Keines von beiden"], r: 1,
+        e: "Bei Kontaktkorrosion löst sich immer das unedlere Metall auf – hier das Aluminium." },
+      { q: "Was braucht Kontaktkorrosion außer zwei verschiedenen Metallen?", a: ["Einen Elektrolyten, z. B. Feuchtigkeit","Hohe Temperatur","Eine Schraubenvorspannung"], r: 0,
+        e: "Die Feuchtigkeit verbindet die Metalle wie in einer Batterie – erst dann fließt der Korrosionsstrom." },
+      { q: "Was macht das unedlere Metall bei Kontaktkorrosion?", a: ["Es nimmt Elektronen auf und wächst","Es gibt Elektronen ab und löst sich auf","Es wird härter"], r: 1,
+        e: "Das unedlere Metall gibt Elektronen ab und geht in Lösung." },
+      { q: "Wann geht Kontaktkorrosion besonders schnell?", a: ["Wenn die Metalle in der Spannungsreihe weit auseinanderliegen","Wenn beide Metalle gleich sind","Wenn alles trocken ist"], r: 0,
+        e: "Je größer der Abstand in der Spannungsreihe, desto schneller die Korrosion." },
+      { q: "Wie verhinderst du Kontaktkorrosion an einer Schraubverbindung Edelstahl/Alu?", a: ["Mit Kunststoffscheibe und -hülse trennen und trocken halten","Die Schraube fester anziehen","Eine verzinkte Scheibe dazwischen legen"], r: 0,
+        e: "Die Metalle elektrisch trennen (Isolierscheibe/-hülse) und Feuchtigkeit fernhalten." },
+    ],
+  },
+  {
+    id: "pneumatikzylinder", titel: "Einfach- vs. doppeltwirkender Zylinder", icon: "💨", kat: "pneumatik", datum: "2026-11-17", video: "", ap: [1], bild: "img/pneumatikzylinder.jpg", bereich: "I", berufe: ["IM","MT"],
+    fragen: [
+      { q: "Wie fährt ein einfachwirkender Zylinder zurück?", a: ["Mit Druckluft auf der Stangenseite","Durch eine Feder, wenn die Luft entweicht","Von Hand"], r: 1,
+        e: "Er hat nur einen Druckluftanschluss. Zurück fährt er durch die eingebaute Feder." },
+      { q: "Warum hat ein einfachwirkender Zylinder beim Ausfahren etwas weniger Kraft?", a: ["Weil die Feder dagegen drückt","Weil die Kolbenstange fehlt","Weil weniger Luft reinpasst"], r: 0,
+        e: "Die Rückstellfeder wird beim Ausfahren zusammengedrückt und kostet Kraft." },
+      { q: "Wie viele Arbeitsanschlüsse hat ein doppeltwirkender Zylinder?", a: ["Einen","Zwei","Vier"], r: 1,
+        e: "Je einen für die Kolbenseite (ausfahren) und die Stangenseite (einfahren)." },
+      { q: "Doppeltwirkender Zylinder: Luft auf die Stangenseite. Was passiert?", a: ["Er fährt aus","Er fährt ein","Nichts"], r: 1,
+        e: "Luft auf der Kolbenseite fährt aus, Luft auf der Stangenseite fährt ein." },
+      { q: "Warum ist die Kraft beim Einfahren kleiner als beim Ausfahren?", a: ["Weil die Kolbenstange Fläche wegnimmt (Ringfläche)","Weil die Luft kälter ist","Weil der Zylinder kürzer wird"], r: 0,
+        e: "F_ein = p · (A − A_Stange). Die wirksame Ringfläche ist kleiner als die volle Kolbenfläche." },
+    ],
+  },
+  {
+    id: "fuenfregeln", titel: "Die 5 Sicherheitsregeln", icon: "⚡", kat: "elektro", datum: "2026-11-17", video: "", ap: [1,2], bild: "img/fuenfregeln.jpg", bereich: "J", berufe: ["MT","IM"],
+    fragen: [
+      { q: "Was ist die erste der fünf Sicherheitsregeln?", a: ["Erden und kurzschließen","Freischalten","Spannungsfreiheit feststellen"], r: 1,
+        e: "Reihenfolge: 1 Freischalten, 2 Sichern, 3 Feststellen, 4 Erden und kurzschließen, 5 Abdecken." },
+      { q: "Wie sicherst du gegen Wiedereinschalten?", a: ["Mit eigenem Schloss und Hinweisschild","Indem du einem Kollegen Bescheid sagst","Mit Klebeband auf dem Schalter"], r: 0,
+        e: "Persönliches Vorhängeschloss am Schalter plus Schild „Nicht schalten – es wird gearbeitet“." },
+      { q: "Womit stellst du die Spannungsfreiheit fest?", a: ["Mit einem einpoligen Phasenprüfer","Mit einem zweipoligen Spannungsprüfer an allen Leitern","Durch Hinschauen auf die Kontrolllampe"], r: 1,
+        e: "Nur ein zweipoliger Spannungsprüfer ist zulässig – und zwar an allen Leitern." },
+      { q: "Welche Regel kommt direkt nach „Spannungsfreiheit feststellen“?", a: ["Abdecken","Erden und kurzschließen","Freischalten"], r: 1,
+        e: "Regel 4: Erden und kurzschließen – danach Regel 5: benachbarte, unter Spannung stehende Teile abdecken." },
+      { q: "Der Hauptschalter ist aus. Darfst du die Klemmen jetzt anfassen?", a: ["Ja, aus ist aus","Nein – erst messen: abgeschaltet heißt nicht spannungsfrei","Nur mit Handschuhen"], r: 1,
+        e: "Rückspeisung, falscher Schalter oder Fremdeinspeisung sind möglich. Erst messen, dann anfassen." },
+    ],
+  },
+  {
+    id: "waelzlager", titel: "Fest- und Loslager", icon: "🔩", kat: "elemente", datum: "2026-11-17", video: "", ap: [1,2], bild: "img/waelzlager.jpg", bereich: "G", berufe: ["IM","MT"],
+    fragen: [
+      { q: "Warum klemmt eine Welle mit zwei Festlagern, wenn sie warm wird?", a: ["Die Welle dehnt sich aus, kann aber nicht – die Lager verspannen","Das Fett wird zu dünn","Die Welle schrumpft"], r: 0,
+        e: "Die Wärmedehnung hat keinen Platz. Die Lager werden axial verspannt und laufen heiß." },
+      { q: "Wie viel länger wird eine 500-mm-Stahlwelle bei 50 K Erwärmung (α = 12·10⁻⁶ 1/K)?", a: ["0,03 mm","0,3 mm","3 mm"], r: 1,
+        e: "Δl = α · l · ΔT = 0,000012 · 500 mm · 50 K = 0,3 mm." },
+      { q: "Welche Aufgabe hat das Festlager?", a: ["Es führt die Welle axial","Es gleicht die Wärmedehnung aus","Es dichtet die Welle ab"], r: 0,
+        e: "Das Festlager nimmt Axialkräfte auf und legt die Welle in Längsrichtung fest." },
+      { q: "Was kann ein Loslager, was ein Festlager nicht kann?", a: ["Sich axial verschieben","Höhere Drehzahlen","Ohne Schmierung laufen"], r: 0,
+        e: "Das Loslager lässt eine axiale Verschiebung zu – so kann die Welle sich frei dehnen." },
+      { q: "Wie viele Festlager hat eine Welle normalerweise?", a: ["Keins","Genau eins – die anderen sind Loslager","An jeder Lagerstelle eins"], r: 1,
+        e: "Pro Welle ein Festlager, alle weiteren Lagerstellen als Loslager." },
+    ],
+  },
+  {
+    id: "saegen", titel: "Sägeblatt: Zahnteilung", icon: "🪚", kat: "fertigung", datum: "2026-11-17", video: "", ap: [1], bild: "img/saegen.jpg", bereich: "D", berufe: ["IM","KM","MB"],
+    fragen: [
+      { q: "Wie viele Zähne sollen beim Sägen mindestens gleichzeitig im Eingriff sein?", a: ["Einer","Drei","Zehn"], r: 1,
+        e: "Mindestens drei Zähne gleichzeitig im Werkstück – sonst haken die Zähne ein und brechen aus." },
+      { q: "Du sägst ein dünnwandiges Rohr. Welches Blatt nimmst du?", a: ["Grobe Zähne (wenige pro Zoll)","Feine Zähne (viele pro Zoll)","Egal"], r: 1,
+        e: "Dünne Wand = kurze Eingriffslänge – nur feine Zähne bringen drei Zähne in den Eingriff." },
+      { q: "Was passiert, wenn bei dünner Wand nur ein Zahn im Eingriff ist?", a: ["Der Schnitt wird besonders sauber","Der Zahn hakt ein und bricht ab","Das Blatt wird stumpf, aber hält"], r: 1,
+        e: "Ein einzelner Zahn hakt an der Kante ein und bricht aus." },
+      { q: "Was bedeutet „32 Zähne pro Zoll“?", a: ["32 Zähne auf 25,4 mm – feines Blatt","32 Zähne auf 100 mm – grobes Blatt","32 mm Blattlänge"], r: 0,
+        e: "1 Zoll = 25,4 mm. Viele Zähne pro Zoll = kleine Zahnteilung = feines Blatt (32 Z/Zoll ≈ 0,8 mm)." },
+      { q: "Warum brauchen dicke, weiche Werkstoffe grobe Zähne?", a: ["Damit die Späne in den Zahnlücken Platz haben","Weil feine Zähne zu hart sind","Damit weniger Zähne im Eingriff sind"], r: 0,
+        e: "Grobe Zähne haben große Zahnlücken – darin wird der Span aus dem Schnitt transportiert." },
     ],
   },
 ];
