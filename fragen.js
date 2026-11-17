@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 23, stand: "2026-11-17", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 24, stand: "2026-11-17", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Drehmoment", f: "M = F · r⊥", n: "r⊥ = senkrechter Hebelarm · 120 N·m / 0,2 m = 600 N · schräg (30°): r⊥ = r · sin 30° = r/2", thema: "drehmoment" },
     { t: "Wärmedehnung", f: "Δl = α · l · ΔT", n: "Stahl α ≈ 12·10⁻⁶ 1/K · 500 mm, 50 K → 0,3 mm", thema: "waelzlager" },
     { t: "Zylinderkraft aus/ein", f: "F_aus = p · A · F_ein = p · (A − A_Stange)", n: "Beim Einfahren wirkt nur die Ringfläche", thema: "pneumatikzylinder" },
     { t: "Messschieber ablesen (Nonius 1/20)", f: "Maß = mm am Nullstrich + Strich × 0,05 mm", n: "Beispiel: 23 mm + 7 × 0,05 mm = 23,35 mm", thema: "messschieber" },
@@ -44,6 +45,10 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Projektionsmethode 1", e: "Draufsicht unter der Vorderansicht, Seitenansicht von links rechts daneben.", thema: "zeichnung-ansichten" },
+    { w: "Zweihandschaltung", e: "Befehlseinrichtung, bei der beide Hände Taster drücken müssen (Typ III: innerhalb 0,5 s). Schützt nur den Bediener.", thema: "zweihand" },
+    { w: "Abnutzungsvorrat", e: "Vorrat an Funktionsfähigkeit einer Einheit; sinkt durch Verschleiß bis zur Abnutzungsgrenze (DIN 31051).", thema: "wartungsplan" },
+    { w: "Auslösewerte Lärm", e: "80 dB(A): Gehörschutz bereitstellen · 85 dB(A): Gehörschutz tragen (Tagesmittel).", thema: "psa" },
     { w: "Kontaktkorrosion", e: "Zwei verschiedene Metalle + Feuchtigkeit: das unedlere löst sich auf.", thema: "korrosion" },
     { w: "Loslager", e: "Lager, das axiale Verschiebung zulässt und so die Wärmedehnung der Welle ausgleicht.", thema: "waelzlager" },
     { w: "Zahnteilung", e: "Abstand von Zahn zu Zahn am Sägeblatt; angegeben in Zähnen pro Zoll (25,4 mm).", thema: "saegen" },
@@ -698,6 +703,81 @@ window.THEMEN = [
         e: "1 Zoll = 25,4 mm. Viele Zähne pro Zoll = kleine Zahnteilung = feines Blatt (32 Z/Zoll ≈ 0,8 mm)." },
       { q: "Warum brauchen dicke, weiche Werkstoffe grobe Zähne?", a: ["Damit die Späne in den Zahnlücken Platz haben","Weil feine Zähne zu hart sind","Damit weniger Zähne im Eingriff sind"], r: 0,
         e: "Grobe Zähne haben große Zahnlücken – darin wird der Span aus dem Schnitt transportiert." },
+    ],
+  },
+  {
+    id: "drehmoment", titel: "Drehmoment M = F · r", icon: "🔧", kat: "festigkeit", datum: "2026-11-17", video: "", ap: [1], bild: "img/drehmoment.jpg", bereich: "H", berufe: ["IM","MT","KM"],
+    fragen: [
+      { q: "Wie berechnest du das Drehmoment?", a: ["M = F / r","M = F · r","M = F + r"], r: 1,
+        e: "Drehmoment = Kraft mal Hebelarm: M = F · r, Einheit N·m." },
+      { q: "Eine Schraube braucht 120 N·m. Der Hebelarm ist 0,2 m. Welche Kraft brauchst du?", a: ["24 N","600 N","1200 N"], r: 1,
+        e: "F = M / r = 120 N·m / 0,2 m = 600 N." },
+      { q: "Du verdoppelst den Hebelarm von 0,2 m auf 0,4 m. Was passiert mit der nötigen Kraft (gleiches Drehmoment)?", a: ["Sie verdoppelt sich","Sie halbiert sich","Sie bleibt gleich"], r: 1,
+        e: "F = M / r: doppelter Hebel, halbe Kraft – 120 N·m / 0,4 m = 300 N." },
+      { q: "Welche Einheit hat das Drehmoment?", a: ["N/m","N·m","N/m²"], r: 1,
+        e: "Newton mal Meter: N·m (Newtonmeter)." },
+      { q: "Du ziehst im Winkel von 30° zum Schlüssel statt senkrecht. Was passiert bei gleicher Kraft?", a: ["Das Drehmoment bleibt gleich","Du erreichst nur das halbe Drehmoment","Das Drehmoment verdoppelt sich"], r: 1,
+        e: "Es zählt nur der senkrechte Hebelarm: r⊥ = r · sin 30° = 0,5 · r → halbes Drehmoment." },
+    ],
+  },
+  {
+    id: "zeichnung-ansichten", titel: "Ansichten: Projektionsmethode 1", icon: "📐", kat: "zeichnen", datum: "2026-11-17", video: "", ap: [1], bild: "img/zeichnung-ansichten.jpg", bereich: "N", berufe: ["IM","ZM","KM","MB"],
+    fragen: [
+      { q: "Wo steht bei Projektionsmethode 1 die Draufsicht?", a: ["Über der Vorderansicht","Unter der Vorderansicht","Links neben der Vorderansicht"], r: 1,
+        e: "Methode 1: Blick von oben → Ansicht kommt nach unten, unter die Vorderansicht." },
+      { q: "Wo steht bei Projektionsmethode 1 die Seitenansicht von links?", a: ["Links neben der Vorderansicht","Rechts neben der Vorderansicht","Unter der Draufsicht"], r: 1,
+        e: "Methode 1: Blick von links → Ansicht kommt nach rechts." },
+      { q: "Welche Ansicht wählst du als Vorderansicht?", a: ["Die Ansicht mit den meisten Informationen","Immer die kleinste Seite","Die Ansicht von unten"], r: 0,
+        e: "Die Vorderansicht ist die Hauptansicht – sie zeigt das Teil am aussagekräftigsten." },
+      { q: "Wie zeichnest du verdeckte Kanten?", a: ["Breite Volllinie","Schmale Strichlinie","Schmale Strichpunktlinie"], r: 1,
+        e: "Verdeckte Kanten: schmale Strichlinie. Sichtbare Kanten: breite Volllinie. Mittellinien: schmale Strichpunktlinie." },
+      { q: "Die Seitenansicht von links liegt links neben der Vorderansicht. Nach welcher Methode ist das gezeichnet?", a: ["Projektionsmethode 1","Projektionsmethode 3","Das ist immer falsch"], r: 1,
+        e: "So ordnet Methode 3 an (z. B. in den USA üblich). Bei Methode 1 steht sie rechts." },
+    ],
+  },
+  {
+    id: "psa", titel: "PSA an der Bohrmaschine", icon: "🥽", kat: "sicherheit", datum: "2026-11-17", video: "", ap: [1], bild: "img/psa.jpg", bereich: "M", berufe: ["IM","ZM","MT","KM","MB"],
+    fragen: [
+      { q: "Darfst du an der Ständerbohrmaschine Handschuhe tragen?", a: ["Ja, zum Schutz vor Spänen","Nein – der Bohrer kann den Handschuh erfassen und aufwickeln","Nur Lederhandschuhe"], r: 1,
+        e: "An Bohr-, Dreh- und Fräsmaschinen keine Handschuhe: Sie werden erfasst und die Hand wird mitgerissen." },
+      { q: "Welche Schutzausrüstung gehört beim Bohren dazu?", a: ["Schutzbrille","Schutzhandschuhe","Krawatte"], r: 0,
+        e: "Schutzbrille gegen Späne. Dazu eng anliegende Kleidung, kein Schmuck, lange Haare zusammengebunden." },
+      { q: "Wie hältst du das Werkstück beim Bohren?", a: ["Mit der Hand fest","Fest gespannt im Maschinenschraubstock","Mit dem Fuß"], r: 1,
+        e: "Das Werkstück wird gespannt, nie mit der Hand gehalten – sonst kann es mitgerissen werden." },
+      { q: "Ab welchem Tages-Lärmpegel musst du Gehörschutz tragen?", a: ["Ab 70 dB(A)","Ab 80 dB(A)","Ab 85 dB(A)"], r: 2,
+        e: "Oberer Auslösewert 85 dB(A): Tragepflicht. Ab 80 dB(A) muss der Betrieb Gehörschutz bereitstellen." },
+      { q: "Was gilt ab 80 dB(A) im Tagesmittel?", a: ["Der Betrieb muss Gehörschutz bereitstellen","Die Maschine muss abgeschaltet werden","Nichts"], r: 0,
+        e: "Unterer Auslösewert 80 dB(A): Gehörschutz bereitstellen. Ab 85 dB(A) muss er getragen werden." },
+    ],
+  },
+  {
+    id: "zweihand", titel: "Zweihandschaltung", icon: "✋", kat: "steuerung", datum: "2026-11-17", video: "", ap: [2], bild: "img/zweihand.jpg", bereich: "K", berufe: ["MT","IM"],
+    fragen: [
+      { q: "Wozu dient eine Zweihandschaltung an einer Presse?", a: ["Damit die Hände des Bedieners beim Hub nicht im Werkzeug sind","Damit die Presse schneller läuft","Damit zwei Personen gleichzeitig arbeiten"], r: 0,
+        e: "Beide Hände sind auf den Tastern – also außerhalb des Gefahrbereichs." },
+      { q: "Innerhalb welcher Zeit müssen beide Taster bei Typ III betätigt werden?", a: ["0,5 s","2 s","5 s"], r: 0,
+        e: "Typ III verlangt synchrone Betätigung: beide Taster innerhalb von 0,5 s." },
+      { q: "Was passiert, wenn du während des Hubs einen Taster loslässt?", a: ["Nichts","Die gefahrbringende Bewegung stoppt","Die Presse fährt schneller"], r: 1,
+        e: "Loslassen eines Tasters unterbricht die Bewegung." },
+      { q: "Ein Taster ist abgeklebt (dauerhaft gedrückt). Was passiert bei einer Zweihandschaltung Typ III?", a: ["Eine Hand reicht zum Starten","Kein Neustart – erst beide loslassen, dann neu drücken","Die Presse läuft dauernd"], r: 1,
+        e: "Ein neuer Zyklus startet erst, wenn beide Taster losgelassen wurden. Abkleben ist außerdem verboten." },
+      { q: "Wen schützt die Zweihandschaltung?", a: ["Alle Personen an der Maschine","Nur die bedienende Person","Niemanden"], r: 1,
+        e: "Sie schützt nur den Bediener. Andere Personen brauchen z. B. Schutzgitter oder Lichtvorhang." },
+    ],
+  },
+  {
+    id: "wartungsplan", titel: "Instandhaltung: 4 Grundmaßnahmen", icon: "🛠️", kat: "instandhaltung", datum: "2026-11-17", video: "", ap: [1,2], bild: "img/wartungsplan.jpg", bereich: "L", berufe: ["IM","MT"],
+    fragen: [
+      { q: "Welche vier Grundmaßnahmen hat die Instandhaltung nach DIN 31051?", a: ["Wartung, Inspektion, Instandsetzung, Verbesserung","Reinigen, Schmieren, Messen, Lackieren","Planen, Bauen, Prüfen, Liefern"], r: 0,
+        e: "DIN 31051: Wartung, Inspektion, Instandsetzung und Verbesserung." },
+      { q: "Was ist das Ziel der Wartung?", a: ["Den Abbau des Abnutzungsvorrats verzögern","Ein defektes Teil reparieren","Den Ist-Zustand messen"], r: 0,
+        e: "Wartung (schmieren, reinigen, nachstellen) bremst die Abnutzung." },
+      { q: "Du misst die Lagertemperatur und prüfst den Zustand. Welche Maßnahme ist das?", a: ["Wartung","Inspektion","Instandsetzung"], r: 1,
+        e: "Inspektion: Ist-Zustand feststellen und beurteilen." },
+      { q: "Ein defektes Lager wird getauscht, die Maschine läuft wieder. Welche Maßnahme ist das?", a: ["Instandsetzung","Verbesserung","Inspektion"], r: 0,
+        e: "Instandsetzung stellt die Funktion einer fehlerhaften Einheit wieder her." },
+      { q: "Ein Verschleißteil wird nach Plan getauscht, bevor es verschlissen ist. Welche Maßnahme ist das?", a: ["Instandsetzung","Wartung","Verbesserung"], r: 1,
+        e: "Rechtzeitiger Tausch von Verschleißteilen nach Plan zählt zur Wartung. Tausch nach dem Schaden = Instandsetzung." },
     ],
   },
 ];
