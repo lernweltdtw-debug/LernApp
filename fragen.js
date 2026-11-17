@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 21, stand: "2026-11-16", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 22, stand: "2026-11-17", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Messschieber ablesen (Nonius 1/20)", f: "Maß = mm am Nullstrich + Strich × 0,05 mm", n: "Beispiel: 23 mm + 7 × 0,05 mm = 23,35 mm", thema: "messschieber" },
     { t: "Schutzgasmenge MAG (Faustregel)", f: "Gas (l/min) ≈ 10 × d_Draht (mm)", n: "1,0-mm-Draht → ≈ 10 l/min · 1,2 mm → ≈ 12 l/min", thema: "mag" },
     { t: "Kernloch (metrisches Regelgewinde)", f: "d_Kern ≈ D − P", n: "D Nenndurchmesser · P Steigung – M10: 10 − 1,5 = 8,5 mm · M8: 8 − 1,25 = 6,8 mm", thema: "gewindebohren" },
     { t: "Drehzahl beim Fräsen/Drehen", f: "n = vc · 1000 / (π · d)", n: "n in 1/min · vc Schnittgeschwindigkeit in m/min · d Durchmesser in mm", thema: "drehzahl" },
@@ -41,6 +42,10 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Nonius", e: "Hilfsskala am Messschieber für Bruchteile eines Millimeters (1/20 = 0,05 mm).", thema: "messschieber" },
+    { w: "Neutrale Faser", e: "Schicht im Biegeteil, die beim Biegen ihre Länge behält – Grundlage für die gestreckte Länge.", thema: "biegen" },
+    { w: "Rückfederung", e: "Elastischer Anteil der Biegung, der nach dem Entlasten zurückgeht – Ausgleich durch Überbiegen.", thema: "biegen" },
+    { w: "Montagehülse", e: "Rohr zum Aufpressen eines Lagers – leitet die Kraft nur in den Ring mit Festsitz.", thema: "lagermontage" },
     { w: "Wurzel / Füllage / Decklage", e: "Lagen einer Mehrlagennaht: Wurzel unten im Spalt, Füllagen in der Mitte, Decklage als sichtbarer Abschluss.", thema: "mag" },
     { w: "Heftstelle", e: "Kurze Schweißpunkte, die die Bleche vor dem Schweißen in Lage und Spalt fixieren.", thema: "mag" },
     { w: "Körnerpunkt", e: "Kleine Mulde im Kreuzungspunkt der Risslinien. Führt die Bohrerspitze, damit der Bohrer nicht verläuft.", thema: "anreissen" },
@@ -565,6 +570,53 @@ window.THEMEN = [
         e: "Zuerst die Wurzel unten im Spalt, dann die Füllage(n), zum Schluss die Decklage." },
       { q: "Ein Ventilator kühlt den Arbeitsplatz beim MAG-Schweißen. Was ist die Folge?", a: ["Weniger Verzug", "Poren – der Luftzug bläst das Schutzgas weg", "Höhere Festigkeit der Naht"], r: 1,
         e: "Zugluft verdrängt die Schutzgasglocke. Sauerstoff und Stickstoff gelangen ins Schmelzbad → Poren. Windschutz nutzen!" },
+    ],
+  },
+  {
+    id: "messschieber", titel: "Messschieber ablesen (Nonius)", icon: "📏", kat: "pruefen", datum: "2026-11-17", video: "", ap: [1], bild: "img/messschieber.jpg", bereich: "A", berufe: ["IM", "ZM", "MT", "KM", "MB"],
+    fragen: [
+      { q: "Wo liest du beim Messschieber die ganzen Millimeter ab?", a: ["Am Strich, der genau fluchtet", "Links vom Nullstrich des Nonius auf der Hauptskala", "Rechts vom Nullstrich des Nonius"], r: 1,
+        e: "Der Nullstrich des Nonius zeigt auf die Hauptskala. Der Millimeterstrich links davon sind die ganzen Millimeter." },
+      { q: "Der Nonius-Nullstrich steht zwischen 23 und 24 mm, der Strich bei „3,5“ fluchtet. Was ist das Maß?", a: ["23,35 mm", "23,5 mm", "24,35 mm"], r: 0,
+        e: "23 mm + 0,35 mm = 23,35 mm. Die Ziffer 3,5 am 1/20-Nonius bedeutet 0,35 mm." },
+      { q: "Welchen Wert hat ein Teilstrich beim Zwanzigstel-Nonius?", a: ["0,1 mm", "0,05 mm", "0,02 mm"], r: 1,
+        e: "1/20 mm = 0,05 mm. Feiner geht es mit diesem Messschieber nicht (1/50-Nonius: 0,02 mm)." },
+      { q: "Was zeigt der Nonius an?", a: ["Die ganzen Millimeter", "Den Bruchteil eines Millimeters", "Die Messkraft"], r: 1,
+        e: "Ganze Millimeter liest du auf der Hauptskala, den Rest – die Bruchteile – am Nonius." },
+      { q: "Ein Azubi liest den Millimeter rechts vom Nullstrich ab. Wie groß ist sein Fehler?", a: ["0,05 mm", "0,5 mm", "Genau 1 mm"], r: 2,
+        e: "Er liegt einen ganzen Millimeter daneben, z. B. 24,35 statt 23,35 mm." },
+    ],
+  },
+  {
+    id: "biegen", titel: "Blech biegen: Rückfederung", icon: "📐", kat: "fertigung", datum: "2026-11-17", video: "", ap: [1, 2], bild: "img/biegen.jpg", bereich: "E", berufe: ["KM", "MB"],
+    fragen: [
+      { q: "Was passiert beim Biegen in der Außenzone des Blechs?", a: ["Sie wird gestaucht", "Sie wird gestreckt", "Sie bleibt gleich lang"], r: 1,
+        e: "Außen wird gestreckt, innen gestaucht. Dazwischen liegt die neutrale Faser." },
+      { q: "Welche Faser behält beim Biegen ihre Länge?", a: ["Die äußere Faser", "Die innere Faser", "Die neutrale Faser"], r: 2,
+        e: "Die neutrale Faser wird weder gestreckt noch gestaucht – mit ihr berechnet man die gestreckte Länge." },
+      { q: "Warum federt ein gebogenes Blech nach dem Loslassen zurück?", a: ["Weil ein Teil der Verformung elastisch ist", "Weil das Blech zu warm ist", "Weil der Biegeradius zu groß ist"], r: 0,
+        e: "Ein Teil der Verformung ist elastisch. Lässt die Kraft nach, geht dieser Anteil zurück." },
+      { q: "Du willst einen Biegewinkel von 90°. Wie gleichst du die Rückfederung aus?", a: ["Weniger biegen, z. B. auf 87°", "Überbiegen, z. B. auf 93°", "Gar nicht – sie ist immer gleich null"], r: 1,
+        e: "Überbiegen: Wer 90° will, biegt etwas weiter (hier ca. 93°). Das Blech federt dann auf 90° zurück." },
+      { q: "Was passiert bei einem zu kleinen Biegeradius?", a: ["Die Außenseite kann reißen", "Die Rückfederung wird null", "Das Blech wird dicker"], r: 0,
+        e: "Die Außenfaser wird zu stark gestreckt und reißt – besonders bei Biegung längs zur Walzrichtung." },
+      { q: "Wie sollte die Biegelinie zur Walzrichtung liegen?", a: ["Parallel (längs) zur Walzrichtung", "Quer zur Walzrichtung", "Das ist egal"], r: 1,
+        e: "Quer zur Walzrichtung biegen – längs dazu reißt das Blech schneller." },
+    ],
+  },
+  {
+    id: "lagermontage", titel: "Wälzlager montieren", icon: "⚙️", kat: "elemente", datum: "2026-11-17", video: "", ap: [2], bild: "img/lagermontage.jpg", bereich: "O", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Warum darf die Montagekraft nicht über die Wälzkörper gehen?", a: ["Die Kugeln drücken Dellen in die Laufbahn", "Das Lager wird zu warm", "Das Fett läuft aus"], r: 0,
+        e: "Schläge über die Kugeln erzeugen Eindrücke in der Laufbahn – das Lager wird laut und fällt früh aus." },
+      { q: "Der Innenring hat Festsitz auf der Welle. Wo setzt du die Montagehülse an?", a: ["Am Außenring", "Am Innenring", "An Innen- und Außenring gleichzeitig mit dem Hammer"], r: 1,
+        e: "Die Kraft muss über den Ring mit Festsitz gehen – hier der Innenring." },
+      { q: "Der Außenring hat Festsitz im Gehäuse. Worauf drückst du?", a: ["Auf den Innenring", "Auf den Außenring", "Auf den Käfig"], r: 1,
+        e: "Beim Einpressen ins Gehäuse nur auf den Außenring drücken." },
+      { q: "Bis zu welcher Temperatur darf man ein Wälzlager zum Aufziehen etwa erwärmen?", a: ["ca. 60 °C", "ca. 120 °C", "ca. 300 °C"], r: 1,
+        e: "Höchstens etwa 120 °C – sonst verliert der Stahl Härte und Maßhaltigkeit." },
+      { q: "Womit wird ein großes Lager zum Aufziehen richtig erwärmt?", a: ["Mit dem Schweißbrenner", "Mit einem Induktionsanwärmgerät", "Mit der Flex"], r: 1,
+        e: "Induktionsanwärmgerät (oder Wärmeplatte/Ölbad) – nie mit offener Flamme." },
     ],
   },
 ];
