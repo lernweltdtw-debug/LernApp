@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 25, stand: "2026-11-18", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 26, stand: "2026-11-18", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,9 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Hydraulik (Pascal)", f: "p = F / A · F₂ = F₁ · A₂ / A₁", n: "2 cm² → 200 cm²: 100 N → 10 000 N · Weg umgekehrt: s₁ · A₁ = s₂ · A₂", thema: "hydraulik" },
+    { t: "Leistung bei Drehbewegung", f: "P = M · n / 9550", n: "P in kW · M in N·m · n in 1/min · 50 N·m · 1500 /min ≈ 7,85 kW", thema: "leistung" },
+    { t: "Kohlenstoff im Kurznamen", f: "% C = Kennzahl / 100", n: "C45 → 0,45 % · 42CrMo4 → 0,42 % C; Cr-Zahl ÷ 4 ≈ 1 % Cr", thema: "stahlbezeichnung" },
     { t: "Drehmoment", f: "M = F · r⊥", n: "r⊥ = senkrechter Hebelarm · 120 N·m / 0,2 m = 600 N · schräg (30°): r⊥ = r · sin 30° = r/2", thema: "drehmoment" },
     { t: "Wärmedehnung", f: "Δl = α · l · ΔT", n: "Stahl α ≈ 12·10⁻⁶ 1/K · 500 mm, 50 K → 0,3 mm", thema: "waelzlager" },
     { t: "Zylinderkraft aus/ein", f: "F_aus = p · A · F_ein = p · (A − A_Stange)", n: "Beim Einfahren wirkt nur die Ringfläche", thema: "pneumatikzylinder" },
@@ -45,6 +48,10 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Weiterschaltbedingung", e: "Bedingung (Transition), die erfüllt sein muss, damit die Schrittkette in den nächsten Schritt wechselt.", thema: "ablaufsteuerung" },
+    { w: "Mindeststreckgrenze", e: "Kleinster zugesicherter Wert der Streckgrenze ReH; bei S235 = 235 N/mm² (bis 16 mm Dicke).", thema: "stahlbezeichnung" },
+    { w: "Brennschneiden", e: "Thermisches Trennen: Stahl verbrennt im Sauerstoffstrahl. Nur bei un- und niedriglegierten Stählen.", thema: "schneidverfahren" },
+    { w: "Pascal'sches Gesetz", e: "Druck in einer eingeschlossenen Flüssigkeit wirkt überall gleich – Grundlage hydraulischer Pressen.", thema: "hydraulik" },
     { w: "Projektionsmethode 1", e: "Draufsicht unter der Vorderansicht, Seitenansicht von links rechts daneben.", thema: "zeichnung-ansichten" },
     { w: "Zweihandschaltung", e: "Befehlseinrichtung, bei der beide Hände Taster drücken müssen (Typ III: innerhalb 0,5 s). Schützt nur den Bediener.", thema: "zweihand" },
     { w: "Abnutzungsvorrat", e: "Vorrat an Funktionsfähigkeit einer Einheit; sinkt durch Verschleiß bis zur Abnutzungsgrenze (DIN 31051).", thema: "wartungsplan" },
@@ -778,6 +785,81 @@ window.THEMEN = [
         e: "Instandsetzung stellt die Funktion einer fehlerhaften Einheit wieder her." },
       { q: "Ein Verschleißteil wird nach Plan getauscht, bevor es verschlissen ist. Welche Maßnahme ist das?", a: ["Instandsetzung","Wartung","Verbesserung"], r: 1,
         e: "Rechtzeitiger Tausch von Verschleißteilen nach Plan zählt zur Wartung. Tausch nach dem Schaden = Instandsetzung." },
+    ],
+  },
+  {
+    id: "hydraulik", titel: "Hydraulik: kleine Kraft, große Wirkung", icon: "🛢️", kat: "pneumatik", datum: "2026-11-18", video: "", ap: [2], bild: "img/hydraulik.jpg", bereich: "I", berufe: ["IM","MT"],
+    fragen: [
+      { q: "Was gilt für den Druck in einer eingeschlossenen Flüssigkeit?", a: ["Er ist überall gleich groß","Er ist unten am größten","Er ist im großen Kolben größer"], r: 0,
+        e: "Pascal: Der Druck breitet sich in der eingeschlossenen Flüssigkeit überall gleich aus." },
+      { q: "Wie berechnest du den Druck?", a: ["p = F · A","p = F / A","p = A / F"], r: 1,
+        e: "Druck ist Kraft durch Fläche: p = F / A." },
+      { q: "Kleiner Kolben 2 cm², großer Kolben 200 cm². Auf den kleinen wirken 100 N. Welche Kraft liefert der große (ohne Verluste)?", a: ["1 000 N","10 000 N","100 000 N"], r: 1,
+        e: "F₂ = F₁ · A₂ / A₁ = 100 N · 200 / 2 = 10 000 N." },
+      { q: "100 N auf 2 cm² – welcher Druck entsteht?", a: ["5 bar","50 bar","0,5 bar"], r: 0,
+        e: "p = 100 N / 2 cm² = 50 N/cm² = 5 bar (1 bar = 10 N/cm²)." },
+      { q: "Der große Kolben hat die 100-fache Fläche. Wie weit muss der kleine Kolben fahren, damit sich der große um 1 mm hebt?", a: ["1 mm","10 mm","100 mm"], r: 2,
+        e: "Das Ölvolumen bleibt gleich: s₁ · A₁ = s₂ · A₂ → s₁ = 1 mm · 100 = 100 mm." },
+    ],
+  },
+  {
+    id: "stahlbezeichnung", titel: "Stahlbezeichnung: S235JR, C45, 42CrMo4", icon: "🏷️", kat: "werkstoffe", datum: "2026-11-18", video: "", ap: [1,2], bild: "img/stahlbezeichnung.jpg", bereich: "B", berufe: ["IM","ZM","KM","MB"],
+    fragen: [
+      { q: "Wofür steht das S in S235JR?", a: ["Sonderstahl","Stahl für den Stahlbau","Schnellarbeitsstahl"], r: 1,
+        e: "S = Stähle für den Stahlbau." },
+      { q: "Was bedeutet die 235 in S235JR?", a: ["Zugfestigkeit 235 N/mm²","Mindeststreckgrenze 235 N/mm² (bis 16 mm Dicke)","Härte 235 HB"], r: 1,
+        e: "235 ist die Mindeststreckgrenze ReH in N/mm² – angegeben für Dicken bis 16 mm." },
+      { q: "Wofür steht JR in S235JR?", a: ["Kerbschlagarbeit mind. 27 J bei +20 °C","Wärmebehandlung: vergütet","Schweißgeeignet für Rohre"], r: 0,
+        e: "JR: Kerbschlagarbeit von mindestens 27 J bei +20 °C." },
+      { q: "Wie viel Kohlenstoff enthält C45?", a: ["45 %","4,5 %","0,45 %"], r: 2,
+        e: "Bei unlegierten Stählen ist die Kennzahl durch 100 der mittlere C-Gehalt: 45 / 100 = 0,45 %." },
+      { q: "42CrMo4: Wie viel Chrom ist ungefähr enthalten?", a: ["4 %","Etwa 1 %","0,4 %"], r: 1,
+        e: "Chrom hat den Faktor 4: 4 ÷ 4 ≈ 1 % Cr. Kohlenstoff: 42 / 100 = 0,42 %. Mo ist ohne Zahl nur enthalten." },
+    ],
+  },
+  {
+    id: "ablaufsteuerung", titel: "Ablaufsteuerung (Schrittkette)", icon: "🪜", kat: "steuerung", datum: "2026-11-18", video: "", ap: [2], bild: "img/ablaufsteuerung.jpg", bereich: "K", berufe: ["MT","IM"],
+    fragen: [
+      { q: "Wie arbeitet eine Ablaufsteuerung?", a: ["Alle Aktionen gleichzeitig","Schritt für Schritt, weiter nach Weiterschaltbedingung","Nur nach Zeit, ohne Sensoren"], r: 1,
+        e: "Sie arbeitet zwangsläufig schrittweise; der nächste Schritt kommt erst, wenn die Weiterschaltbedingung erfüllt ist." },
+      { q: "Was gehört zu einem Schritt in der Schrittkette?", a: ["Eine Aktion, z. B. Zylinder A fährt aus","Nur ein Sensor","Der Not-Halt"], r: 0,
+        e: "Jedem Schritt sind Aktionen zugeordnet – im Beispiel: A+." },
+      { q: "Was ist eine Weiterschaltbedingung (Transition)?", a: ["Die Bedingung, die erfüllt sein muss, damit der nächste Schritt aktiv wird","Die Spannung der Steuerung","Die Reihenfolge der Kabel"], r: 0,
+        e: "Erst wenn die Transition erfüllt ist (z. B. Sensor meldet „A vorne“), wird weitergeschaltet." },
+      { q: "Ein Sensor ist verstellt und meldet nie. Was macht die Schrittkette?", a: ["Sie springt zum nächsten Schritt","Sie bleibt im aktuellen Schritt stehen","Sie startet von vorne"], r: 1,
+        e: "Ohne erfüllte Weiterschaltbedingung wird nicht weitergeschaltet – die Kette wartet." },
+      { q: "Woher kommen bei einer prozessabhängigen Ablaufsteuerung die Weiterschaltbedingungen?", a: ["Nur von Zeitgliedern","Von Signalen der Anlage, z. B. Sensoren","Vom Bediener per Zufall"], r: 1,
+        e: "Prozessabhängig heißt: Die Bedingungen hängen von Rückmeldungen der Anlage ab." },
+    ],
+  },
+  {
+    id: "schneidverfahren", titel: "Brennschneiden, Plasma, Laser", icon: "🔥", kat: "fertigung", datum: "2026-11-18", video: "", ap: [2], bild: "img/schneidverfahren.jpg", bereich: "E", berufe: ["KM","MB"],
+    fragen: [
+      { q: "Welches Verfahren macht eine besonders schmale Schnittfuge und schneidet auch viele Kunststoffe?", a: ["Brennschneiden", "Plasmaschneiden", "Laserschneiden"], r: 2,
+        e: "Der Laser schneidet mit sehr schmaler Fuge – und im Gegensatz zu Brenner und Plasma auch viele Kunststoffe wie Acryl." },
+      { q: "Welche Bedingung muss für das Brennschneiden erfüllt sein?", a: ["Zündtemperatur unter der Schmelztemperatur","Schmelztemperatur unter der Zündtemperatur","Das Metall muss magnetisch sein"], r: 0,
+        e: "Der Werkstoff muss zünden, bevor er schmilzt – und die Schlacke muss niedriger schmelzen als der Werkstoff." },
+      { q: "Welche Werkstoffe kannst du brennschneiden?", a: ["Un- und niedriglegierte Stähle","Edelstahl und Aluminium","Alle Metalle"], r: 0,
+        e: "Praktisch nur un- und niedriglegierte Stähle." },
+      { q: "Warum geht Aluminium nicht mit dem normalen Schneidbrenner?", a: ["Es ist zu weich","Sein Oxid schmilzt höher als das Metall","Es leitet keinen Strom"], r: 1,
+        e: "Aluminiumoxid schmilzt deutlich höher als Aluminium – die Bedingung fürs Brennschneiden ist nicht erfüllt." },
+      { q: "Welches Verfahren schneidet alle elektrisch leitenden Metalle?", a: ["Brennschneiden","Plasmaschneiden","Autogenschweißen"], r: 1,
+        e: "Plasma: Der Lichtbogen schneidet alle elektrisch leitenden Metalle, auch Edelstahl und Aluminium." },
+    ],
+  },
+  {
+    id: "leistung", titel: "Leistung P = M · n / 9550", icon: "⚡", kat: "festigkeit", datum: "2026-11-18", video: "", ap: [2], bild: "img/leistung.jpg", bereich: "H", berufe: ["IM","MT"],
+    fragen: [
+      { q: "Mit welcher Zahlenwertgleichung berechnest du die Leistung einer Welle?", a: ["P = M · n / 9550","P = M / n · 9550","P = M + n"], r: 0,
+        e: "P in kW = M in N·m · n in 1/min / 9550." },
+      { q: "Motor: 50 N·m bei 1500 1/min. Welche Leistung?", a: ["rund 7,85 kW","75 kW","0,785 kW"], r: 0,
+        e: "P = 50 · 1500 / 9550 ≈ 7,85 kW." },
+      { q: "Ein Getriebe mit i = 2 halbiert die Drehzahl. Was passiert mit dem Drehmoment (ohne Verluste)?", a: ["Es halbiert sich","Es verdoppelt sich","Es bleibt gleich"], r: 1,
+        e: "Die Leistung bleibt gleich: halbe Drehzahl → doppeltes Drehmoment." },
+      { q: "Hat die langsame Abtriebswelle mehr Leistung, weil ihr Drehmoment größer ist?", a: ["Ja","Nein – ohne Verluste ist die Leistung gleich, mit Verlusten kleiner","Nur bei Elektromotoren"], r: 1,
+        e: "Ein Getriebe erzeugt keine Leistung, es tauscht Drehzahl gegen Drehmoment. Verluste machen die Abtriebsleistung kleiner." },
+      { q: "100 N·m bei 750 1/min – welche Leistung?", a: ["rund 7,85 kW","rund 15,7 kW","rund 3,9 kW"], r: 0,
+        e: "P = 100 · 750 / 9550 ≈ 7,85 kW – gleich wie am Motor (50 N·m · 1500 1/min)." },
     ],
   },
 ];
