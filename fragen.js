@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 30, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 31, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Gewichtskraft / Schub", f: "F = m · g", n: "280 t · 9,81 m/s² ≈ 2,75 MN (Raptor-Triebwerk, Angabe in Tonnen Schub)", thema: "starship" },
     { t: "Passung: Spiel", f: "Pₛₘₐₓ = Gₒᴮ − Gᵤᵂ · Pₛₘᵢₙ = Gᵤᴮ − Gₒᵂ", n: "30 +0,021/0 mit 30 −0,007/−0,020 → Höchstspiel 0,041 mm, Mindestspiel 0,007 mm", thema: "toleranz" },
     { t: "Kraft im Anschlagstrang", f: "F = G / (n · cos β)", n: "β zur Senkrechten, max. 60° · 1 t, 2 Stränge: 30° → 0,58 t · 60° → 1 t · 75° → 1,93 t (verboten)", thema: "anschlagen" },
     { t: "Toleranz", f: "T = Gₒ − Gᵤ", n: "Höchstmaß − Mindestmaß · 20 ± 0,1 → 20,1 − 19,9 = 0,2 mm", thema: "toleranz" },
@@ -51,6 +52,7 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Austenit (kfz)", e: "Kubisch-flächenzentriertes Gefüge, z. B. 1.4301. Bleibt auch bei Tieftemperatur zäh – deshalb für Kryotanks (−183 °C Sauerstoff).", thema: "starship" },
     { w: "Neigungswinkel β", e: "Winkel zwischen Anschlagstrang und Senkrechter. Über 60° unzulässig; je größer β, desto größer die Kraft im Strang.", thema: "anschlagen" },
     { w: "Selbsthaltung", e: "Schließer-Hilfskontakt des Schützes parallel zum Ein-Taster hält die Spule nach dem Loslassen; aus mit Öffner (Aus-Taster) in Reihe.", thema: "schuetz" },
     { w: "Anzugsmoment", e: "Vorgegebenes Drehmoment zum Anziehen einer Schraube; beim Auslösen (Knack) des Drehmomentschlüssels sofort aufhören.", thema: "anzugsmoment" },
@@ -951,6 +953,23 @@ window.THEMEN = [
         e: "sin β = 1,2 / 2,0 = 0,6 → cos β = 0,8. F = 1 t / (2 · 0,8) = 0,625 t." },
       { q: "Vierstranggehänge, Last ungleichmäßig verteilt. Mit wie vielen tragenden Strängen rechnest du?", a: ["4","3","2"], r: 2,
         e: "Bei 3- und 4-Strang-Gehängen darf ohne Nachweis der gleichmäßigen Verteilung nur mit 2 tragenden Strängen gerechnet werden (DGUV I 209-013, DGUV R 109-017)." },
+    ],
+  },
+  {
+    id: "starship", titel: "Starship: Edelstahl & Tieftemperatur", icon: "🚀", kat: "werkstoffe", datum: "2026-11-19", video: "", ap: [1, 2], bild: "img/starship.jpg", bereich: "B", berufe: ["IM", "ZM", "KM", "MB"],
+    fragen: [
+      { q: "Warum ist die Hülle von Starship aus Edelstahl statt Kohlefaser?", a: ["Edelstahl ist leichter","Edelstahl ist pro Kilogramm steifer","Edelstahl ist billiger, hitzefester und bleibt bei Kälte zäh"], r: 2,
+        e: "Stahl ist schwerer und pro Kilo weniger steif als CFK. Vorteile: Kosten, hoher Schmelzpunkt, Zähigkeit bei Tieftemperatur (Gründe laut Musk 2019)." },
+      { q: "Welcher Stahl eignet sich für einen Tank mit flüssigem Sauerstoff (−183 °C)?", a: ["Baustahl S235JR","Austenitischer CrNi-Stahl, z. B. 1.4301","Vergütungsstahl 42CrMo4"], r: 1,
+        e: "Ferritische/vergütete Stähle verspröden bei tiefen Temperaturen. Austenitische CrNi-Stähle bleiben zäh." },
+      { q: "Warum zeigt Austenit keinen Steilabfall der Kerbschlagarbeit bei Kälte?", a: ["Er hat ein kubisch-raumzentriertes (krz) Gitter","Er hat ein kubisch-flächenzentriertes (kfz) Gitter","Er enthält keinen Kohlenstoff"], r: 1,
+        e: "Kfz-Metalle (Austenit, Aluminium, Kupfer) haben keine Übergangstemperatur zum Sprödbruch – krz-Stahl (Ferrit) schon." },
+      { q: "Ein Raptor-Triebwerk liefert rund 280 t Schub. Welche Kraft ist das (g = 9,81 m/s²)?", a: ["≈ 275 kN","≈ 2,75 MN","≈ 27,5 MN"], r: 1,
+        e: "F = m · g = 280 000 kg · 9,81 m/s² ≈ 2 746 800 N ≈ 2,75 MN." },
+      { q: "Gleiches Volumen: Stahl ρ ≈ 7,9 g/cm³, CFK ρ ≈ 1,6 g/cm³. Wie viel schwerer ist das Stahlteil?", a: ["rund 2-mal","rund 5-mal","rund 8-mal"], r: 1,
+        e: "m = ρ · V → 7,9 / 1,6 ≈ 4,9 – also rund 5-mal so schwer." },
+      { q: "Ab welchem Chromgehalt gilt Stahl als nichtrostend?", a: ["ab 5 %","ab 10,5 %","ab 18 %"], r: 1,
+        e: "Ab etwa 10,5 % Cr bildet sich eine schützende Passivschicht (EN 10088). 18 % ist nur der typische Wert bei 1.4301 (18/8)." },
     ],
   },
 ];
