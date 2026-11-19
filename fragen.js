@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 26, stand: "2026-11-18", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 27, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -48,6 +48,7 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Bohrfutterschlüssel", e: "Zahnkranzschlüssel zum Spannen des Bohrfutters. Nach dem Spannen sofort abziehen – nie stecken lassen.", thema: "bohrfutter" },
     { w: "Weiterschaltbedingung", e: "Bedingung (Transition), die erfüllt sein muss, damit die Schrittkette in den nächsten Schritt wechselt.", thema: "ablaufsteuerung" },
     { w: "Mindeststreckgrenze", e: "Kleinster zugesicherter Wert der Streckgrenze ReH; bei S235 = 235 N/mm² (bis 16 mm Dicke).", thema: "stahlbezeichnung" },
     { w: "Brennschneiden", e: "Thermisches Trennen: Stahl verbrennt im Sauerstoffstrahl. Nur bei un- und niedriglegierten Stählen.", thema: "schneidverfahren" },
@@ -860,6 +861,21 @@ window.THEMEN = [
         e: "Ein Getriebe erzeugt keine Leistung, es tauscht Drehzahl gegen Drehmoment. Verluste machen die Abtriebsleistung kleiner." },
       { q: "100 N·m bei 750 1/min – welche Leistung?", a: ["rund 7,85 kW","rund 15,7 kW","rund 3,9 kW"], r: 0,
         e: "P = 100 · 750 / 9550 ≈ 7,85 kW – gleich wie am Motor (50 N·m · 1500 1/min)." },
+    ],
+  },
+  {
+    id: "bohrfutter", titel: "Bohrfutterschlüssel", icon: "🔑", kat: "sicherheit", datum: "2026-11-19", video: "", ap: [1], bild: "img/bohrfutter.jpg", bereich: "M", berufe: ["IM", "ZM", "MT", "KM", "MB"],
+    fragen: [
+      { q: "Der Bohrer ist gespannt. Wann ziehst du den Bohrfutterschlüssel ab?", a: ["Sofort nach dem Spannen","Sobald die Spindel läuft","Gar nicht – er bleibt für den nächsten Wechsel stecken"], r: 0,
+        e: "Nach dem Einspannen sofort abziehen – erst dann einschalten (DGUV Information 202-068)." },
+      { q: "Was kann passieren, wenn der Schlüssel beim Einschalten im Futter steckt?", a: ["Nichts, er fällt einfach heraus","Er dreht mit und kann weggeschleudert werden","Die Maschine startet nicht"], r: 1,
+        e: "Der Schlüssel dreht mit dem Futter mit und kann zum Wurfgeschoss werden." },
+      { q: "Darfst du den Schlüssel abziehen, während die Spindel läuft?", a: ["Ja, wenn du vorsichtig bist","Nein – dann greifst du in das laufende Futter","Nur bei niedriger Drehzahl"], r: 1,
+        e: "Nie in laufende Teile greifen. Der Schlüssel wird abgezogen, bevor eingeschaltet wird." },
+      { q: "In welcher Reihenfolge wechselst du den Bohrer?", a: ["Einschalten, Schlüssel ansetzen, spannen","Spannen, Schlüssel abziehen, dann einschalten","Schlüssel abziehen, spannen, einschalten"], r: 1,
+        e: "Werkzeug fest anziehen, Schlüssel danach abziehen – erst dann die Maschine einschalten." },
+      { q: "Was gehört vor dem Einschalten der Bohrmaschine zur Kontrolle?", a: ["Bohrfutterschlüssel abgezogen?","Handschuhe angezogen?","Futter mit der Hand festhalten?"], r: 0,
+        e: "Vor dem Einschalten: Schlüssel ab. Handschuhe sind an der Bohrmaschine verboten." },
     ],
   },
 ];
