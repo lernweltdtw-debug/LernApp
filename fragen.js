@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 27, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 28, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Toleranz", f: "T = Gₒ − Gᵤ", n: "Höchstmaß − Mindestmaß · 20 ± 0,1 → 20,1 − 19,9 = 0,2 mm", thema: "toleranz" },
     { t: "Hydraulik (Pascal)", f: "p = F / A · F₂ = F₁ · A₂ / A₁", n: "2 cm² → 200 cm²: 100 N → 10 000 N · Weg umgekehrt: s₁ · A₁ = s₂ · A₂", thema: "hydraulik" },
     { t: "Leistung bei Drehbewegung", f: "P = M · n / 9550", n: "P in kW · M in N·m · n in 1/min · 50 N·m · 1500 /min ≈ 7,85 kW", thema: "leistung" },
     { t: "Kohlenstoff im Kurznamen", f: "% C = Kennzahl / 100", n: "C45 → 0,45 % · 42CrMo4 → 0,42 % C; Cr-Zahl ÷ 4 ≈ 1 % Cr", thema: "stahlbezeichnung" },
@@ -48,6 +49,9 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Selbsthaltung", e: "Schließer-Hilfskontakt des Schützes parallel zum Ein-Taster hält die Spule nach dem Loslassen; aus mit Öffner (Aus-Taster) in Reihe.", thema: "schuetz" },
+    { w: "Anzugsmoment", e: "Vorgegebenes Drehmoment zum Anziehen einer Schraube; beim Auslösen (Knack) des Drehmomentschlüssels sofort aufhören.", thema: "anzugsmoment" },
+    { w: "Höchstmaß / Mindestmaß", e: "Größtes bzw. kleinstes zulässiges Maß: Nennmaß + oberes bzw. unteres Abmaß. Dazwischen = Gutteil.", thema: "toleranz" },
     { w: "Bohrfutterschlüssel", e: "Zahnkranzschlüssel zum Spannen des Bohrfutters. Nach dem Spannen sofort abziehen – nie stecken lassen.", thema: "bohrfutter" },
     { w: "Weiterschaltbedingung", e: "Bedingung (Transition), die erfüllt sein muss, damit die Schrittkette in den nächsten Schritt wechselt.", thema: "ablaufsteuerung" },
     { w: "Mindeststreckgrenze", e: "Kleinster zugesicherter Wert der Streckgrenze ReH; bei S235 = 235 N/mm² (bis 16 mm Dicke).", thema: "stahlbezeichnung" },
@@ -876,6 +880,51 @@ window.THEMEN = [
         e: "Werkzeug fest anziehen, Schlüssel danach abziehen – erst dann die Maschine einschalten." },
       { q: "Was gehört vor dem Einschalten der Bohrmaschine zur Kontrolle?", a: ["Bohrfutterschlüssel abgezogen?","Handschuhe angezogen?","Futter mit der Hand festhalten?"], r: 0,
         e: "Vor dem Einschalten: Schlüssel ab. Handschuhe sind an der Bohrmaschine verboten." },
+    ],
+  },
+  {
+    id: "schuetz", titel: "Schütz & Selbsthaltung", icon: "⚡", kat: "elektro", datum: "2026-11-19", video: "", ap: [2], bild: "img/schuetz.jpg", bereich: "J", berufe: ["MT"],
+    fragen: [
+      { q: "Du drückst den Ein-Taster, lässt los – der Motor läuft weiter. Warum?", a: ["Der Taster klemmt","Ein Hilfskontakt am Schütz hält die Spule","Die Spule bleibt ohne Strom magnetisch"], r: 1,
+        e: "Selbsthaltung: Ein Schließer-Hilfskontakt des Schützes (z. B. 13/14) liegt parallel zum Ein-Taster und hält den Spulenstrom." },
+      { q: "Wie ist der Hilfskontakt für die Selbsthaltung geschaltet?", a: ["Als Schließer parallel zum Ein-Taster","Als Öffner in Reihe zum Aus-Taster","Parallel zur Spule"], r: 0,
+        e: "Der Schließer liegt parallel zum Ein-Taster. Lässt du den Taster los, fließt der Strom weiter über den Hilfskontakt." },
+      { q: "Welcher Taster schaltet eine Selbsthaltung aus?", a: ["Ein Schließer parallel zum Ein-Taster","Der Aus-Taster – ein Öffner in Reihe","Der Ein-Taster, noch einmal gedrückt"], r: 1,
+        e: "Der Aus-Taster ist ein Öffner in Reihe. Er unterbricht den Steuerstromkreis, die Spule wird stromlos, das Schütz fällt ab." },
+      { q: "Was passiert, wenn die Spule eines Schützes keinen Strom mehr bekommt?", a: ["Das Schütz bleibt angezogen","Das Schütz fällt ab, die Kontakte gehen in Ruhestellung","Nur die Hilfskontakte öffnen"], r: 1,
+        e: "Ohne Spulenstrom zieht die Feder den Anker zurück – das Schütz fällt ab." },
+      { q: "Warum ist ein Taster allein (ohne Selbsthaltung) für Dauerbetrieb ungeeignet?", a: ["Er federt zurück und öffnet beim Loslassen","Er verträgt keinen Strom","Er schaltet nur Gleichstrom"], r: 0,
+        e: "Ein Taster wirkt nur, solange er gedrückt ist. Für Dauerbetrieb braucht es die Selbsthaltung über das Schütz." },
+    ],
+  },
+  {
+    id: "anzugsmoment", titel: "Anzugsmoment & Drehmomentschlüssel", icon: "🔧", kat: "elemente", datum: "2026-11-19", video: "", ap: [1], bild: "img/anzugsmoment.jpg", bereich: "O", berufe: ["IM", "MT", "KM"],
+    fragen: [
+      { q: "Der Drehmomentschlüssel hat geknackt. Was machst du?", a: ["Noch ein Stück nachziehen","Sofort aufhören","Weiterziehen, bis es noch mal knackt"], r: 1,
+        e: "Beim ersten Knacken (Auslösen) ist das eingestellte Anzugsmoment erreicht – sofort aufhören." },
+      { q: "Warum darfst du nach dem Knacken nicht weiterziehen?", a: ["Der Schlüssel wirkt dann wie ein starrer Hebel – die Schraube wird überdehnt","Die Skala verstellt sich","Die Ratsche geht kaputt, sonst nichts"], r: 0,
+        e: "Nach dem Auslösen überträgt der Schlüssel weiter Kraft. Jedes Nachziehen treibt das Drehmoment über den Sollwert." },
+      { q: "Was machst du nach der Arbeit mit einem auslösenden Drehmomentschlüssel?", a: ["Auf dem Wert lassen","Auf den kleinsten Skalenwert zurückdrehen","Auf den größten Wert drehen"], r: 1,
+        e: "Herstellerhinweis: auf den kleinsten Wert zurückdrehen, damit die Feder entlastet ist und der Schlüssel genau bleibt." },
+      { q: "„Fester ist besser“ – stimmt das beim Anziehen von Schrauben?", a: ["Ja, immer","Nein – das vorgegebene Anzugsmoment zählt","Nur bei kleinen Schrauben"], r: 1,
+        e: "Zu hohes Anzugsmoment überdehnt die Schraube. Angezogen wird auf den vorgegebenen Wert." },
+      { q: "Woran erkennst du beim auslösenden Schlüssel, dass der Sollwert erreicht ist?", a: ["An einem hörbaren und fühlbaren Knacken","Die Schraube dreht sich nicht mehr","An einer Warnlampe"], r: 0,
+        e: "Der Schlüssel löst aus: Knack + kurzer Ruck. Dann aufhören." },
+    ],
+  },
+  {
+    id: "toleranz", titel: "Toleranz, Höchst- & Mindestmaß", icon: "📏", kat: "pruefen", datum: "2026-11-19", video: "", ap: [1], bild: "img/toleranz.jpg", bereich: "A", berufe: ["IM", "ZM", "KM"],
+    fragen: [
+      { q: "Zeichnung: 20 ± 0,1. Welches Maß ist Ausschuss?", a: ["20,08 mm","19,92 mm","20,12 mm"], r: 2,
+        e: "Höchstmaß 20,1 mm, Mindestmaß 19,9 mm. 20,12 liegt über dem Höchstmaß → Ausschuss." },
+      { q: "Wie groß ist die Toleranz bei 20 ± 0,1?", a: ["0,1 mm","0,2 mm","20,1 mm"], r: 1,
+        e: "Toleranz = Höchstmaß − Mindestmaß = 20,1 − 19,9 = 0,2 mm." },
+      { q: "Wie groß ist das Höchstmaß bei 20 ± 0,1?", a: ["20,1 mm","20,2 mm","19,9 mm"], r: 0,
+        e: "Höchstmaß = Nennmaß + oberes Abmaß = 20 + 0,1 = 20,1 mm." },
+      { q: "Wann ist ein Teil ein Gutteil?", a: ["Wenn das Istmaß genau dem Nennmaß entspricht","Wenn das Istmaß zwischen Mindest- und Höchstmaß liegt","Wenn es kleiner als das Höchstmaß ist"], r: 1,
+        e: "Alles zwischen Mindestmaß und Höchstmaß ist gut – das Nennmaß muss nicht exakt getroffen werden." },
+      { q: "Was ist das Mindestmaß bei 20 ± 0,1?", a: ["19,9 mm","19,8 mm","20 mm"], r: 0,
+        e: "Mindestmaß = Nennmaß + unteres Abmaß = 20 − 0,1 = 19,9 mm." },
     ],
   },
 ];
