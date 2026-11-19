@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 28, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 29, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,7 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Kraft im Anschlagstrang", f: "F = G / (n · cos β)", n: "β zur Senkrechten, max. 60° · 1 t, 2 Stränge: 30° → 0,58 t · 60° → 1 t · 75° → 1,93 t (verboten)", thema: "anschlagen" },
     { t: "Toleranz", f: "T = Gₒ − Gᵤ", n: "Höchstmaß − Mindestmaß · 20 ± 0,1 → 20,1 − 19,9 = 0,2 mm", thema: "toleranz" },
     { t: "Hydraulik (Pascal)", f: "p = F / A · F₂ = F₁ · A₂ / A₁", n: "2 cm² → 200 cm²: 100 N → 10 000 N · Weg umgekehrt: s₁ · A₁ = s₂ · A₂", thema: "hydraulik" },
     { t: "Leistung bei Drehbewegung", f: "P = M · n / 9550", n: "P in kW · M in N·m · n in 1/min · 50 N·m · 1500 /min ≈ 7,85 kW", thema: "leistung" },
@@ -49,6 +50,7 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Neigungswinkel β", e: "Winkel zwischen Anschlagstrang und Senkrechter. Über 60° unzulässig; je größer β, desto größer die Kraft im Strang.", thema: "anschlagen" },
     { w: "Selbsthaltung", e: "Schließer-Hilfskontakt des Schützes parallel zum Ein-Taster hält die Spule nach dem Loslassen; aus mit Öffner (Aus-Taster) in Reihe.", thema: "schuetz" },
     { w: "Anzugsmoment", e: "Vorgegebenes Drehmoment zum Anziehen einer Schraube; beim Auslösen (Knack) des Drehmomentschlüssels sofort aufhören.", thema: "anzugsmoment" },
     { w: "Höchstmaß / Mindestmaß", e: "Größtes bzw. kleinstes zulässiges Maß: Nennmaß + oberes bzw. unteres Abmaß. Dazwischen = Gutteil.", thema: "toleranz" },
@@ -925,6 +927,21 @@ window.THEMEN = [
         e: "Alles zwischen Mindestmaß und Höchstmaß ist gut – das Nennmaß muss nicht exakt getroffen werden." },
       { q: "Was ist das Mindestmaß bei 20 ± 0,1?", a: ["19,9 mm","19,8 mm","20 mm"], r: 0,
         e: "Mindestmaß = Nennmaß + unteres Abmaß = 20 − 0,1 = 19,9 mm." },
+    ],
+  },
+  {
+    id: "anschlagen", titel: "Lasten anschlagen: Neigungswinkel", icon: "⛓️", kat: "sicherheit", datum: "2026-11-19", video: "", ap: [1], bild: "img/anschlagen.jpg", bereich: "M", berufe: ["IM", "KM", "MB", "MT"],
+    fragen: [
+      { q: "1 t hängt an zwei Ketten. Welcher Neigungswinkel zur Senkrechten ist verboten?", a: ["30°","60°","75°"], r: 2,
+        e: "Neigungswinkel über 60° sind unzulässig (DGUV Information 209-013). 60° ist die Grenze." },
+      { q: "Von wo aus wird der Neigungswinkel β gemessen?", a: ["Von der Waagerechten","Von der Senkrechten","Zwischen den beiden Ketten"], r: 1,
+        e: "β ist der Winkel zwischen Strang und Senkrechter." },
+      { q: "Was passiert mit der Kraft in jeder Kette, wenn die Ketten flacher werden?", a: ["Sie wird kleiner","Sie bleibt gleich","Sie wird größer"], r: 2,
+        e: "F = G / (2 · cos β). Je größer β, desto kleiner cos β – die Kraft im Strang steigt." },
+      { q: "1 t an zwei Ketten mit β = 60°. Welche Kraft hat jede Kette?", a: ["0,5 t","1 t","2 t"], r: 1,
+        e: "F = 1 t / (2 · cos 60°) = 1 t / (2 · 0,5) = 1 t – jede Kette trägt die ganze Last." },
+      { q: "1 t an zwei Ketten mit β = 30°. Kraft je Kette?", a: ["rund 0,58 t","0,5 t","1 t"], r: 0,
+        e: "F = 1 t / (2 · cos 30°) = 1 / (2 · 0,866) ≈ 0,58 t." },
     ],
   },
 ];
