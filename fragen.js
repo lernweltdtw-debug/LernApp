@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 31, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 32, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -52,6 +52,9 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
+    { w: "Warmhärte", e: "Härte eines Schneidstoffs bei hoher Temperatur: HSS ≈ 600 °C, Hartmetall ≈ 900 °C, Schneidkeramik ≈ 1200 °C.", thema: "schneidstoffe" },
+    { w: "Radialwellendichtring (RWDR)", e: "Dichtet rotierende Wellen ab. Offene Seite mit Feder und Dichtlippe zum abzudichtenden Medium.", thema: "dichtungen" },
     { w: "Austenit (kfz)", e: "Kubisch-flächenzentriertes Gefüge, z. B. 1.4301. Bleibt auch bei Tieftemperatur zäh – deshalb für Kryotanks (−183 °C Sauerstoff).", thema: "starship" },
     { w: "Neigungswinkel β", e: "Winkel zwischen Anschlagstrang und Senkrechter. Über 60° unzulässig; je größer β, desto größer die Kraft im Strang.", thema: "anschlagen" },
     { w: "Selbsthaltung", e: "Schließer-Hilfskontakt des Schützes parallel zum Ein-Taster hält die Spule nach dem Loslassen; aus mit Öffner (Aus-Taster) in Reihe.", thema: "schuetz" },
@@ -970,6 +973,57 @@ window.THEMEN = [
         e: "m = ρ · V → 7,9 / 1,6 ≈ 4,9 – also rund 5-mal so schwer." },
       { q: "Ab welchem Chromgehalt gilt Stahl als nichtrostend?", a: ["ab 5 %","ab 10,5 %","ab 18 %"], r: 1,
         e: "Ab etwa 10,5 % Cr bildet sich eine schützende Passivschicht (EN 10088). 18 % ist nur der typische Wert bei 1.4301 (18/8)." },
+    ],
+  },
+  {
+    id: "schmierung", titel: "Schmierung: zu viel Fett", icon: "🛢️", kat: "instandhaltung", datum: "2026-11-20", video: "", ap: [1, 2], bild: "img/schmierung.jpg", bereich: "L", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Nach dem Nachschmieren läuft ein Wälzlager heißer als vorher. Wahrscheinlichste Ursache?", a: ["Immer noch zu wenig Fett","Zu viel Fett – Walkarbeit","Das Lager bräuchte Öl statt Fett"], r: 1,
+        e: "Vorher lief es mit weniger Fett kühler. Überschüssiges Fett wird durchgewalkt – Reibung und Temperatur steigen (Schaeffler)." },
+      { q: "Faustregel: +15 K halbieren die Fettgebrauchsdauer. Das Lager läuft 30 K wärmer. Was bleibt?", a: ["die Hälfte","ein Viertel","ein Achtel"], r: 1,
+        e: "30 K = 2 × 15 K → zweimal halbieren: ½ · ½ = ¼." },
+      { q: "Warum erzeugt zu viel Fett im Lager Wärme?", a: ["Fett leitet Wärme schlechter als Luft","Die Wälzkörper müssen das Fett ständig verdrängen (Walkarbeit)","Das Fett drückt den Außenring zusammen"], r: 1,
+        e: "Überschmierung → erhöhte Walkarbeit → verstärkte Wärmeentwicklung, im Extremfall bis zur Fettzerstörung (Schaeffler/FAG)." },
+      { q: "Bei welchem Lager ist Überschmierung besonders kritisch?", a: ["Offenes Lager mit Fettaustritt","Gedeckeltes bzw. abgedichtetes Lager","Ölgeschmiertes Gleitlager"], r: 1,
+        e: "Bei gedeckelten/gedichteten Lagern kann das Fett nicht entweichen – übermäßige Eigenerwärmung (Klüber)." },
+      { q: "Typische Betriebstemperatur fettgeschmierter Wälzlager?", a: ["etwa 0–20 °C","etwa 35–70 °C","etwa 90–130 °C"], r: 1,
+        e: "Klüber nennt 35 bis 70 °C als typischen Bereich. Ein steigender Temperaturtrend ist ein Warnsignal." },
+      { q: "Hochgenauigkeitslager versehentlich überschmiert. Was empfiehlt Schaeffler?", a: ["Lager sofort tauschen","Einlaufzyklus fahren","Öl nachfüllen, um das Fett zu verdünnen"], r: 1,
+        e: "Der Einlaufzyklus stellt das ursprüngliche Reibmoment wieder her (Ringtemperatur dabei begrenzen)." },
+    ],
+  },
+  {
+    id: "schneidstoffe", titel: "Schneidstoffe & Warmhärte", icon: "🔩", kat: "fertigung", datum: "2026-11-20", video: "", ap: [1, 2], bild: "img/schneidstoffe.jpg", bereich: "C", berufe: ["ZM", "IM"],
+    fragen: [
+      { q: "An der Schneide herrschen rund 1000 °C. Welcher Schneidstoff bleibt noch hart?", a: ["Schnellarbeitsstahl (HSS)","Hartmetall","Schneidkeramik"], r: 2,
+        e: "HSS bis ca. 600 °C, Hartmetall verliert ab ca. 900 °C stark an Härte, Schneidkeramik bis ca. 1200 °C." },
+      { q: "Warum hat Schneidkeramik eine höhere Warmhärte als Hartmetall?", a: ["Sie enthält mehr Kobalt","Sie hat kein metallisches Bindemittel","Sie ist immer beschichtet"], r: 1,
+        e: "Hartmetall braucht ein Bindemetall (z. B. Co), das bei Hitze weich wird. Keramik kommt ohne aus." },
+      { q: "Fräsen mit unterbrochenem Schnitt und Schlägen. Welcher Schneidstoff ist am ehesten gefährdet?", a: ["HSS","Hartmetall","Schneidkeramik"], r: 2,
+        e: "Keramik ist sehr spröde und empfindlich gegen schwankende Schnittkräfte – Schläge führen zum Bruch." },
+      { q: "Ab etwa welcher Temperatur verliert HSS seine Härte?", a: ["ca. 300 °C","ca. 600 °C","ca. 900 °C"], r: 1,
+        e: "Arbeitstemperatur bis ca. 600 °C – darüber wird die Schneide weich und stumpf." },
+      { q: "Wie viel höhere Schnittgeschwindigkeit erlaubt Hartmetall etwa gegenüber HSS?", a: ["1,2-fach","3- bis 5-fach","20-fach"], r: 1,
+        e: "Hartmetall erlaubt etwa drei- bis fünffach höhere vc, ist dafür spröder und teurer." },
+      { q: "Unter welchen Bedingungen setzt man Schneidkeramik bevorzugt ein?", a: ["Unterbrochener Schnitt mit viel Kühlschmierstoff","Gleichmäßiger Schnitt, oft ohne Kühlung","Nur beim Bohren von Holz"], r: 1,
+        e: "Gleichmäßige Bedingungen, häufig trocken – Temperaturschocks und Schläge vertragen Keramiken schlecht." },
+    ],
+  },
+  {
+    id: "dichtungen", titel: "Radialwellendichtring einbauen", icon: "🛢️", kat: "elemente", datum: "2026-11-20", video: "", ap: [2], bild: "img/dichtungen.jpg", bereich: "G", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Wohin zeigt die offene Seite mit der Feder beim Radialwellendichtring?", a: ["Nach außen, zur Luft","Zum abzudichtenden Medium (Öl)","Egal, Hauptsache er sitzt gerade"], r: 1,
+        e: "Die Dichtlippe muss stets der abzudichtenden Seite zugewandt sein (Parker, anyseals)." },
+      { q: "Du willst Öl und Wasser auf einer Welle voneinander trennen. Wie?", a: ["Ein Ring, Lippe zum Öl","Zwei Ringe mit entgegengesetzt gerichteten Lippen","Ein Ring mit zwei Federn"], r: 1,
+        e: "Zur Trennung zweier Medien werden zwei Radialwellendichtringe mit entgegengesetzten Lippen eingebaut." },
+      { q: "Der Ring muss über eine Passfedernut geschoben werden. Womit schützt du die Lippe?", a: ["Mit einer Montagehülse","Mit Klebeband über der Nut, ohne Hülse","Gar nicht – die Lippe ist elastisch"], r: 0,
+        e: "Über Kanten, Gewinde und Nuten immer eine Montagehülse verwenden, sonst wird die Dichtlippe beschädigt." },
+      { q: "Wo setzt du die Einpresskraft beim Einbau an?", a: ["An der Dichtlippe","Möglichst nahe am Außendurchmesser","Mittig am Gummiteil"], r: 1,
+        e: "Kraft nahe am Außendurchmesser ansetzen – der Ring muss zentrisch und senkrecht zur Welle sitzen." },
+      { q: "An welcher Seite der Dichtkante muss das abzudichtende Medium anliegen?", a: ["An der Seite mit dem kleineren Dichtkantenwinkel","An der Seite mit dem größeren Dichtkantenwinkel","Das spielt keine Rolle"], r: 1,
+        e: "Das Medium muss immer an der Seite mit dem größeren Dichtkantenwinkel anliegen (Ludwig Meister)." },
+      { q: "Wie wird ein PTFE-Wellendichtring montiert?", a: ["Lippe dick einfetten","Trocken, ohne Fett oder Öl","Mit Öl einweichen"], r: 1,
+        e: "PTFE-Ringe werden trocken montiert; Herstellerhinweise (z. B. Wartezeit, Spezialwerkzeug) beachten." },
     ],
   },
 ];
