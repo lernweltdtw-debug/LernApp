@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 32, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 33, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -52,6 +52,7 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Abluftdrosselung", e: "Bei doppeltwirkenden Zylindern wird die abströmende Luft gedrosselt – Kolben fährt zwischen zwei Luftpolstern gleichmäßig.", thema: "drosselrueckschlag" },
     { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
     { w: "Warmhärte", e: "Härte eines Schneidstoffs bei hoher Temperatur: HSS ≈ 600 °C, Hartmetall ≈ 900 °C, Schneidkeramik ≈ 1200 °C.", thema: "schneidstoffe" },
     { w: "Radialwellendichtring (RWDR)", e: "Dichtet rotierende Wellen ab. Offene Seite mit Feder und Dichtlippe zum abzudichtenden Medium.", thema: "dichtungen" },
@@ -1024,6 +1025,23 @@ window.THEMEN = [
         e: "Das Medium muss immer an der Seite mit dem größeren Dichtkantenwinkel anliegen (Ludwig Meister)." },
       { q: "Wie wird ein PTFE-Wellendichtring montiert?", a: ["Lippe dick einfetten","Trocken, ohne Fett oder Öl","Mit Öl einweichen"], r: 1,
         e: "PTFE-Ringe werden trocken montiert; Herstellerhinweise (z. B. Wartezeit, Spezialwerkzeug) beachten." },
+    ],
+  },
+  {
+    id: "drosselrueckschlag", titel: "Drosselrückschlagventil: Abluft drosseln", icon: "💨", kat: "pneumatik", datum: "2026-11-20", video: "", ap: [2], bild: "img/drosselrueckschlag.jpg", bereich: "I", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Ein doppeltwirkender Zylinder soll langsam ausfahren und ruckelt. Was ist falsch eingestellt?", a: ["Der Betriebsdruck ist zu hoch","Die Zuluft wird gedrosselt statt der Abluft","Das Wegeventil schaltet zu langsam"], r: 1,
+        e: "Bei Zuluftdrosselung baut sich der Druck nur langsam auf, die Abluftseite ist schon leer – der Kolben klebt und springt (Stick-Slip)." },
+      { q: "Warum läuft der Kolben bei Abluftdrosselung gleichmäßiger?", a: ["Die Zuluft strömt schneller ein","Er fährt zwischen zwei Luftpolstern","Die Reibung wird abgeschaltet"], r: 1,
+        e: "Freie Zuluft, gedrosselte Abluft: Der Kolben ist zwischen zwei Luftpolstern eingespannt – gutes Laufverhalten auch bei Laständerung (Festo)." },
+      { q: "Einfachwirkender Zylinder mit Federrückstellung: Welche Drosselung nimmt man?", a: ["Zuluftdrosselung","Abluftdrosselung","Gar keine – geht nicht"], r: 0,
+        e: "Einfachwirkende Zylinder haben nur einen Luftanschluss – gedrosselt wird die Zuluft." },
+      { q: "Abluftdrosselung beim Ausfahren: Wie arbeitet das Drosselrückschlagventil an der Kolbenstangenseite?", a: ["Abströmende Luft gedrosselt, einströmende Luft frei über das Rückschlagventil","Beide Richtungen gedrosselt","Einströmende Luft gedrosselt, abströmende frei"], r: 0,
+        e: "Drossel und Rückschlagventil liegen parallel: In eine Richtung frei, in die andere gedrosselt. Für Abluftdrosselung muss die abströmende Luft gedrosselt werden." },
+      { q: "Was beschreibt der Stick-Slip-Effekt?", a: ["Ruckweises Haften und Gleiten bei sehr kleinen Geschwindigkeiten","Undichte Kolbendichtung","Zu schnelles Ausfahren bei hohem Druck"], r: 0,
+        e: "Stick-Slip tritt vor allem bei langsamer Bewegung und beim Anfahren auf – die Bewegung wird ruckartig." },
+      { q: "Wo sollte das Drosselrückschlagventil möglichst sitzen?", a: ["Direkt am Zylinderanschluss","Direkt an der Wartungseinheit","Egal, Hauptsache im Schlauch"], r: 0,
+        e: "Direkt am Zylinder ist das abgesperrte Luftvolumen klein – der Zylinder läuft gleichmäßiger." },
     ],
   },
 ];
