@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 33, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 34, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -52,6 +52,7 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Ballig", e: "Nach außen gewölbt (konvex). Beim Haarlineal: Mitte liegt an, Licht an den Rändern.", thema: "feilen" },
     { w: "Abluftdrosselung", e: "Bei doppeltwirkenden Zylindern wird die abströmende Luft gedrosselt – Kolben fährt zwischen zwei Luftpolstern gleichmäßig.", thema: "drosselrueckschlag" },
     { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
     { w: "Warmhärte", e: "Härte eines Schneidstoffs bei hoher Temperatur: HSS ≈ 600 °C, Hartmetall ≈ 900 °C, Schneidkeramik ≈ 1200 °C.", thema: "schneidstoffe" },
@@ -1042,6 +1043,23 @@ window.THEMEN = [
         e: "Stick-Slip tritt vor allem bei langsamer Bewegung und beim Anfahren auf – die Bewegung wird ruckartig." },
       { q: "Wo sollte das Drosselrückschlagventil möglichst sitzen?", a: ["Direkt am Zylinderanschluss","Direkt an der Wartungseinheit","Egal, Hauptsache im Schlauch"], r: 0,
         e: "Direkt am Zylinder ist das abgesperrte Luftvolumen klein – der Zylinder läuft gleichmäßiger." },
+    ],
+  },
+  {
+    id: "feilen", titel: "Feilen: 3 typische Fehler", icon: "🪚", kat: "fertigung", datum: "2026-11-21", video: "", ap: [1], bild: "img/feilen.jpg", bereich: "D", berufe: ["IM", "KM", "MB"],
+    fragen: [
+      { q: "Deine gefeilte Fläche wird ballig. Häufigste Ursache?", a: ["Der Hieb ist zu fein","Die Feile schaukelt – an den Rändern wird mehr abgetragen","Zu wenig Druck"], r: 1,
+        e: "Schaukelt (wiegt) die Feile, nimmt sie an den Rändern mehr weg, die Mitte bleibt stehen – die Fläche wird ballig." },
+      { q: "In welcher Bewegung arbeitet die Feile?", a: ["Nur beim Vorschieben","Nur beim Zurückziehen","In beide Richtungen gleich"], r: 0,
+        e: "Die Feile schneidet nur beim Vorschieben. Zurück geht sie ohne Druck." },
+      { q: "Haarlineal auf der Fläche: Die Mitte liegt an, an beiden Rändern siehst du Licht. Die Fläche ist …", a: ["hohl (konkav)","ballig (konvex)","eben"], r: 1,
+        e: "Mitte hoch, Ränder tiefer → Licht an den Rändern = ballig." },
+      { q: "Haarlineal: Die Ränder liegen an, in der Mitte siehst du Licht. Die Fläche ist …", a: ["hohl (konkav)","ballig (konvex)","eben"], r: 0,
+        e: "Die Mitte liegt tiefer als die Ränder → Lichtspalt in der Mitte = hohl. Prüfungsfalle: nicht mit ballig verwechseln." },
+      { q: "Warum spannst du das Werkstück beim Flächenfeilen zwischendurch um?", a: ["Damit es nicht warm wird","Um einseitige Fehler beim Abtrag auszugleichen","Weil der Schraubstock sonst rutscht"], r: 1,
+        e: "Das Werkstück wird zum Ausgleichen von Fehlern mehrmals umgespannt (Grundlehrgang)." },
+      { q: "Du musst viel Material abtragen. Welche Feile nimmst du zuerst?", a: ["Schlichtfeile (feiner Hieb)","Schruppfeile (grober Hieb)","Nadelfeile"], r: 1,
+        e: "Erst mit grobem Hieb schruppen, dann mit feinem Hieb schlichten." },
     ],
   },
 ];
