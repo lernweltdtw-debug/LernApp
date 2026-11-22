@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 35, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 36, stand: "2026-11-22", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,8 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Zugfestigkeit", f: "Rm = Fm / S₀ · S₀ = π · d² / 4", n: "d = 10 mm → S₀ = 78,5 mm² · Fm = 33 kN → Rm ≈ 420 N/mm²", thema: "zugversuch" },
+    { t: "Hookesches Gesetz", f: "σ = E · ε", n: "nur im elastischen Bereich (bis zur Streckgrenze) · E Stahl ≈ 210 000 N/mm²", thema: "zugversuch" },
     { t: "Gewichtskraft / Schub", f: "F = m · g", n: "280 t · 9,81 m/s² ≈ 2,75 MN (Raptor-Triebwerk, Angabe in Tonnen Schub)", thema: "starship" },
     { t: "Passung: Spiel", f: "Pₛₘₐₓ = Gₒᴮ − Gᵤᵂ · Pₛₘᵢₙ = Gᵤᴮ − Gₒᵂ", n: "30 +0,021/0 mit 30 −0,007/−0,020 → Höchstspiel 0,041 mm, Mindestspiel 0,007 mm", thema: "toleranz" },
     { t: "Kraft im Anschlagstrang", f: "F = G / (n · cos β)", n: "β zur Senkrechten, max. 60° · 1 t, 2 Stränge: 30° → 0,58 t · 60° → 1 t · 75° → 1,93 t (verboten)", thema: "anschlagen" },
@@ -54,6 +56,11 @@ window.WISSEN = {
   begriffe: [
     { w: "Rz (gemittelte Rautiefe)", e: "Mittelwert der 5 Einzelrautiefen (Spitze–Tal je Einzelmessstrecke). Reagiert stärker auf Ausreißer als Ra.", thema: "rauheit" },
     { w: "G00 / G01", e: "G00 Eilgang zum Positionieren, G01 Gerade mit Vorschub F zum Zerspanen.", thema: "gcode" },
+    { w: "Streckgrenze ReH", e: "Spannung, ab der der Werkstoff fließt. Darüber bleibt eine plastische (bleibende) Verformung.", thema: "zugversuch" },
+    { w: "Zugfestigkeit Rm", e: "Höchstkraft Fm geteilt durch den Anfangsquerschnitt S₀ – höchster Punkt im Spannungs-Dehnungs-Diagramm.", thema: "zugversuch" },
+    { w: "Einschnürung", e: "Nach Rm verengt sich die Probe örtlich stark; die Kraft fällt, bis sie reißt.", thema: "zugversuch" },
+    { w: "Parallel- / Winkelversatz", e: "Parallel: Wellenachsen parallel, aber versetzt. Winkel: Achsen schräg zueinander. Beides belastet Kupplung, Lager, Dichtungen.", thema: "ausrichten" },
+    { w: "Kippfuß (Soft Foot)", e: "Ein Maschinenfuß liegt nicht satt auf. Vor dem Ausrichten prüfen und beheben, sonst verfälschte Messung und verspanntes Gehäuse.", thema: "ausrichten" },
     { w: "Ballig", e: "Nach außen gewölbt (konvex). Beim Haarlineal: Mitte liegt an, Licht an den Rändern.", thema: "feilen" },
     { w: "Abluftdrosselung", e: "Bei doppeltwirkenden Zylindern wird die abströmende Luft gedrosselt – Kolben fährt zwischen zwei Luftpolstern gleichmäßig.", thema: "drosselrueckschlag" },
     { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
@@ -1096,6 +1103,40 @@ window.THEMEN = [
         e: "M03 Spindel ein (rechts), M05 Spindel aus, M30 Programmende." },
       { q: "Was bedeutet „F300“ in „G01 X60 F300“ (Fräsen, metrisch)?", a: ["Drehzahl 300 1/min","Vorschub 300 mm/min","300 mm Weg"], r: 1,
         e: "F ist der Vorschub (beim Fräsen meist mm/min), die Drehzahl steht bei S." },
+    ],
+  },
+  {
+    id: "zugversuch", titel: "Zugversuch: σ-ε-Diagramm, ReH, Rm", icon: "🧪", kat: "werkstoffe", datum: "2026-11-22", video: "", ap: [2], bild: "img/zugversuch.jpg", bereich: "B", berufe: ["IM", "ZM", "KM"],
+    fragen: [
+      { q: "Zugprobe d = 8 mm reißt nach der Höchstkraft Fm = 21 kN. Wie groß ist Rm?", a: ["≈ 328 N/mm²","≈ 418 N/mm²","≈ 2 625 N/mm²"], r: 1,
+        e: "S₀ = π · 8² / 4 = 50,3 mm². Rm = 21 000 N / 50,3 mm² ≈ 418 N/mm². (328 = vergessenes π/4, 2 625 = durch d statt Fläche geteilt.)" },
+      { q: "Du belastest die Probe nur im elastischen Bereich und entlastest dann. Was passiert?", a: ["Sie bleibt um die aktuelle Dehnung länger","Sie federt auf die Ausgangslänge zurück","Sie schnürt sich ein"], r: 1,
+        e: "Elastisch = Hookesche Gerade: Die Verformung geht nach Entlastung vollständig zurück." },
+      { q: "Mit welcher Fläche wird die Zugfestigkeit Rm berechnet?", a: ["Bruchquerschnitt Su nach dem Versuch","Anfangsquerschnitt S₀ vor dem Versuch","Querschnitt an der Einschnürung bei Fm"], r: 1,
+        e: "Rm = Fm / S₀ – immer der Anfangsquerschnitt. Typische Prüfungsfalle: nicht den eingeschnürten Querschnitt nehmen." },
+      { q: "Die Probe wurde über die Streckgrenze ReH hinaus gezogen und dann entlastet. Ergebnis?", a: ["Keine bleibende Dehnung","Bleibende (plastische) Dehnung","Sofortiger Bruch"], r: 1,
+        e: "Ab ReH fließt der Werkstoff: Ein Teil der Dehnung bleibt nach Entlastung erhalten." },
+      { q: "Warum sinkt die gemessene Kraft nach Rm, obwohl die Probe noch nicht gerissen ist?", a: ["Der Stahl wird durch Wärme weicher","Die Probe schnürt sich ein – der tragende Querschnitt nimmt örtlich stark ab","Die Maschine regelt die Kraft zurück"], r: 1,
+        e: "Nach Rm beginnt die Einschnürung. Der Querschnitt wird kleiner, deshalb reicht weniger Kraft bis zum Bruch." },
+      { q: "Stab S₀ = 50 mm², Re = 300 N/mm², Sicherheit gegen Fließen ν = 2. Zulässige Zugkraft?", a: ["7,5 kN","15 kN","3,75 kN"], r: 0,
+        e: "σzul = Re / ν = 300 / 2 = 150 N/mm². F = σzul · S₀ = 150 · 50 = 7 500 N = 7,5 kN." },
+    ],
+  },
+  {
+    id: "ausrichten", titel: "Wellen ausrichten: Versatz, Kippfuß", icon: "📏", kat: "instandhaltung", datum: "2026-11-22", video: "", ap: [2], bild: "img/ausrichten.jpg", bereich: "L", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Die Wellenachsen von Motor und Pumpe liegen parallel, aber versetzt. Welcher Fehler?", a: ["Winkelversatz","Parallelversatz","Kippfuß"], r: 1,
+        e: "Parallelversatz: Achsen parallel, aber verschoben. Winkelversatz: Achsen schräg zueinander." },
+      { q: "Pumpe hängt fest an den Rohrleitungen, der Motor ist verschiebbar. Welche Maschine richtest du aus?", a: ["Die Pumpe","Den Motor","Beide abwechselnd"], r: 1,
+        e: "Ausgerichtet wird die bewegliche Maschine – meist der Motor. Die feste Maschine ist die Referenz." },
+      { q: "Der Motor sitzt an allen vier Füßen gleichmäßig 0,3 mm zu tief. Wie korrigierst du?", a: ["0,3 mm Bleche unter alle vier Füße","0,3 mm Bleche nur unter die vorderen Füße","Motor seitlich verschieben"], r: 0,
+        e: "Gleichmäßig zu tief = Parallelversatz in der Höhe → überall gleich dicke Bleche. Nur vorne würde einen Winkelversatz erzeugen." },
+      { q: "Die Motorwelle zeigt schräg nach oben (Winkelversatz in der Höhe). Wie korrigierst du?", a: ["Überall gleich dicke Bleche","Vorne und hinten unterschiedlich dicke Bleche","Motor seitlich verschieben"], r: 1,
+        e: "Ein Winkel in der Höhe wird durch unterschiedliche Blechdicken an vorderen und hinteren Füßen ausgeglichen." },
+      { q: "Warum prüfst du vor dem Ausrichten den Kippfuß?", a: ["Er verfälscht die Messung und verspannt beim Anziehen das Gehäuse","Er ist nur für die Optik wichtig","Er spielt nur beim Laser eine Rolle"], r: 0,
+        e: "Liegt ein Fuß nicht satt auf, verzieht sich das Gehäuse beim Anziehen – jede Ausrichtmessung wird falsch." },
+      { q: "Das Wärmebild zeigt eine auffällig warme Kupplung, die Lager laufen laut. Was prüfst du zuerst?", a: ["Die Ausrichtung der Wellen","Die Drehzahl erhöhen","Die Kupplung einölen"], r: 0,
+        e: "Erwärmte Kupplung, Schwingungen und Lagerverschleiß sind typische Hinweise auf Fehlausrichtung." },
     ],
   },
 ];
