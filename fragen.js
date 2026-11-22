@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 34, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 35, stand: "2026-11-19", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -52,6 +52,8 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Rz (gemittelte Rautiefe)", e: "Mittelwert der 5 Einzelrautiefen (Spitze–Tal je Einzelmessstrecke). Reagiert stärker auf Ausreißer als Ra.", thema: "rauheit" },
+    { w: "G00 / G01", e: "G00 Eilgang zum Positionieren, G01 Gerade mit Vorschub F zum Zerspanen.", thema: "gcode" },
     { w: "Ballig", e: "Nach außen gewölbt (konvex). Beim Haarlineal: Mitte liegt an, Licht an den Rändern.", thema: "feilen" },
     { w: "Abluftdrosselung", e: "Bei doppeltwirkenden Zylindern wird die abströmende Luft gedrosselt – Kolben fährt zwischen zwei Luftpolstern gleichmäßig.", thema: "drosselrueckschlag" },
     { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
@@ -1060,6 +1062,40 @@ window.THEMEN = [
         e: "Das Werkstück wird zum Ausgleichen von Fehlern mehrmals umgespannt (Grundlehrgang)." },
       { q: "Du musst viel Material abtragen. Welche Feile nimmst du zuerst?", a: ["Schlichtfeile (feiner Hieb)","Schruppfeile (grober Hieb)","Nadelfeile"], r: 1,
         e: "Erst mit grobem Hieb schruppen, dann mit feinem Hieb schlichten." },
+    ],
+  },
+  {
+    id: "rauheit", titel: "Rauheit: Ra und Rz", icon: "🔬", kat: "pruefen", datum: "2026-11-22", video: "", ap: [2], bild: "img/rauheit.jpg", bereich: "A", berufe: ["ZM", "IM"],
+    fragen: [
+      { q: "Was beschreibt Ra?", a: ["Den größten Abstand Spitze–Tal","Den arithmetischen Mittelwert der Profilabweichungen von der Mittellinie","Die Anzahl der Spitzen pro mm"], r: 1,
+        e: "Ra = arithmetischer Mittenrauwert: Mittel der Beträge der Abweichungen von der Mittellinie." },
+      { q: "Wie entsteht Rz?", a: ["Größte Spitze minus tiefstes Tal über die ganze Messstrecke","Mittelwert der 5 Einzelrautiefen (Spitze bis Tal je Einzelmessstrecke)","Ra mal fünf"], r: 1,
+        e: "Rz ist die gemittelte Rautiefe aus 5 Einzelmessstrecken. Falle: „Ra mal fünf“ ist keine Definition." },
+      { q: "Eine Fläche bekommt einen einzelnen tiefen Kratzer. Welcher Wert reagiert stärker?", a: ["Ra","Rz","Beide gleich"], r: 1,
+        e: "Ra mittelt über alle Punkte – ein einzelner Ausreißer fällt kaum ins Gewicht. Rz enthält Spitze–Tal je Abschnitt und reagiert deutlich." },
+      { q: "Zwei Flächen haben denselben Ra-Wert. Sind sie gleich rau?", a: ["Ja, Ra beschreibt die Oberfläche vollständig","Nicht unbedingt – völlig unterschiedliche Profile können denselben Ra haben","Nur wenn sie gleich gefertigt wurden"], r: 1,
+        e: "Ra ist ein Mittelwert – unterschiedliche Profilformen (z. B. Spitzen vs. Riefen) können denselben Ra ergeben." },
+      { q: "Womit misst man Ra und Rz in der Werkstatt typischerweise?", a: ["Messschieber","Tastschnittgerät (Rauheitsmessgerät)","Haarlineal"], r: 1,
+        e: "Ein Tastschnittgerät fährt mit einer feinen Tastspitze über die Oberfläche und zeichnet das Profil auf." },
+      { q: "Beispielprofil: Ra 1,01 µm, Rz 5,09 µm. Nach einem Kratzer: Ra 1,12 µm, Rz 6,87 µm. Um wie viel Prozent steigen Ra und Rz etwa?", a: ["Ra +11 %, Rz +35 %","Ra +35 %, Rz +11 %","Beide +11 %"], r: 0,
+        e: "Ra: 1,12/1,01 ≈ 1,11 → +11 %. Rz: 6,87/5,09 ≈ 1,35 → +35 %. Rz reagiert stärker auf den Ausreißer." },
+    ],
+  },
+  {
+    id: "gcode", titel: "G-Code: G00, G01, G02/G03, M-Befehle", icon: "💻", kat: "fertigung", datum: "2026-11-22", video: "", ap: [2], bild: "img/gcode.jpg", bereich: "C", berufe: ["ZM", "IM"],
+    fragen: [
+      { q: "Was bedeutet G00?", a: ["Gerade mit Vorschub","Eilgang – Positionieren mit maximaler Geschwindigkeit","Programmende"], r: 1,
+        e: "G00 = Eilgang zum Positionieren, nicht zum Zerspanen." },
+      { q: "Mit welchem Befehl fährst du eine Gerade mit Vorschub F, um zu zerspanen?", a: ["G00","G01","G02"], r: 1,
+        e: "G01 = Linearinterpolation mit programmiertem Vorschub F." },
+      { q: "Kreisbogen im Uhrzeigersinn?", a: ["G02","G03","G01"], r: 0,
+        e: "G02 = Kreis im Uhrzeigersinn, G03 = gegen den Uhrzeigersinn." },
+      { q: "Im Programm steht „N30 G00 Z-2“ – das Werkzeug fährt damit ins Material. Was passiert?", a: ["Es zerspant langsam mit Vorschub","Es fährt im Eilgang ins Material – Kollisionsgefahr","Die Steuerung ignoriert den Satz"], r: 1,
+        e: "Eilgang hat keinen Vorschub zum Zerspanen. Fährt G00 ins Material, drohen Werkzeug- und Werkstückschaden. Richtig: G01 mit F." },
+      { q: "Welcher Befehl schaltet die Spindel rechtsdrehend ein?", a: ["M03","M05","M30"], r: 0,
+        e: "M03 Spindel ein (rechts), M05 Spindel aus, M30 Programmende." },
+      { q: "Was bedeutet „F300“ in „G01 X60 F300“ (Fräsen, metrisch)?", a: ["Drehzahl 300 1/min","Vorschub 300 mm/min","300 mm Weg"], r: 1,
+        e: "F ist der Vorschub (beim Fräsen meist mm/min), die Drehzahl steht bei S." },
     ],
   },
 ];
