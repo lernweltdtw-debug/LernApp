@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 36, stand: "2026-11-22", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 37, stand: "2026-11-24", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,8 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Kernloch (Faustformel)", f: "Kernloch ≈ d − P", n: "M10: 10 − 1,5 = 8,5 mm · M16: 16 − 2 = 14 mm", thema: "gewindedarstellung" },
+    { t: "Schneidkraft (Scherschneiden)", f: "F = S · τaB · S = l · s · τaB ≈ 0,8 · Rm", n: "l = 100 mm, s = 2 mm, τaB = 320 N/mm² → F = 64 kN", thema: "scheren" },
     { t: "Zugfestigkeit", f: "Rm = Fm / S₀ · S₀ = π · d² / 4", n: "d = 10 mm → S₀ = 78,5 mm² · Fm = 33 kN → Rm ≈ 420 N/mm²", thema: "zugversuch" },
     { t: "Hookesches Gesetz", f: "σ = E · ε", n: "nur im elastischen Bereich (bis zur Streckgrenze) · E Stahl ≈ 210 000 N/mm²", thema: "zugversuch" },
     { t: "Gewichtskraft / Schub", f: "F = m · g", n: "280 t · 9,81 m/s² ≈ 2,75 MN (Raptor-Triebwerk, Angabe in Tonnen Schub)", thema: "starship" },
@@ -61,6 +63,9 @@ window.WISSEN = {
     { w: "Einschnürung", e: "Nach Rm verengt sich die Probe örtlich stark; die Kraft fällt, bis sie reißt.", thema: "zugversuch" },
     { w: "Parallel- / Winkelversatz", e: "Parallel: Wellenachsen parallel, aber versetzt. Winkel: Achsen schräg zueinander. Beides belastet Kupplung, Lager, Dichtungen.", thema: "ausrichten" },
     { w: "Kippfuß (Soft Foot)", e: "Ein Maschinenfuß liegt nicht satt auf. Vor dem Ausrichten prüfen und beheben, sonst verfälschte Messung und verspanntes Gehäuse.", thema: "ausrichten" },
+    { w: "Gewindedarstellung", e: "Gewindespitzen = breite Volllinie, Gewindegrund = schmale Volllinie. Draufsicht: Grund als ¾-Kreis schmal. Innengewinde: Schraffur bis zur breiten Linie.", thema: "gewindedarstellung" },
+    { w: "Schneidspalt u", e: "Abstand zwischen Ober- und Untermesser. Zu groß: dicker Grat, starker Kanteneinzug. Zu klein: höhere Kraft, mehr Verschleiß.", thema: "scheren" },
+    { w: "Schnittflächenzonen", e: "Kanteneinzug → Glattschnitt → Bruchzone → Grat (VDI 2906).", thema: "scheren" },
     { w: "Ballig", e: "Nach außen gewölbt (konvex). Beim Haarlineal: Mitte liegt an, Licht an den Rändern.", thema: "feilen" },
     { w: "Abluftdrosselung", e: "Bei doppeltwirkenden Zylindern wird die abströmende Luft gedrosselt – Kolben fährt zwischen zwei Luftpolstern gleichmäßig.", thema: "drosselrueckschlag" },
     { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
@@ -1137,6 +1142,40 @@ window.THEMEN = [
         e: "Liegt ein Fuß nicht satt auf, verzieht sich das Gehäuse beim Anziehen – jede Ausrichtmessung wird falsch." },
       { q: "Das Wärmebild zeigt eine auffällig warme Kupplung, die Lager laufen laut. Was prüfst du zuerst?", a: ["Die Ausrichtung der Wellen","Die Drehzahl erhöhen","Die Kupplung einölen"], r: 0,
         e: "Erwärmte Kupplung, Schwingungen und Lagerverschleiß sind typische Hinweise auf Fehlausrichtung." },
+    ],
+  },
+  {
+    id: "gewindedarstellung", titel: "Gewinde in der Zeichnung", icon: "🔩", kat: "zeichnen", datum: "2026-11-24", video: "", ap: [1], bild: "img/gewindedarstellung.jpg", bereich: "N", berufe: ["IM", "ZM", "KM"],
+    fragen: [
+      { q: "Außengewinde in der Seitenansicht: Welche Linie ist breit?", a: ["Kerndurchmesser (Gewindegrund)","Außendurchmesser (Gewindespitzen)","Beide gleich breit"], r: 1,
+        e: "Breit sind immer die Gewindespitzen – beim Bolzen liegen sie außen. Der Gewindegrund (Kern) ist schmal." },
+      { q: "In einer Ansicht ist die äußere Linie schmal und die innere Linie breit. Was ist dargestellt?", a: ["Außengewinde","Innengewinde","Ein Zeichenfehler – das gibt es nicht"], r: 1,
+        e: "Innen breit = Spitzen innen am Kernloch → Innengewinde. Genau der Fall aus dem Hook: eine Linie falsch dick und aus der Schraube wird ein Loch." },
+      { q: "Innengewinde im Schnitt: Bis wohin geht die Schraffur?", a: ["Bis zur schmalen Linie (Nenndurchmesser)","Bis zur breiten Linie (Kernloch)","Innengewinde werden nicht schraffiert"], r: 1,
+        e: "Geschnittenes Material wird bis zur breiten Volllinie (Gewindespitzen = Kernlochdurchmesser) schraffiert." },
+      { q: "Wie wird der Gewindegrund in der Draufsicht (Stirnansicht) gezeichnet?", a: ["Vollkreis, breite Linie","Etwa ¾-Kreis, schmale Volllinie","Strichlinie"], r: 1,
+        e: "DIN ISO 6410: Gewindegrund als ca. ¾-Kreis in schmaler Volllinie." },
+      { q: "M16 (Regelgewinde, P = 2 mm): Kernlochbohrer nach Faustformel?", a: ["14 mm","16 mm","13,5 mm"], r: 0,
+        e: "Kernloch ≈ d − P = 16 − 2 = 14 mm (Tabellenbuch: 14,0 mm)." },
+      { q: "Welche Linie begrenzt die nutzbare Gewindelänge?", a: ["Schmale Volllinie","Breite Volllinie","Strichpunktlinie"], r: 1,
+        e: "Das Ende der nutzbaren Gewindelänge wird mit einer breiten Volllinie dargestellt." },
+    ],
+  },
+  {
+    id: "scheren", titel: "Scherschneiden & Schneidspalt", icon: "✂️", kat: "fertigung", datum: "2026-11-24", video: "", ap: [1], bild: "img/scheren.jpg", bereich: "E", berufe: ["KM", "MB", "IM"],
+    fragen: [
+      { q: "In welcher Reihenfolge entstehen die Zonen an der Schnittkante?", a: ["Glattschnitt → Kanteneinzug → Bruch → Grat","Kanteneinzug → Glattschnitt → Bruch → Grat","Grat → Bruch → Glattschnitt → Kanteneinzug"], r: 1,
+        e: "Erst wird die Kante eingezogen, dann glatt geschnitten, dann reißt der Rest (Bruch), am Ende bleibt der Grat." },
+      { q: "Die Teile haben einen dicken Grat und einen starken Kanteneinzug. Wahrscheinlichste Ursache?", a: ["Schneidspalt zu klein","Schneidspalt zu groß","Blech zu dünn"], r: 1,
+        e: "Zu großer Spalt: Werkstoff wird in den Spalt gezogen → dicker Grat, starker Kanteneinzug (auch stumpfe Schneiden möglich)." },
+      { q: "Was passiert bei zu kleinem Schneidspalt?", a: ["Kraftbedarf sinkt","Schneidkraft und Werkzeugverschleiß steigen","Der Grat wird größer"], r: 1,
+        e: "Zu kleiner Spalt: höhere Schneidkraft, mehr Verschleiß, oft zweite Glattschnittzone." },
+      { q: "l = 200 mm, s = 3 mm, τaB = 320 N/mm². Schneidkraft?", a: ["192 kN","64 kN","1,92 kN"], r: 0,
+        e: "S = 200 · 3 = 600 mm². F = 600 · 320 = 192 000 N = 192 kN." },
+      { q: "Stahl Rm = 500 N/mm², l = 50 mm, s = 2 mm. Schneidkraft mit τaB ≈ 0,8 · Rm?", a: ["40 kN","50 kN","32 kN"], r: 0,
+        e: "τaB ≈ 0,8 · 500 = 400 N/mm². S = 50 · 2 = 100 mm². F = 100 · 400 = 40 000 N = 40 kN. (50 kN = mit Rm statt τaB gerechnet.)" },
+      { q: "Welche Zone der Schnittfläche ist glatt und glänzend?", a: ["Bruchzone","Glattschnittzone","Grat"], r: 1,
+        e: "Die Glattschnittzone entsteht beim eigentlichen Schneiden – glatt und glänzend. Die Bruchzone ist rau." },
     ],
   },
 ];
