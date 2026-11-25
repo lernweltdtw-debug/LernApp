@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 37, stand: "2026-11-24", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 38, stand: "2026-11-25", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,10 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Eindrücktiefe Keilriemen (Faustregel)", f: "E ≈ 16 mm je 1000 mm Trumlänge", n: "Trum 500 mm → 8 mm · Prüfkraft laut Herstellertabelle", thema: "riementrieb" },
+    { t: "Vorbohren zum Reiben", f: "d_vor = d_Nenn − Reibzugabe", n: "Ø10 H7: 10 − 0,2 = 9,8 mm (Richtwert für ca. Ø 5–20 mm)", thema: "reiben" },
+    { t: "Grenzmaße Bohrung H7", f: "Gk = N · Gg = N + IT7", n: "Ø10: IT7 = 15 µm → 10,000 … 10,015 mm · Ø12: +18 µm", thema: "reiben" },
+    { t: "Vorschubgeschwindigkeit Fräsen", f: "vf = fz · z · n", n: "fz = 0,1 mm, z = 4, n = 1000 1/min → vf = 400 mm/min", thema: "gleichlauf" },
     { t: "Kernloch (Faustformel)", f: "Kernloch ≈ d − P", n: "M10: 10 − 1,5 = 8,5 mm · M16: 16 − 2 = 14 mm", thema: "gewindedarstellung" },
     { t: "Schneidkraft (Scherschneiden)", f: "F = S · τaB · S = l · s · τaB ≈ 0,8 · Rm", n: "l = 100 mm, s = 2 mm, τaB = 320 N/mm² → F = 64 kN", thema: "scheren" },
     { t: "Zugfestigkeit", f: "Rm = Fm / S₀ · S₀ = π · d² / 4", n: "d = 10 mm → S₀ = 78,5 mm² · Fm = 33 kN → Rm ≈ 420 N/mm²", thema: "zugversuch" },
@@ -66,6 +70,12 @@ window.WISSEN = {
     { w: "Gewindedarstellung", e: "Gewindespitzen = breite Volllinie, Gewindegrund = schmale Volllinie. Draufsicht: Grund als ¾-Kreis schmal. Innengewinde: Schraffur bis zur breiten Linie.", thema: "gewindedarstellung" },
     { w: "Schneidspalt u", e: "Abstand zwischen Ober- und Untermesser. Zu groß: dicker Grat, starker Kanteneinzug. Zu klein: höhere Kraft, mehr Verschleiß.", thema: "scheren" },
     { w: "Schnittflächenzonen", e: "Kanteneinzug → Glattschnitt → Bruchzone → Grat (VDI 2906).", thema: "scheren" },
+    { w: "Trum", e: "Freies Riemenstück zwischen den Scheiben. Lasttrum zieht, Leertrum läuft zurück. An der Trumlänge richtet sich die Prüf-Eindrücktiefe.", thema: "riementrieb" },
+    { w: "Fluchten", e: "Beide Riemenscheiben liegen in einer Ebene. Prüfen mit Lineal, Richtschnur oder Laser an den Stirnseiten.", thema: "riementrieb" },
+    { w: "Reibzugabe", e: "Material, das die Reibahle noch abträgt (Ø 5–20 mm ≈ 0,2 mm). Zu viel: Reibahle überlastet. Zu wenig: sie drückt statt zu schneiden.", thema: "reiben" },
+    { w: "Grenzlehrdorn", e: "Gutseite = Mindestmaß, muss hinein. Ausschussseite (rot markiert) = Höchstmaß, darf nicht hinein.", thema: "reiben" },
+    { w: "Gleichlauffräsen", e: "Schneide bewegt sich am Eingriff in Vorschubrichtung des Werkstücks. Span dick → dünn, gute Oberfläche – braucht spielfreien Vorschub.", thema: "gleichlauf" },
+    { w: "Gegenlauffräsen", e: "Schneide gegen die Vorschubrichtung. Span beginnt bei 0 (Reiben, Wärme), hebt das Werkstück eher an. Gut bei Gusshaut/Zunder und Spiel.", thema: "gleichlauf" },
     { w: "Ballig", e: "Nach außen gewölbt (konvex). Beim Haarlineal: Mitte liegt an, Licht an den Rändern.", thema: "feilen" },
     { w: "Abluftdrosselung", e: "Bei doppeltwirkenden Zylindern wird die abströmende Luft gedrosselt – Kolben fährt zwischen zwei Luftpolstern gleichmäßig.", thema: "drosselrueckschlag" },
     { w: "Walkarbeit", e: "Arbeit, die Wälzkörper beim Verdrängen von zu viel Fett leisten – erzeugt Reibung und Wärme.", thema: "schmierung" },
@@ -1176,6 +1186,57 @@ window.THEMEN = [
         e: "τaB ≈ 0,8 · 500 = 400 N/mm². S = 50 · 2 = 100 mm². F = 100 · 400 = 40 000 N = 40 kN. (50 kN = mit Rm statt τaB gerechnet.)" },
       { q: "Welche Zone der Schnittfläche ist glatt und glänzend?", a: ["Bruchzone","Glattschnittzone","Grat"], r: 1,
         e: "Die Glattschnittzone entsteht beim eigentlichen Schneiden – glatt und glänzend. Die Bruchzone ist rau." },
+    ],
+  },
+  {
+    id: "riementrieb", titel: "Keilriemen: fluchten & spannen", icon: "⚙️", kat: "elemente", datum: "2026-11-25", video: "", ap: [1, 2], bild: "img/riementrieb.jpg", bereich: "G", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Ein Keilriemen quietscht vor allem beim Anlaufen. Wahrscheinlichste Ursache?", a: ["Riemen zu straff","Riemen zu locker – Schlupf","Scheiben zu groß"], r: 1,
+        e: "Zu wenig Spannung → der Riemen rutscht beim Anlaufmoment durch (Schlupf) und quietscht." },
+      { q: "Trumlänge 750 mm. Welche Eindrücktiefe ergibt die Faustregel 16 mm je 1000 mm?", a: ["12 mm","7,5 mm","16 mm"], r: 0,
+        e: "E = 750 mm · 16 mm / 1000 mm = 12 mm (mit Prüfkraft laut Herstellertabelle)." },
+      { q: "Trumlänge 600 mm, gemessene Eindrücktiefe 14 mm (Faustregel 16 mm/m). Was tun?", a: ["Zu straff – entspannen","Zu locker – nachspannen","Passt so"], r: 1,
+        e: "Soll ≈ 0,6 · 16 = 9,6 mm. 14 mm lässt sich zu tief eindrücken → Riemen zu locker → nachspannen." },
+      { q: "Ein Riemen läuft schräg in die Rille, eine Flanke ist einseitig verschlissen. Ursache?", a: ["Fluchtfehler der Scheiben","Drehzahl zu hoch","Riemen zu kurz"], r: 0,
+        e: "Liegen die Scheiben nicht in einer Ebene (Versatz/Winkel), läuft der Riemen schräg und reibt einseitig an der Flanke." },
+      { q: "Bei einem 3-rilligen Antrieb ist ein Riemen gerissen. Richtig?", a: ["Nur den gerissenen ersetzen","Alle Riemen satzweise ersetzen","Zwei neue + einen alten"], r: 1,
+        e: "Alte Riemen sind gelängt. Ein neuer, kürzerer Riemen trägt dann fast die ganze Last → immer satzweise tauschen." },
+      { q: "Neue Keilriemen montiert und gespannt. Wann Spannung erneut prüfen?", a: ["Erst beim nächsten Wechsel","Nach kurzer Einlaufzeit unter Last","Nie – neue Riemen längen sich nicht"], r: 1,
+        e: "Neue Riemen setzen sich in den Rillen und längen sich anfangs → nach dem Einlaufen nachprüfen und nachspannen." },
+    ],
+  },
+  {
+    id: "reiben", titel: "Passbohrung H7 durch Reiben", icon: "🎯", kat: "fertigung", datum: "2026-11-25", video: "", ap: [1], bild: "img/reiben.jpg", bereich: "D", berufe: ["IM", "ZM", "KM", "MB"],
+    fragen: [
+      { q: "Warum wird eine Bohrung mit dem 10-mm-Bohrer nicht Ø10 H7?", a: ["Bohren erreicht nur ca. IT11–IT13 und raue Wände","Bohrer gibt es nur in H11","H7 bedeutet Untermaß"], r: 0,
+        e: "Bohren ist zu ungenau und rau. Erst Reiben erreicht IT7 und eine glatte Wand." },
+      { q: "Ø12 H7 (IT7 im Bereich 10–18 mm = 18 µm). Zulässiger Bereich?", a: ["12,000 … 12,018 mm","11,982 … 12,000 mm","11,991 … 12,009 mm"], r: 0,
+        e: "H: unteres Abmaß 0. Oberes Abmaß = IT7 = +0,018 mm → 12,000 … 12,018 mm." },
+      { q: "Vorbohrdurchmesser für Ø16 H7 bei Reibzugabe 0,2 mm?", a: ["15,8 mm","16,2 mm","15,98 mm"], r: 0,
+        e: "d_vor = 16 − 0,2 = 15,8 mm. 16,2 wäre schon zu groß, 15,98 lässt kaum Zugabe." },
+      { q: "Nach dem Reiben: Riefen in der Bohrung, an der Reibahle sind Schneiden ausgebrochen. Ursache?", a: ["Reibahle zurückgedreht","Zu viel Schneidöl","Bohrung angesenkt"], r: 0,
+        e: "Beim Zurückdrehen klemmen Späne zwischen Schneide und Wand → Riefen und Schneidenausbrüche. Immer rechtsherum, auch beim Herausziehen." },
+      { q: "Die Reibzugabe ist viel zu klein (z. B. 0,02 mm). Folge?", a: ["Reibahle drückt statt zu schneiden – Maß und Oberfläche leiden","Bohrung wird größer als H7","Kein Unterschied"], r: 0,
+        e: "Zu wenig Material: Die Schneide greift nicht, sie gleitet und quetscht. Zu viel Zugabe überlastet dagegen die Reibahle." },
+      { q: "Ø20 H7 (0 / +21 µm): Die Gutseite des Grenzlehrdorns geht nicht hinein. Die Bohrung ist …", a: ["zu klein – Nacharbeit möglich","zu groß – Ausschuss","in Ordnung"], r: 0,
+        e: "Gutseite = Mindestmaß 20,000 mm. Passt sie nicht, ist die Bohrung kleiner als erlaubt → nachreiben möglich." },
+    ],
+  },
+  {
+    id: "gleichlauf", titel: "Gleichlauf vs. Gegenlauf", icon: "🔄", kat: "fertigung", datum: "2026-11-25", video: "", ap: [1, 2], bild: "img/gleichlauf.jpg", bereich: "C", berufe: ["ZM", "IM"],
+    fragen: [
+      { q: "Bei welchem Fräsverfahren beginnt die Spanungsdicke bei null?", a: ["Gleichlauf","Gegenlauf","Bei beiden"], r: 1,
+        e: "Im Gegenlauf tritt die Schneide am bearbeiteten Grund ein (h = 0) und verlässt den Span dick. Gleichlauf ist umgekehrt." },
+      { q: "Die Schneide bewegt sich am Eingriff in dieselbe Richtung wie das Werkstück im Vorschub. Das ist …", a: ["Gegenlauffräsen","Gleichlauffräsen","Stirnfräsen"], r: 1,
+        e: "Gleiche Richtung = Gleichlauf. Dabei zieht die Schnittkraft das Werkstück in Vorschubrichtung." },
+      { q: "Konventionelle Fräse mit Trapezgewindespindel, Gleichlauf: Der Tisch ruckt, der Fräser bricht. Ursache?", a: ["Spiel in der Vorschubspindel – der Fräser zieht den Tisch nach","Zu wenig Kühlschmierstoff","Drehzahl zu niedrig"], r: 0,
+        e: "Im Gleichlauf wirkt die Schnittkraft in Vorschubrichtung. Mit Spindelspiel springt der Tisch um das Spiel vor → Überlast am Zahn." },
+      { q: "Gussteil mit harter Gusshaut wird überfräst. Was ist oft günstiger?", a: ["Gleichlauf – Schneide trifft die Kruste mit voller Spandicke","Gegenlauf – Schneide setzt unter der Kruste an und hebt sie ab","Egal"], r: 1,
+        e: "Im Gegenlauf beginnt der Schnitt im sauberen Werkstoff. Im Gleichlauf schlägt jede Schneide zuerst auf die harte Kruste." },
+      { q: "Welche Kraftwirkung hat Gegenlauffräsen auf das Werkstück?", a: ["Drückt es auf den Tisch","Kann es abheben – sichere Spannung nötig","Keine"], r: 1,
+        e: "Die Schnittkraft hat im Gegenlauf eine Komponente nach oben → Werkstück kann abheben. Gleichlauf drückt es eher auf den Tisch." },
+      { q: "fz = 0,08 mm, z = 6 Zähne, n = 800 1/min. Vorschubgeschwindigkeit vf?", a: ["384 mm/min","48 mm/min","3,84 m/min"], r: 0,
+        e: "vf = fz · z · n = 0,08 · 6 · 800 = 384 mm/min. 3,84 m/min wäre 3840 mm/min (Faktor 10 falsch)." },
     ],
   },
 ];
