@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 38, stand: "2026-11-25", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 39, stand: "2026-11-26", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,8 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Reibkraft", f: "F_R = μ · F_N", n: "F_N = 1000 N, μ0 = 0,2 → 200 N Losbrechkraft · μ = 0,15 → 150 N beim Gleiten (Beispielwerte)", thema: "reibung" },
+    { t: "Ohmsches Gesetz", f: "U = R · I  →  I = U / R", n: "24 V / 12 Ω = 2 A · Merkdreieck: U oben, R und I unten", thema: "ohm" },
     { t: "Eindrücktiefe Keilriemen (Faustregel)", f: "E ≈ 16 mm je 1000 mm Trumlänge", n: "Trum 500 mm → 8 mm · Prüfkraft laut Herstellertabelle", thema: "riementrieb" },
     { t: "Vorbohren zum Reiben", f: "d_vor = d_Nenn − Reibzugabe", n: "Ø10 H7: 10 − 0,2 = 9,8 mm (Richtwert für ca. Ø 5–20 mm)", thema: "reiben" },
     { t: "Grenzmaße Bohrung H7", f: "Gk = N · Gg = N + IT7", n: "Ø10: IT7 = 15 µm → 10,000 … 10,015 mm · Ø12: +18 µm", thema: "reiben" },
@@ -60,6 +62,11 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Haftreibung", e: "Reibung, solange der Körper noch ruht. Haftreibzahl μ0 ist größer als die Gleitreibzahl → Losbrechen braucht mehr Kraft.", thema: "reibung" },
+    { w: "Gleitreibung", e: "Reibung, wenn der Körper schon rutscht. Kleinere Reibzahl μ als beim Haften. F_R = μ · F_N.", thema: "reibung" },
+    { w: "5/2-Wegeventil", e: "5 Anschlüsse (1 Druckluft, 2 und 4 Arbeit, 3 und 5 Entlüftung), 2 Schaltstellungen. Typisch für doppeltwirkende Zylinder.", thema: "wegeventil" },
+    { w: "Schaltstellung", e: "Jede Stellung eines Wegeventils ist im Schaltzeichen ein eigenes Quadrat. Anzahl = zweite Zahl (z. B. 5/2 → 2).", thema: "wegeventil" },
+    { w: "Ohmsches Gesetz", e: "U = R · I. Bei gleichem Widerstand steigt der Strom proportional zur Spannung.", thema: "ohm" },
     { w: "Rz (gemittelte Rautiefe)", e: "Mittelwert der 5 Einzelrautiefen (Spitze–Tal je Einzelmessstrecke). Reagiert stärker auf Ausreißer als Ra.", thema: "rauheit" },
     { w: "G00 / G01", e: "G00 Eilgang zum Positionieren, G01 Gerade mit Vorschub F zum Zerspanen.", thema: "gcode" },
     { w: "Streckgrenze ReH", e: "Spannung, ab der der Werkstoff fließt. Darüber bleibt eine plastische (bleibende) Verformung.", thema: "zugversuch" },
@@ -1237,6 +1244,57 @@ window.THEMEN = [
         e: "Die Schnittkraft hat im Gegenlauf eine Komponente nach oben → Werkstück kann abheben. Gleichlauf drückt es eher auf den Tisch." },
       { q: "fz = 0,08 mm, z = 6 Zähne, n = 800 1/min. Vorschubgeschwindigkeit vf?", a: ["384 mm/min","48 mm/min","3,84 m/min"], r: 0,
         e: "vf = fz · z · n = 0,08 · 6 · 800 = 384 mm/min. 3,84 m/min wäre 3840 mm/min (Faktor 10 falsch)." },
+    ],
+  },
+  {
+    id: "reibung", titel: "Reibung: Haften vs. Gleiten", icon: "🧱", kat: "festigkeit", datum: "2026-11-26", video: "", ap: [2], bild: "img/reibung.jpg", bereich: "H", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Ein Klotz drückt mit F_N = 800 N auf eine Platte, Haftreibzahl μ0 = 0,25. Welche Kraft ist mindestens zum Losbrechen nötig?", a: ["200 N","3200 N","32 N"], r: 0,
+        e: "F_R = μ0 · F_N = 0,25 · 800 N = 200 N. 3200 N wäre F_N / μ0 (falsch herum), 32 N ein Kommafehler." },
+      { q: "Warum ist die Kraft zum Losbrechen größer als die Kraft zum Weiterschieben?", a: ["Die Normalkraft sinkt beim Gleiten","Haftreibzahl μ0 ist größer als Gleitreibzahl μ","Beim Gleiten wird die Fläche kleiner"], r: 1,
+        e: "Ruht der Körper, gilt Haftreibung mit größerem μ0. Rutscht er, gilt die kleinere Gleitreibzahl μ. F_N bleibt gleich." },
+      { q: "Derselbe Stahlklotz wird erst flach, dann hochkant über die Platte gezogen (trocken). Was gilt nach dem Coulombschen Reibungsgesetz?", a: ["Hochkant ist die Reibkraft kleiner, weil die Fläche kleiner ist","Hochkant ist sie größer, weil der Druck steigt","Reibkraft bleibt gleich – sie hängt nicht von der Auflagefläche ab"], r: 2,
+        e: "F_R = μ · F_N – die Fläche kommt nicht vor. Kleinere Fläche heißt zwar höhere Flächenpressung, aber gleiche Gesamtkraft." },
+      { q: "F_N = 1200 N, Gleitreibzahl μ = 0,12. Welche Kraft hält den Schlitten in gleichförmiger Bewegung?", a: ["1,44 N","144 N","10 000 N"], r: 1,
+        e: "F_R = 0,12 · 1200 N = 144 N. Bei gleichförmiger Bewegung muss die Zugkraft genau die Gleitreibkraft ausgleichen." },
+      { q: "Eine Führungsbahn wird geschmiert. Was passiert mit der Reibkraft bei gleicher Last?", a: ["Sie sinkt, weil die Reibzahl kleiner wird","Sie steigt, weil Öl klebt","Sie bleibt gleich, weil F_N gleich bleibt"], r: 0,
+        e: "Schmierung senkt die Reibzahl μ deutlich. Bei gleicher Normalkraft sinkt damit F_R = μ · F_N." },
+      { q: "Ein Kraftmesser zeigt beim Anziehen eines Klotzes erst 180 N, dann ruckt der Klotz los und die Anzeige fällt auf 135 N. Gewichtskraft 900 N (ebene Fläche). Welche Reibzahlen ergeben sich?", a: ["μ0 = 0,15 · μ = 0,2","μ0 = 5 · μ = 6,7","μ0 = 0,2 · μ = 0,15"], r: 2,
+        e: "μ0 = 180 / 900 = 0,2 (Losbrechen), μ = 135 / 900 = 0,15 (Gleiten). Haften > Gleiten." },
+    ],
+  },
+  {
+    id: "wegeventil", titel: "5/2-Wegeventil lesen", icon: "💨", kat: "pneumatik", datum: "2026-11-26", video: "", ap: [1, 2], bild: "img/wegeventil.jpg", bereich: "I", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Was bedeutet die Bezeichnung 5/2-Wegeventil?", a: ["5 Schaltstellungen, 2 Anschlüsse","5 Anschlüsse, 2 Schaltstellungen","5 bar, 2 Anschlüsse"], r: 1,
+        e: "Erste Zahl = Anzahl der Anschlüsse (ohne Steueranschlüsse), zweite Zahl = Anzahl der Schaltstellungen (Quadrate im Symbol)." },
+      { q: "Welche Funktion hat Anschluss 1 nach ISO 5599?", a: ["Druckluftversorgung","Entlüftung","Arbeitsanschluss zum Zylinder"], r: 0,
+        e: "1 = Druckluft (früher P). 2 und 4 = Arbeitsanschlüsse (A, B), 3 und 5 = Entlüftung (R, S)." },
+      { q: "Ein 5/2-Ventil mit Federrückstellung ist unbetätigt: 1 ist mit 2 verbunden. Was ist mit Anschluss 4?", a: ["4 ist ebenfalls mit 1 verbunden","4 ist dicht verschlossen ohne Entlüftung","4 ist mit 5 verbunden und entlüftet"], r: 2,
+        e: "Beim 5/2-Ventil ist immer ein Arbeitsanschluss belüftet und der andere entlüftet: 1→2 und 4→5. Betätigt: 1→4 und 2→3." },
+      { q: "Steueranschluss 14 wird betätigt. Welche Verbindung entsteht?", a: ["1 mit 2","1 mit 4","1 mit 3"], r: 1,
+        e: "Steueranschlüsse werden nach der Verbindung benannt, die sie herstellen: 14 verbindet 1 mit 4, 12 verbindet 1 mit 2." },
+      { q: "Wie viele Quadrate hat das Schaltzeichen eines 3/2-Wegeventils?", a: ["2","3","5"], r: 0,
+        e: "Die Anzahl der Quadrate entspricht der Anzahl der Schaltstellungen – also der zweiten Zahl: 3/2 → 2 Quadrate." },
+      { q: "Warum steuert man einen doppeltwirkenden Zylinder typischerweise mit einem 5/2- statt mit einem 3/2-Ventil?", a: ["Ein 3/2-Ventil schaltet zu langsam","Beide Kammern müssen wechselweise belüftet und entlüftet werden","Ein 5/2-Ventil spart Druckluft, weil es nur eine Kammer füllt"], r: 1,
+        e: "Der doppeltwirkende Zylinder hat zwei Arbeitsanschlüsse. Das 5/2-Ventil belüftet einen und entlüftet gleichzeitig den anderen." },
+    ],
+  },
+  {
+    id: "ohm", titel: "Ohmsches Gesetz U = R · I", icon: "🔌", kat: "elektro", datum: "2026-11-26", video: "", ap: [1], bild: "img/ohm.jpg", bereich: "J", berufe: ["MT", "IM"],
+    fragen: [
+      { q: "An einem Widerstand von 12 Ω liegen 24 V. Wie groß ist der Strom?", a: ["0,5 A","2 A","288 A"], r: 1,
+        e: "I = U / R = 24 V / 12 Ω = 2 A. 288 A wäre U · R, 0,5 A wäre R / U – beides typische Fallen." },
+      { q: "Durch eine Magnetventilspule fließen 0,25 A bei 24 V. Welchen Widerstand hat sie?", a: ["6 Ω","0,01 Ω","96 Ω"], r: 2,
+        e: "R = U / I = 24 V / 0,25 A = 96 Ω. 6 Ω wäre U · I (das ist die Leistung in W)." },
+      { q: "Die Spannung an einem festen Widerstand wird verdoppelt. Was passiert mit dem Strom?", a: ["Er verdoppelt sich","Er halbiert sich","Er bleibt gleich"], r: 0,
+        e: "I = U / R: bei konstantem R ist I proportional zu U. Doppelte Spannung → doppelter Strom." },
+      { q: "Bei gleicher Spannung wird ein Widerstand von 10 Ω gegen 40 Ω getauscht. Der Strom …", a: ["steigt auf das Vierfache","sinkt auf ein Viertel","sinkt auf die Hälfte"], r: 1,
+        e: "I = U / R: R wird 4-mal so groß → I wird 4-mal so klein." },
+      { q: "Im Merkdreieck steht U oben, R und I unten. Wie liest man die Formel für R ab?", a: ["R = U · I","R = I / U","R = U / I"], r: 2,
+        e: "R abdecken → übrig bleibt U über I, also R = U / I. Nebeneinander = mal, übereinander = geteilt." },
+      { q: "Welcher Farbcode gehört zu einem 12-Ω-Widerstand (4 Ringe, ±5 %)?", a: ["Braun – Rot – Schwarz – Gold","Rot – Braun – Schwarz – Gold","Braun – Rot – Braun – Gold"], r: 0,
+        e: "Braun = 1, Rot = 2, Schwarz = Multiplikator ×1 → 12 Ω, Gold = ±5 %. Braun-Rot-Braun wäre 120 Ω." },
     ],
   },
 ];
