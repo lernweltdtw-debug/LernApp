@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 39, stand: "2026-11-26", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 40, stand: "2026-11-27", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,8 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Hebelgesetz", f: "F · l_F = F_L · l_L", n: "600 N · 0,1 m = 60 N·m → 60 N·m : 100 N = 0,6 m Kraftarm · Arme senkrecht zur Wirkungslinie messen", thema: "hebel" },
+    { t: "Drehmoment am Hebel", f: "M = F · l⊥", n: "l⊥ = senkrechter Abstand Drehpunkt – Wirkungslinie · schräg drücken → l⊥ kleiner → mehr Kraft nötig", thema: "hebel" },
     { t: "Reibkraft", f: "F_R = μ · F_N", n: "F_N = 1000 N, μ0 = 0,2 → 200 N Losbrechkraft · μ = 0,15 → 150 N beim Gleiten (Beispielwerte)", thema: "reibung" },
     { t: "Ohmsches Gesetz", f: "U = R · I  →  I = U / R", n: "24 V / 12 Ω = 2 A · Merkdreieck: U oben, R und I unten", thema: "ohm" },
     { t: "Eindrücktiefe Keilriemen (Faustregel)", f: "E ≈ 16 mm je 1000 mm Trumlänge", n: "Trum 500 mm → 8 mm · Prüfkraft laut Herstellertabelle", thema: "riementrieb" },
@@ -62,6 +64,12 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Freischalten (Lockout)", e: "Maschine vor Instandhaltung von der Energie trennen und gegen Wiedereinschalten sichern: Hauptschalter 0, eigenes Schloss + Schild, Restenergie abbauen, Startversuch.", thema: "lockout" },
+    { w: "Restenergie", e: "Energie, die nach dem Abschalten noch gespeichert ist: Druckluft, Hydraulikdruck, gespannte Federn, hochgefahrene Teile, Kondensatoren. Vor dem Eingreifen abbauen oder sichern.", thema: "lockout" },
+    { w: "Brinellhärte HBW", e: "Hartmetallkugel wird eingedrückt, gemessen wird der Eindruckdurchmesser d. Für weiche bis mittelharte Werkstoffe (Baustahl, Gusseisen).", thema: "haertepruefung" },
+    { w: "Vickershärte HV", e: "Diamantpyramide mit 136° Spitzenwinkel, gemessen werden beide Diagonalen d1 und d2. Für weiche und harte Werkstoffe, auch dünne Schichten.", thema: "haertepruefung" },
+    { w: "Rockwellhärte HRC", e: "Diamantkegel mit 120° Spitzenwinkel, gemessen wird die bleibende Eindringtiefe h. Wert direkt an der Maschine, typisch für gehärteten Stahl.", thema: "haertepruefung" },
+    { w: "Hebelarm", e: "Senkrechter Abstand vom Drehpunkt zur Wirkungslinie der Kraft. Kraftarm und Lastarm werden beide vom Drehpunkt aus gemessen.", thema: "hebel" },
     { w: "Haftreibung", e: "Reibung, solange der Körper noch ruht. Haftreibzahl μ0 ist größer als die Gleitreibzahl → Losbrechen braucht mehr Kraft.", thema: "reibung" },
     { w: "Gleitreibung", e: "Reibung, wenn der Körper schon rutscht. Kleinere Reibzahl μ als beim Haften. F_R = μ · F_N.", thema: "reibung" },
     { w: "5/2-Wegeventil", e: "5 Anschlüsse (1 Druckluft, 2 und 4 Arbeit, 3 und 5 Entlüftung), 2 Schaltstellungen. Typisch für doppeltwirkende Zylinder.", thema: "wegeventil" },
@@ -1295,6 +1303,57 @@ window.THEMEN = [
         e: "R abdecken → übrig bleibt U über I, also R = U / I. Nebeneinander = mal, übereinander = geteilt." },
       { q: "Welcher Farbcode gehört zu einem 12-Ω-Widerstand (4 Ringe, ±5 %)?", a: ["Braun – Rot – Schwarz – Gold","Rot – Braun – Schwarz – Gold","Braun – Rot – Braun – Gold"], r: 0,
         e: "Braun = 1, Rot = 2, Schwarz = Multiplikator ×1 → 12 Ω, Gold = ±5 %. Braun-Rot-Braun wäre 120 Ω." },
+    ],
+  },
+  {
+    id: "lockout", titel: "Maschine sichern vor der Reparatur", icon: "🔒", kat: "sicherheit", datum: "2026-11-27", video: "", ap: [1, 2], bild: "img/lockout.jpg", bereich: "M", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Du willst kurz eine Störung unter dem Stößel einer Presse beseitigen. Was reicht als Sicherung?", a: ["Stopp-Taster drücken","Not-Halt drücken","Hauptschalter auf 0 und mit eigenem Schloss sichern"], r: 2,
+        e: "Stopp und Not-Halt sichern nicht gegen Wiedereinschalten – jemand kann wieder starten oder entriegeln. Erst freischalten und mit eigenem Schloss sichern." },
+      { q: "In welcher Reihenfolge sicherst du eine Maschine vor der Instandhaltung?", a: ["Abschalten → abschließen + Schild → Restenergie abbauen → Startversuch","Startversuch → abschalten → Schild → Schloss","Restenergie abbauen → abschalten → arbeiten → Schild"], r: 0,
+        e: "Erst Hauptschalter 0, dann eigenes Schloss und Warnschild, dann gespeicherte Energie abbauen/sichern, zum Schluss prüfen, dass nichts anläuft." },
+      { q: "Wer behält den Schlüssel zum Sicherungsschloss am Hauptschalter?", a: ["Der Schichtleiter am Schlüsselbrett","Die Person, die an der Maschine arbeitet","Der Bediener der Nachbarmaschine"], r: 1,
+        e: "Nur wer an der Maschine arbeitet, hat den Schlüssel. So kann niemand anderes einschalten, solange er noch drin ist." },
+      { q: "Drei Instandhalter arbeiten gleichzeitig an einer Anlage. Wie wird der Hauptschalter gesichert?", a: ["Ein Schloss reicht, der Erste hat den Schlüssel","Mehrfach-Bügel: jeder hängt sein eigenes Schloss an","Nur ein Warnschild mit allen drei Namen"], r: 1,
+        e: "Mit einem Mehrfach-Bügel hängt jeder sein eigenes Schloss an. Eingeschaltet werden kann erst, wenn der Letzte sein Schloss abgenommen hat." },
+      { q: "Hauptschalter ist auf 0 und abgeschlossen. Welche Gefahr bleibt bei einer pneumatischen Presse trotzdem?", a: ["Keine – die Maschine ist stromlos","Druckluft im System und ein hochgefahrener Stößel, der absinken kann","Nur die Kontrollleuchte kann noch leuchten"], r: 1,
+        e: "Gespeicherte Energie bleibt: Druckluft ablassen (Manometer auf 0) und hochgefahrene Teile mit einer Stütze gegen Absinken sichern." },
+      { q: "Wozu dient der Startversuch am Ende der Sicherung?", a: ["Er prüft, ob die Maschine wirklich nicht anläuft","Er setzt die Steuerung zurück","Er baut die Restenergie ab"], r: 0,
+        e: "Start drücken: Läuft nichts an, ist die Freischaltung wirksam. Läuft etwas, wurde der falsche Schalter gesichert oder es gibt eine zweite Einspeisung." },
+    ],
+  },
+  {
+    id: "haertepruefung", titel: "Härteprüfung: Brinell, Vickers, Rockwell", icon: "💎", kat: "pruefen", datum: "2026-11-27", video: "", ap: [2], bild: "img/haertepruefung.jpg", bereich: "B", berufe: ["IM", "ZM"],
+    fragen: [
+      { q: "Welcher Eindringkörper gehört zur Vickers-Prüfung?", a: ["Hartmetallkugel","Diamantpyramide mit 136° Spitzenwinkel","Diamantkegel mit 120° Spitzenwinkel"], r: 1,
+        e: "Vickers: vierseitige Diamantpyramide, 136°. Kugel = Brinell, Kegel 120° = Rockwell C." },
+      { q: "Was wird bei Rockwell C gemessen?", a: ["Der Durchmesser des Eindrucks","Die beiden Diagonalen","Die bleibende Eindringtiefe"], r: 2,
+        e: "Rockwell misst die Tiefe – deshalb steht der Wert sofort an der Maschine. Brinell und Vickers werten den Eindruck von oben aus." },
+      { q: "Du sollst die Härte einer dünnen gehärteten Randschicht bestimmen. Welches Verfahren passt am besten?", a: ["Brinell mit großer Kugel","Vickers mit kleiner Prüfkraft","Gar keines – dünne Schichten kann man nicht prüfen"], r: 1,
+        e: "Vickers geht für weiche und harte Werkstoffe und mit kleiner Prüfkraft auch für dünne Schichten. Eine große Brinellkugel drückt durch die Schicht durch." },
+      { q: "Für welchen Werkstoff ist Brinell typisch?", a: ["Gehärteter Werkzeugstahl","Baustahl oder Gusseisen","Hartmetall-Wendeschneidplatten"], r: 1,
+        e: "Brinell eignet sich für weiche bis mittelharte Werkstoffe. Für sehr harte Werkstoffe nimmt man Vickers oder Rockwell C." },
+      { q: "Welche Zuordnung der Kurzzeichen ist richtig?", a: ["HBW = Vickers, HV = Brinell, HRC = Rockwell","HBW = Brinell, HV = Vickers, HRC = Rockwell C","HBW = Rockwell, HV = Brinell, HRC = Vickers"], r: 1,
+        e: "H = Härte. BW = Brinell mit Hartmetallkugel (W von Wolframcarbid), V = Vickers, RC = Rockwell Skala C." },
+      { q: "Prüfungsfalle: Was unterscheidet die Auswertung von Brinell/Vickers und Rockwell?", a: ["Brinell/Vickers messen den Eindruck von oben, Rockwell die Tiefe","Alle drei messen die Tiefe","Rockwell misst den Durchmesser, Brinell die Tiefe"], r: 0,
+        e: "Brinell: Ø d, Vickers: Diagonalen d1/d2 – beides optisch von oben. Rockwell: bleibende Eindringtiefe h." },
+    ],
+  },
+  {
+    id: "hebel", titel: "Hebelgesetz", icon: "⚖️", kat: "festigkeit", datum: "2026-11-27", video: "", ap: [1], bild: "img/hebel.jpg", bereich: "H", berufe: ["IM", "KM", "MB"],
+    fragen: [
+      { q: "Last 600 N sitzt 0,1 m vom Drehpunkt. Du drückst mit 100 N. Wie lang muss der Kraftarm sein?", a: ["0,06 m","0,6 m","6 m"], r: 1,
+        e: "F · l_F = F_L · l_L → l_F = 600 N · 0,1 m / 100 N = 0,6 m. 0,06 m und 6 m sind Kommafehler." },
+      { q: "Wie lautet das Hebelgesetz?", a: ["Kraft + Kraftarm = Last + Lastarm","Kraft · Kraftarm = Last · Lastarm","Kraft : Kraftarm = Last : Lastarm"], r: 1,
+        e: "Im Gleichgewicht sind die Drehmomente gleich: F · l_F = F_L · l_L. Beide Arme werden vom Drehpunkt aus gemessen." },
+      { q: "Last 800 N, Lastarm 0,15 m, Kraftarm 0,6 m. Welche Kraft brauchst du?", a: ["200 N","3200 N","120 N"], r: 0,
+        e: "F = F_L · l_L / l_F = 800 N · 0,15 m / 0,6 m = 200 N. 3200 N ist falsch herum gerechnet, 120 N = 800 · 0,15 ohne Teilen." },
+      { q: "Wie misst man den Hebelarm richtig?", a: ["Entlang der Stange bis zum Griffende","Senkrechter Abstand vom Drehpunkt zur Wirkungslinie der Kraft","Vom Drehpunkt bis zum Boden"], r: 1,
+        e: "Der wirksame Hebelarm ist immer der senkrechte Abstand zur Wirkungslinie. Nur bei senkrecht angreifender Kraft entspricht er der Stangenlänge." },
+      { q: "Du drückst nicht senkrecht, sondern schräg (45°) auf das Hebelende. Was passiert?", a: ["Du brauchst weniger Kraft","Nichts ändert sich","Der wirksame Hebelarm wird kürzer, du brauchst mehr Kraft"], r: 2,
+        e: "Bei 45° ist der senkrechte Abstand nur noch l · cos 45° ≈ 0,71 · l. Kleinerer Hebelarm → für dasselbe Moment mehr Kraft." },
+      { q: "Der Kraftarm ist 6-mal so lang wie der Lastarm. Wie groß ist die nötige Kraft im Verhältnis zur Last?", a: ["6-mal so groß","Ein Sechstel","Gleich groß"], r: 1,
+        e: "F / F_L = l_L / l_F = 1/6. Beispiel: 600 N Last → 100 N Kraft (Eigengewicht des Hebels vernachlässigt)." },
     ],
   },
 ];
