@@ -2,7 +2,7 @@
 // Thema: id (eindeutig), titel, icon, kat (Kategorie-ID), datum (Video fertig, JJJJ-MM-TT), video (TikTok-Link oder ""),
 //        ap: [1] / [2] / [1, 2] / [] (Abschlussprüfung Teil 1/2 – Orientierung, kein offizieller Katalog), bild: "img/<id>.jpg" (Standbild aus dem Video).
 // Frage: q = Frage, a = 3 Antworten, r = Index der richtigen Antwort (0–2), e = Erklärung.
-window.META = { version: 40, stand: "2026-11-27", impressum: "impressum.html", datenschutz: "datenschutz.html" };
+window.META = { version: 41, stand: "2026-11-28", impressum: "impressum.html", datenschutz: "datenschutz.html" };
 
 window.KATEGORIEN = [
   { id: "fertigung", titel: "Fertigungstechnik", icon: "🏭" },
@@ -23,6 +23,9 @@ window.KATEGORIEN = [
 // Wissen: Formelsammlung + Begriffe (alles aus den DTW-Videos). thema = id aus THEMEN (Knopf „Fragen dazu“).
 window.WISSEN = {
   formeln: [
+    { t: "Messschraube ablesen", f: "Messwert = volle mm + 0,5 mm (falls Strich frei) + Trommel · 0,01 mm", n: "Steigung 0,5 mm, Trommel 50 Teile → 0,01 mm · Beispiel 12 + 0,5 + 0,23 = 12,73 mm", thema: "messschraube" },
+    { t: "Vorschubgeschwindigkeit Drehen", f: "v_f = f · n", n: "0,2 mm · 800 1/min = 160 mm/min · Hauptzeit t_h = L / v_f = 120 mm : 160 mm/min = 0,75 min = 45 s", thema: "vorschub" },
+    { t: "Vorschubgeschwindigkeit Fräsen", f: "v_f = f_z · z · n", n: "0,1 mm · 4 · 1000 1/min = 400 mm/min · Zähnezahl z nicht vergessen!", thema: "vorschub" },
     { t: "Hebelgesetz", f: "F · l_F = F_L · l_L", n: "600 N · 0,1 m = 60 N·m → 60 N·m : 100 N = 0,6 m Kraftarm · Arme senkrecht zur Wirkungslinie messen", thema: "hebel" },
     { t: "Drehmoment am Hebel", f: "M = F · l⊥", n: "l⊥ = senkrechter Abstand Drehpunkt – Wirkungslinie · schräg drücken → l⊥ kleiner → mehr Kraft nötig", thema: "hebel" },
     { t: "Reibkraft", f: "F_R = μ · F_N", n: "F_N = 1000 N, μ0 = 0,2 → 200 N Losbrechkraft · μ = 0,15 → 150 N beim Gleiten (Beispielwerte)", thema: "reibung" },
@@ -64,6 +67,11 @@ window.WISSEN = {
     { t: "Kreisfläche (Kolben)", f: "A = π · d² / 4", n: "doppelter Durchmesser → vierfache Fläche und Kraft · Ringfläche Rückhub: A = π · (D² − d²) / 4", thema: "druck" },
   ],
   begriffe: [
+    { w: "Bügelmessschraube", e: "Messgerät mit Gewindespindel (Steigung 0,5 mm) und Messtrommel mit 50 Teilstrichen → Ablesung auf 0,01 mm. Immer über die Ratsche anziehen (konstante Messkraft).", thema: "messschraube" },
+    { w: "Vorschub f", e: "Weg des Werkzeugs pro Umdrehung (Drehen, Bohren) in mm. Beim Fräsen: Vorschub pro Zahn f_z.", thema: "vorschub" },
+    { w: "Vorschubgeschwindigkeit v_f", e: "Weg des Werkzeugs pro Minute in mm/min: v_f = f · n (Drehen), v_f = f_z · z · n (Fräsen).", thema: "vorschub" },
+    { w: "Lagerluft", e: "Spiel zwischen Ringen und Wälzkörpern. Festsitz (Innenring weitet sich) und Wärme (Innenring wärmer als Außenring) verkleinern sie.", thema: "lagerspiel" },
+    { w: "Lagerluftgruppen C2 · CN · C3", e: "C2 kleiner als normal, CN normal, C3 größer, C4 noch größer. C3 bei festen Passungen und höheren Temperaturen (z. B. Elektromotoren).", thema: "lagerspiel" },
     { w: "Freischalten (Lockout)", e: "Maschine vor Instandhaltung von der Energie trennen und gegen Wiedereinschalten sichern: Hauptschalter 0, eigenes Schloss + Schild, Restenergie abbauen, Startversuch.", thema: "lockout" },
     { w: "Restenergie", e: "Energie, die nach dem Abschalten noch gespeichert ist: Druckluft, Hydraulikdruck, gespannte Federn, hochgefahrene Teile, Kondensatoren. Vor dem Eingreifen abbauen oder sichern.", thema: "lockout" },
     { w: "Brinellhärte HBW", e: "Hartmetallkugel wird eingedrückt, gemessen wird der Eindruckdurchmesser d. Für weiche bis mittelharte Werkstoffe (Baustahl, Gusseisen).", thema: "haertepruefung" },
@@ -1354,6 +1362,57 @@ window.THEMEN = [
         e: "Bei 45° ist der senkrechte Abstand nur noch l · cos 45° ≈ 0,71 · l. Kleinerer Hebelarm → für dasselbe Moment mehr Kraft." },
       { q: "Der Kraftarm ist 6-mal so lang wie der Lastarm. Wie groß ist die nötige Kraft im Verhältnis zur Last?", a: ["6-mal so groß","Ein Sechstel","Gleich groß"], r: 1,
         e: "F / F_L = l_L / l_F = 1/6. Beispiel: 600 N Last → 100 N Kraft (Eigengewicht des Hebels vernachlässigt)." },
+    ],
+  },
+  {
+    id: "messschraube", titel: "Bügelmessschraube ablesen", icon: "📏", kat: "pruefen", datum: "2026-11-28", video: "", ap: [1, 2], bild: "img/messschraube.jpg", bereich: "A", berufe: ["IM", "ZM", "MT"],
+    fragen: [
+      { q: "Spindelsteigung 0,5 mm, Messtrommel mit 50 Teilstrichen. Welche Ablesegenauigkeit hat die Messschraube?", a: ["0,02 mm","0,01 mm","0,05 mm"], r: 1,
+        e: "0,5 mm : 50 Teilstriche = 0,01 mm pro Strich." },
+      { q: "Hülse: oben ist die 18 sichtbar, der Halbmillimeter-Strich darunter ist frei. Die Trommel zeigt 41. Messwert?", a: ["18,41 mm","19,41 mm","18,91 mm"], r: 2,
+        e: "18 + 0,5 + 0,41 = 18,91 mm. 18,41 wäre der typische Fehler: Halbmillimeter übersehen." },
+      { q: "Hülse: volle 7 mm sichtbar, der Halbmillimeter-Strich ist noch verdeckt. Trommel zeigt 06. Messwert?", a: ["7,06 mm","7,56 mm","7,60 mm"], r: 0,
+        e: "Kein Halbmillimeter frei → 7 + 0,06 = 7,06 mm. 7,60 ist ein Stellenfehler (06 = 0,06 mm)." },
+      { q: "Wozu dient die Ratsche (Gefühlsratsche) an der Messschraube?", a: ["Sie hält die Messkraft konstant","Sie verstellt die Spindel schneller","Sie stellt den Nullpunkt ein"], r: 0,
+        e: "Die Ratsche rutscht bei einer festen Kraft durch. So misst jeder mit gleicher Messkraft – ohne Verformung oder zu lockeren Kontakt." },
+      { q: "Ein Azubi liest 12,23 mm ab, richtig wären 12,73 mm. Was hat er übersehen?", a: ["Den Nullpunktfehler","Den freien Halbmillimeter-Strich","Die Ratsche"], r: 1,
+        e: "Genau 0,5 mm Unterschied = Halbmillimeter-Strich auf der unteren Hülsenseite übersehen." },
+      { q: "Bei geschlossenen Messflächen zeigt die Messschraube +0,02 mm statt 0. Am Werkstück liest du 12,75 mm ab. Welches Maß hat das Werkstück?", a: ["12,77 mm","12,75 mm","12,73 mm"], r: 2,
+        e: "Die Schraube zeigt 0,02 mm zu viel → Korrektur: 12,75 − 0,02 = 12,73 mm. Deshalb vorher immer den Nullpunkt prüfen." },
+    ],
+  },
+  {
+    id: "vorschub", titel: "Vorschub f und Vorschubgeschwindigkeit v_f", icon: "⚙️", kat: "fertigung", datum: "2026-11-28", video: "", ap: [1, 2], bild: "img/vorschub.jpg", bereich: "C", berufe: ["ZM", "IM"],
+    fragen: [
+      { q: "Drehen mit f = 0,15 mm und n = 1200 1/min. Wie groß ist die Vorschubgeschwindigkeit?", a: ["18 mm/min","180 mm/min","1800 mm/min"], r: 1,
+        e: "v_f = f · n = 0,15 mm · 1200 1/min = 180 mm/min." },
+      { q: "Drehlänge 90 mm, v_f = 180 mm/min (An-/Überlauf vernachlässigt). Wie lange dauert der Schnitt?", a: ["20 s","2 min","30 s"], r: 2,
+        e: "t = L / v_f = 90 mm : 180 mm/min = 0,5 min = 30 s." },
+      { q: "Fräser mit z = 6 Schneiden, f_z = 0,05 mm, n = 2000 1/min. Vorschubgeschwindigkeit?", a: ["600 mm/min","100 mm/min","6000 mm/min"], r: 0,
+        e: "v_f = f_z · z · n = 0,05 · 6 · 2000 = 600 mm/min. 100 mm/min = Zähnezahl vergessen." },
+      { q: "Was gibt der Vorschub f beim Drehen an?", a: ["Weg pro Minute","Weg pro Umdrehung","Weg pro Schneide"], r: 1,
+        e: "f = Weg des Werkzeugs pro Umdrehung in mm. Weg pro Minute ist v_f, Weg pro Schneide ist f_z (Fräsen)." },
+      { q: "Fräsen: z = 4, f_z = 0,1 mm, n = 1000 1/min. Ein Azubi rechnet 100 mm/min. Richtig sind …", a: ["400 mm/min","100 mm/min","25 mm/min"], r: 0,
+        e: "Er hat z vergessen: v_f = 0,1 · 4 · 1000 = 400 mm/min." },
+      { q: "Du verdoppelst beim Drehen die Drehzahl, f bleibt gleich. Was passiert mit v_f und der Hauptzeit?", a: ["v_f gleich, Zeit halbiert","v_f verdoppelt, Zeit gleich","v_f verdoppelt, Zeit halbiert"], r: 2,
+        e: "v_f = f · n → doppelt so groß; t = L / v_f → halb so lang." },
+    ],
+  },
+  {
+    id: "lagerspiel", titel: "Lagerluft: warum Lager heiß laufen", icon: "🔥", kat: "elemente", datum: "2026-11-28", video: "", ap: [2], bild: "img/lagerspiel.jpg", bereich: "G", berufe: ["IM", "MT"],
+    fragen: [
+      { q: "Was versteht man unter Lagerluft bei einem Wälzlager?", a: ["Abstand zwischen Lager und Gehäusedeckel","Spiel zwischen Ringen und Wälzkörpern","Freier Raum für das Schmierfett"], r: 1,
+        e: "Lagerluft = Spiel zwischen Innenring, Wälzkörpern und Außenring (radial bzw. axial)." },
+      { q: "Welche Reihenfolge der Lagerluftgruppen ist richtig (klein → groß)?", a: ["C2 < CN < C3 < C4","CN < C2 < C3 < C4","C4 < C3 < CN < C2"], r: 0,
+        e: "C2 kleiner als normal, CN normal, C3 größer, C4 noch größer." },
+      { q: "Der Innenring sitzt mit Übermaß (Festsitz) auf der Welle. Was passiert mit der Lagerluft?", a: ["Sie wird größer","Sie bleibt gleich","Sie wird kleiner"], r: 2,
+        e: "Der Festsitz weitet den Innenring auf → Lagerluft wird kleiner." },
+      { q: "Im Betrieb ist der Innenring wärmer als der Außenring. Folge für die Lagerluft?", a: ["Sie wird kleiner","Sie wird größer","Kein Einfluss"], r: 0,
+        e: "Der wärmere Innenring dehnt sich stärker aus als der Außenring → das Spiel schrumpft." },
+      { q: "Elektromotor: Innenring mit Festsitz, höhere Betriebstemperatur. Welche Lagerluftgruppe wählst du typischerweise?", a: ["C2","C3","CN"], r: 1,
+        e: "Festsitz und Wärme fressen Lagerluft → größere Ausgangsluft C3." },
+      { q: "Prüfungsfalle: Warum wird ein Lager ohne Betriebsspiel immer heißer?", a: ["Das Fett wird sofort flüssig und läuft aus","Der Außenring dehnt sich schneller und klemmt","Vorspannung → mehr Reibung → mehr Wärme → noch weniger Luft"], r: 2,
+        e: "Teufelskreis: keine Luft → Kugeln verspannt → Reibung ↑ → Temperatur ↑ → Innenring dehnt sich → noch weniger Luft." },
     ],
   },
 ];
